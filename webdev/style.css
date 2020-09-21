@@ -41,7 +41,7 @@ h4{
     color: #373737;
 }
 .main{
-    background: url(/assets/bg-image.png) no-repeat center;
+    background: url(../assets/bg-image.png) no-repeat center;
     background-size: cover;
 }
 .wrapper{
