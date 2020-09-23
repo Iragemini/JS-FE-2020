@@ -41,7 +41,7 @@ h4{
     color: #373737;
 }
 .main{
-    background: url(/assets/bg-image.png) no-repeat center;
+    background: url(../assets/bg-image.png) no-repeat center;
     background-size: cover;
 }
 .wrapper{
@@ -58,20 +58,24 @@ h4{
 .header__wrapper{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .logo{
     display: flex;
-    padding: 0 15px;
 }
+
 .menu__list{
     display: flex;
-    font-size: 14px;
-    line-height: 140%;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
 }
 .list__item{
     list-style: none;
     padding: 0 85px;
+}
+.list__item:last-child .list__item:first-child{
+    padding: 0px;
 }
 .header-navigation__left{
     display: flex;
@@ -139,8 +143,8 @@ opacity: 1;
     padding: 15px 47px;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
     color: #FFFFFF;
     background: #00AFDB;
     border: 0;
@@ -159,6 +163,8 @@ opacity: 1;
 /*social styles start*/
 
 .socials__wrapper{
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 .social__item{
@@ -168,6 +174,8 @@ opacity: 1;
 
 .social__link{
     text-decoration: none;
+    width: 20px;
+    height: 20px;
 }
 
 .social__img{
@@ -176,7 +184,6 @@ opacity: 1;
 }
 
 .social__nav{
-    align-items: center;
     justify-content: space-between;
     padding-bottom: 90px;
 }
@@ -195,14 +202,20 @@ opacity: 1;
 
 /*rappresent styles start*/
 
-.rappresent{
+.rappresent, .implemet, .community, .download{
     background: #FFFFFF;
+    background-size: cover;
+    padding: 0;
+}
+.rappresent__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 120px 0;
+
 }
 .rappresent__content{
-    width: 407px;
-    height: 233px;
-    text-align: left;
-    padding: 295px 0px 0px 269px;
+    padding-right: 248px;
 }
 .text{
     font-family: 'Roboto', sans-serif;
@@ -214,7 +227,104 @@ opacity: 1;
 .rappresent__image{
     width: 407px;
     height: 582px;
-    padding: 120px 269px 140px 0px;
 }
 /*rappresent styles end*/
 
+/*community start*/
+
+.community__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.community__slider{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+/*community end*/
+
+/*implement start*/
+
+.implement__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*implement end*/
+
+
+/*sign-up start*/
+.sign-up{
+    background: url(../assets/sign_up.png) no-repeat center;
+    background-size: cover;
+}
+.sign-up__button{
+    width: 66px;
+    height: 46px;
+}
+.sign-up__wrapper{
+    padding: 200px 0 220px 0;
+}
+.sign-up__svg{
+    padding: 16px 25px;
+}
+.sign-up__text{
+    color: #FFFFFF;
+    text-align: center;
+}
+.sign-up__form{
+    padding: 30px 0;
+}
+.sign-up__field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*sign-up end*/
+
+/*download start*/
+.download__wrapper{
+    justify-content: center;
+    align-items: center;
+    padding: 120px 0 180px 0;
+}
+.download-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.download-text{
+    margin-top: 20px;
+}
+.download-buttons{
+    margin-top: 30px;
+}
+.button__apple{
+    margin-right: 30px;
+}
+.icon{
+    width: 59px;
+    height: 46px;
+    background: #009CC2;
+    border-radius: 0px;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 21px;
+
+}
+.button__ico{
+    display: flex;
+    padding: 15px 18px;
+}
+/*download end*/
+
+/*footer*/
+
+.footer{
+    background: url(../assets/footer.png) no-repeat center;
+    background-size: cover;
+
+}
+/*footer end*/
