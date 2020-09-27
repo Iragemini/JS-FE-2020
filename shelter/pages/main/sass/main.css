@@ -25,6 +25,10 @@ body {
 
 .header {
   width: 100vw;
+  position: absolute;
+  top: 0;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .logo {
@@ -80,16 +84,16 @@ body {
 
 .hero {
   display: flex;
-  background: url(../../../assets/images/noise_lines_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background: url(../../../assets/images/noise_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
-.hero-content {
+.hero__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.hero-title {
+.hero__title {
   color: #FFFFFF;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 4.4rem;
@@ -97,7 +101,7 @@ body {
   min-width: 310px;
 }
 
-.hero-subtitle {
+.hero__subtitle {
   margin-top: 42px;
   color: #CDCDCD;
   line-height: 160%;
@@ -105,14 +109,30 @@ body {
   font-size: 1.5rem;
 }
 
-.hero-button {
-  margin-top: 42px;
-  width: 207px;
-  padding: 15px 45px;
+.button {
   border-radius: 100px;
   border: none;
   background-color: #F1CDB3;
   font-family: Georgia, sans-serif;
+}
+
+.hero__button {
+  margin-top: 42px;
+  width: 207px;
+  padding: 15px 45px;
+}
+
+.about {
+  display: flex;
+}
+
+.pets__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.pets__slider {
+  display: flex;
 }
 
 /*# sourceMappingURL=main.css.map */
