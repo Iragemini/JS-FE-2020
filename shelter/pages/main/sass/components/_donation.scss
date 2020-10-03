@@ -1,0 +1,23 @@
+.donation{
+    background-color: $color-light-l;
+}
+
+.donation__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 81px 0 101px 0;
+}
+
+.donation__header{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 20px;
+}
+
+.credit-card{
+    width: 349px;
+    background: $color-primary;
+    border-radius: 9px;
+}

@@ -1,5 +1,20 @@
-@import "base/base";
 @import "abstracts/constants";
+
+//Base
+@import "base/base";
+@import "base/buttons";
+
+//Layout
+@import "layout/wrapper";
+@import "layout/header";
+@import "layout/footer";
+
+//Components
+@import "components/hero";
+@import "components/about";
+@import "components/pets";
+@import "components/help";
+@import "components/donation";
 
 
 * {
@@ -11,51 +26,10 @@
     box-sizing: border-box;
 }
 
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.header {
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    margin-top: 60px;
-    margin-bottom: 60px;
-}
-
-.logo {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo__title {
-    color: $color-primary;
-    font-family: Georgia, sans-serif;
-    font-size: 3.2rem;
-    letter-spacing: 6%;
-    line-height: 110%;
-}
-
-.logo__subtitle {
-    color: $color-light-xl;
-    font-size: 1.3rem;
-    letter-spacing: 10%;
-    line-height: 110%;
-}
-
-.menu {
-    width: 443px;
-    display: flex;
-}
-
-.list {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    list-style-type: none;
+.background{
+    background: url(../../../assets/images/noise_transparent@2X.png),
+    radial-gradient(100% 215.42% at 0% 0%,
+    #5B483A 0%, #262425 100%), #211F20;
 }
 
 .list__link {
@@ -73,62 +47,20 @@
     color: $color-dark-s;
 }
 
-.list__item{
-    display: flex;
-    align-items: center;
-}
-
-.hero{
-    display: flex;
-    background: url(../../../assets/images/noise_transparent@2X.png),
-    radial-gradient(100% 215.42% at 0% 0%,
-    #5B483A 0%, #262425 100%), #211F20;
-}
-
-.hero__content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hero__title{
-    color: $color-light-xl;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 4.4rem;
-    line-height: 130%;
-    min-width: 310px;
-}
-
-.hero__subtitle{
-    margin-top: 42px;
-    color: $color-dark-s;
-    line-height: 160%;
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-}
-
-.button{
-    border-radius: 100px;
-    border: none;
-    background-color: $color-primary;
-    font-family: Georgia, sans-serif;
-}
-
-.hero__button{
-    margin-top: 42px;
-    width: 207px;
-    padding: 15px 45px;
-}
-
 .about{
     display: flex;
 }
 
-.pets__content{
+
+.contacts{
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
-.pets__slider{
-    display: flex;
+.email{
+    background-image: url(../../../assets/images/icons/mail.svg);
+}
+
+.phone{
+    background-image: url(../../../assets/images/icons/telephone.svg);
 }
