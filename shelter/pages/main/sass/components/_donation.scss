@@ -4,7 +4,7 @@
 
 .donation__wrapper{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 81px 0 101px 0;
 }
@@ -16,8 +16,38 @@
     padding-bottom: 20px;
 }
 
+.donation__img{
+    padding-right: 30px;
+}
+
+.donation__subtitle{
+    color: $color-dark-l;
+    padding-bottom: 20px;
+}
+
 .credit-card{
+    display: flex;
     width: 349px;
     background: $color-primary;
     border-radius: 9px;
+    padding: 10px 15px;
+}
+
+.card-number{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: $color-dark-l;
+    padding-left: 15px;
+}
+
+.donation-info{
+    font-family: Arial;
+    font-style: italic;
+    font-size: 12px;
+    line-height: 18px;
+    color: $color-dark-m;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding-top: 20px;
 }
