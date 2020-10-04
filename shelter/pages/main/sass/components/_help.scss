@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 80px 0 100px 0;
+    padding: 80px 87px 100px 87px;
 }
 
 .help__content{
@@ -19,13 +19,19 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 60px;
+    padding-bottom: 5px;
+    letter-spacing: 0.06em;
 }
 
 .help__list{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
+    padding-top: 55px;
+}
+
+.help__list-mod{
+    justify-content: space-evenly;
 }
 
 .help__list-item{
@@ -33,7 +39,14 @@
     flex-direction: column;
     align-items: center;
     list-style: none;
-    padding: 0 30px 55px 30px;
+    padding: 0 30px 0 30px;
+}
+
+.help__list-item:first-child{
+    padding-left: 0;
+}
+.help__list-item:last-child{
+    padding-right: 0;
 }
 
 .help__menu_logo{

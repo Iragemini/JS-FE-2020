@@ -5,7 +5,8 @@
 .footer__wrapper{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 40px;
 }
 
 .footer-contacts{
@@ -18,7 +19,8 @@
 .footer__info{
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: f;
+    color: $color-primary;
 }
 
 .footer__ico{
@@ -39,4 +41,5 @@
     justify-content: space-between;
     letter-spacing: 0.06em;
     color: $color-light-xl;
+    padding-top: 16px;
 }

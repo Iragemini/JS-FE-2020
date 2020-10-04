@@ -123,7 +123,8 @@ h5 {
 .footer__wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 40px;
 }
 
 .footer-contacts {
@@ -136,7 +137,8 @@ h5 {
 .footer__info {
   display: flex;
   justify-content: start;
-  align-items: center;
+  align-items: f;
+  color: #F1CDB3;
 }
 
 .footer__ico {
@@ -157,6 +159,7 @@ h5 {
   justify-content: space-between;
   letter-spacing: 0.06em;
   color: #FFFFFF;
+  padding-top: 16px;
 }
 
 .hero {
@@ -192,19 +195,38 @@ h5 {
   font-size: 1.5rem;
 }
 
-.about {
-  padding: 80px 0 100px 0;
-}
-
 .about__wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 80px 0 100px 0;
+  margin: 0 175px 0 175px;
 }
 
 .about__content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 0 14px 120px;
+}
+
+.about_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 25px;
+  letter-spacing: 0.06em;
+}
+
+.about_text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 160%;
+  display: flex;
+  flex-flow: row wrap;
   max-width: 430px;
-  padding-left: 120px;
+  color: #4C4C4C;
 }
 
 .pets {
@@ -253,7 +275,7 @@ h5 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 80px 0 100px 0;
+  padding: 80px 87px 100px 87px;
 }
 
 .help__content {
@@ -269,13 +291,19 @@ h5 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
+  letter-spacing: 0.06em;
 }
 
 .help__list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
+  padding-top: 55px;
+}
+
+.help__list-mod {
+  justify-content: space-evenly;
 }
 
 .help__list-item {
@@ -283,7 +311,15 @@ h5 {
   flex-direction: column;
   align-items: center;
   list-style: none;
-  padding: 0 30px 55px 30px;
+  padding: 0 30px 0 30px;
+}
+
+.help__list-item:first-child {
+  padding-left: 0;
+}
+
+.help__list-item:last-child {
+  padding-right: 0;
 }
 
 .help__menu_logo {
