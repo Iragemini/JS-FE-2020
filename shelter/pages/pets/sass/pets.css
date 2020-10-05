@@ -1,0 +1,249 @@
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: Georgia, serif;
+}
+
+h2 {
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 130%;
+}
+
+h3 {
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+h4 {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+h5 {
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 110%;
+}
+
+.button {
+  border-radius: 100px;
+  border: none;
+  padding: 15px 45px;
+  background-color: #F1CDB3;
+  font-family: Georgia, sans-serif;
+}
+
+.hero__button {
+  margin-top: 42px;
+  width: 207px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 30px 0;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo__title {
+  color: #545454;
+  font-family: Georgia, serif;
+  font-size: 3.2rem;
+  letter-spacing: 0.06em;
+  line-height: 110%;
+  margin-bottom: 10px;
+}
+
+.logo__subtitle {
+  color: #292929;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+
+.header__menu {
+  display: flex;
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 160%;
+  color: #CDCDCD;
+}
+
+.navigation__link {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 160%;
+  font-weight: normal;
+  color: #545454;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0 17.5px 0 17.5px;
+}
+
+.navigation__link:first-child {
+  padding-left: 0;
+}
+
+.navigation__link:last-child {
+  padding-right: 0;
+}
+
+.footer {
+  background: url(../../../../assets/footer/footer-background.png);
+}
+
+.footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.footer__info {
+  display: flex;
+  justify-content: start;
+  align-items: f;
+  color: #F1CDB3;
+}
+
+.footer__ico {
+  padding-right: 20px;
+  flex-flow: row nowrap;
+}
+
+.footer_text {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 260px;
+}
+
+.contacts {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  padding-top: 16px;
+}
+
+.pets {
+  padding: 80px 0 100px 0;
+  background-color: #F6F6F6;
+}
+
+.pets__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pets__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+.pets__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pets__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 33px;
+}
+
+.pets__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FAFAFA;
+  border-radius: 9px;
+  margin: 0 40px 30px 0px;
+}
+
+.pets__card:last-child {
+  margin-right: 0;
+}
+
+.pets-name {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  padding: 30px 0 30px 0;
+  color: #545454;
+}
+
+.pets__img {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=pets.css.map */

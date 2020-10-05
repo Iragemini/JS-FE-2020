@@ -1,0 +1,17 @@
+{
+  "name": "shelter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "style": "sass --watch pages/main/sass/main.scss pages/main/sass/main.css",
+    "pets": "sass --watch pages/pets/sass/pets.scss pages/pets/sass/pets.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webdraftt/webfraftt"
+  },
+  "author": "",
+  "license": "ISC"
+}
