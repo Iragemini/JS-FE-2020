@@ -2,31 +2,40 @@
     padding-top: 60px;
 }
 
+.hero__img{
+    width: 698px;
+    height: 728px;
+}
+
 .hero__wrapper{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero__content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 42px;
+    margin-right: 42px;
+    margin-top: 163px;
 }
 
 .hero__title{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 42px;
     color: $color-light-xl;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 4.4rem;
-    line-height: 130%;
+    @include h2;
     min-width: 310px;
 }
 
 .hero__subtitle{
-    margin-top: 42px;
+    margin: auto;
     color: $color-dark-s;
-    line-height: 160%;
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
+    @include paragraph-i;
+    max-width: 460px;
 }

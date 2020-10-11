@@ -3,10 +3,25 @@
     border: none;
     padding: 15px 45px;
     background-color: $color-primary;
-    font-family: Georgia, sans-serif;
+    @include button-text;
 }
 
 .hero__button{
     margin-top: 42px;
     width: 207px;
+}
+
+.hero__button:hover{
+    cursor: pointer;
+    background-color: $color-primary-light;
+}
+
+.slider__arrow{
+    margin: 0;
+    width: 52px;
+    height: 52px;
+}
+
+.slider__arrow:first-child{
+    margin-right: 53px;
 }

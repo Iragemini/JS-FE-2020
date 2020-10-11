@@ -1,0 +1,68 @@
+@mixin font($size, $height, $weight: normal, $style: normal) {
+    font-size: $size;
+    line-height: $height;
+    font-weight: $weight;
+    font-style: $style;
+}
+
+@mixin columns ($width){
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    //>*{
+        //flex-basis: $width;
+    //}
+}
+
+@mixin h2{
+    @extend %font-add;
+    @include font(4.4rem, 130%);
+    letter-spacing: 0.19rem;
+}
+
+@mixin h3{
+    @extend %font-add;
+    @include font(3.5rem, 130%);
+    letter-spacing: 0.35rem;
+}
+
+@mixin h4{
+    @extend %font-add;
+    @include font(2rem, 115%);
+    letter-spacing: 0.06rem;
+}
+
+@mixin h5{
+    @extend %font-add;
+    @include font(1.5rem, 110%);
+    letter-spacing: 0.06rem;
+}
+
+@mixin paragraph-i{
+    font-family: Arial, Helvetica, sans-serif;
+    @include font(1.5rem, 160%);
+}
+
+@mixin paragraph-s{
+    @include font(1.2rem, 150%, normal, italic);
+}
+
+@mixin logo-title{
+    @extend %font-add;
+    @include font(3.2rem, 110%);
+    letter-spacing: 0.27rem;
+}
+
+@mixin logo-subtitle{
+    font-family: Arial, Helvetica, sans-serif;
+    @include font(1.3rem, auto);
+    letter-spacing: 0.13rem;
+}
+
+@mixin button-text{
+    @extend %font-add;
+    @include font(1.7rem, 130%);
+    letter-spacing: 0.16rem;
+    color: $color-dark-3xl;
+}

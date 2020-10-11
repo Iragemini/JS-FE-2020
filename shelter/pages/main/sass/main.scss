@@ -1,4 +1,9 @@
+//@import "base/normalize";
+
+//abstracts
 @import "abstracts/constants";
+@import "abstracts/placeholders";
+@import "abstracts/mixins";
 
 //Base
 @import "base/base";
@@ -8,6 +13,7 @@
 @import "layout/wrapper";
 @import "layout/header";
 @import "layout/footer";
+@import "layout/colunms";
 
 //Components
 @import "components/hero";
@@ -27,27 +33,6 @@
 }
 
 .background{
-    background: url(../../../assets/images/noise_transparent@2X.png),
-    radial-gradient(100% 215.42% at 0% 0%,
-    #5B483A 0%, #262425 100%), #211F20;
-}
-
-.list__link {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
-    line-height: 160%;
-}
-
-.list__link_active{
-    border-radius: solid 0.3rem $color-primary;
-
-}
-
-.list__link_disabled {
-    color: $color-dark-s;
-}
-
-.about{
-    display: flex;
+    background: $start-screen-gradient-background;
 }
 

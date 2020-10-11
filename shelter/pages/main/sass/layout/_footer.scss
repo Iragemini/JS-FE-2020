@@ -1,37 +1,45 @@
 .footer{
-    background: url(../../../../assets/footer/footer-background.png);
+    background: $footer-gradient-background;
 }
 
 .footer__wrapper{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     padding-top: 40px;
 }
 
-.footer-contacts{
+.footer__contacts{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    @include h3;
 }
 
 .footer__info{
     display: flex;
     justify-content: start;
-    align-items: f;
+    align-items: flex-start;
+    @include h4;
     color: $color-primary;
 }
 
 .footer__ico{
     padding-right: 20px;
     flex-flow: row nowrap;
+
+    >.footer__link{
+        text-decoration: none;
+    }
 }
 
 .footer_text{
     display: flex;
     flex-flow: row wrap;
     max-width: 260px;
+    @include h4;
 }
 
 .contacts{
@@ -42,4 +50,19 @@
     letter-spacing: 0.06em;
     color: $color-light-xl;
     padding-top: 16px;
+}
+
+.contacts_first{
+    width: 278px;
+    height: 234px;
+}
+
+.contacts_second{
+    width: 302px;
+    height: 234px;
+}
+
+.footer__img{
+    width: 300px;
+    height: 310px;
 }

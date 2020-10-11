@@ -2,48 +2,60 @@
     background-color: $color-light-l;
 }
 
-.donation__wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 81px 0 101px 0;
+.donation__img{
+    margin: 0;
+    margin-right: 30px;
+    width: 505px;
+    height: 261px;
 }
 
-.donation__header{
+.donation__content{
     display: flex;
     flex-direction: column;
-    align-items: start;
-    padding-bottom: 20px;
+
+    >.donation__title{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-bottom: 20px;
+        @include h3;
+    }
+    
+    >.donation__subtitle{
+        color: $color-dark-l;
+        margin-bottom: 20px;
+        @include h5;
+    }
+    
+    >.credit__card{
+        display: flex;
+        width: 349px;
+        background: $color-primary;
+        border-radius: 9px;
+        padding: 10px 15px;
+
+        >.card__img{
+            width: 30px;
+            height: 23px;
+        }
+
+        >.card__number{
+            padding-left: 15px;
+
+            >.card__number_link{
+                text-decoration: none;
+                @include h4;
+                @extend %font-add;
+                color: $color-dark-l;
+            }
+        }
+    }
+    
+    
 }
 
-.donation__img{
-    padding-right: 30px;
-}
-
-.donation__subtitle{
-    color: $color-dark-l;
-    padding-bottom: 20px;
-}
-
-.credit-card{
-    display: flex;
-    width: 349px;
-    background: $color-primary;
-    border-radius: 9px;
-    padding: 10px 15px;
-}
-
-.card-number{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: $color-dark-l;
-    padding-left: 15px;
-}
-
-.donation-info{
-    font-family: Arial;
-    font-style: italic;
-    font-size: 12px;
-    line-height: 18px;
+.donation__info{
+    @include paragraph-s;
     color: $color-dark-m;
     display: flex;
     flex-direction: column;
