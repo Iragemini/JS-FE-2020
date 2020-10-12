@@ -16,10 +16,8 @@
         align-items: flex-start;
         margin-bottom: 25px;
         @include h3;
-
-        &_spacing{
-            letter-spacing: 0.27rem;
-        }
+        width: 370px;
+        height: 90px;
     }
     
     &__text{

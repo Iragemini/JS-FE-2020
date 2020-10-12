@@ -18,19 +18,19 @@
 @mixin h2{
     @extend %font-add;
     @include font(4.4rem, 130%);
-    letter-spacing: 0.19rem;
+    //letter-spacing: 0.19rem;
 }
 
 @mixin h3{
     @extend %font-add;
     @include font(3.5rem, 130%);
-    letter-spacing: 0.35rem;
+    letter-spacing: 0.21rem;
 }
 
 @mixin h4{
     @extend %font-add;
     @include font(2rem, 115%);
-    letter-spacing: 0.06rem;
+    letter-spacing: 0.12rem;
 }
 
 @mixin h5{
@@ -51,7 +51,7 @@
 @mixin logo-title{
     @extend %font-add;
     @include font(3.2rem, 110%);
-    letter-spacing: 0.27rem;
+    letter-spacing: 0.2rem;
 }
 
 @mixin logo-subtitle{
@@ -63,6 +63,6 @@
 @mixin button-text{
     @extend %font-add;
     @include font(1.7rem, 130%);
-    letter-spacing: 0.16rem;
+    letter-spacing: 0.1rem;
     color: $color-dark-3xl;
 }

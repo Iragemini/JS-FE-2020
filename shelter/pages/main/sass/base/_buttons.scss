@@ -1,14 +1,21 @@
 .button{
+    cursor: pointer;
     border-radius: 100px;
     border: none;
     padding: 15px 45px;
     background-color: $color-primary;
     @include button-text;
+
+    &:hover{
+        background-color: $color-primary-light;
+    }
 }
+
 
 .hero__button{
     margin-top: 42px;
     width: 207px;
+    @include button-text;
 }
 
 .hero__button:hover{
@@ -16,10 +23,29 @@
     background-color: $color-primary-light;
 }
 
+.pets__card__button{
+    width: 261px;
+
+    .button_pets{
+        border: 2px solid $color-primary;
+        background-color: $color-light-s;
+
+        &:hover{
+            background-color: $color-primary-light;
+        }
+    }
+}
+
 .slider__arrow{
+    cursor: pointer;
+    border-radius: 50%;
     margin: 0;
     width: 52px;
     height: 52px;
+
+    &:hover{
+        background-color: $color-primary-light;
+    }
 }
 
 .slider__arrow:first-child{

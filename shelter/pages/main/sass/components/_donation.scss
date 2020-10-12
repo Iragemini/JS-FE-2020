@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
 
-    >.donation__title{
+    .donation__title{
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -21,25 +21,25 @@
         @include h3;
     }
     
-    >.donation__subtitle{
+    .donation__subtitle{
         color: $color-dark-l;
         margin-bottom: 20px;
         @include h5;
     }
     
-    >.credit__card{
+    .credit__card{
         display: flex;
-        width: 349px;
+        width: 350px;
         background: $color-primary;
         border-radius: 9px;
         padding: 10px 15px;
 
-        >.card__img{
+        .card__img{
             width: 30px;
             height: 23px;
         }
 
-        >.card__number{
+        .card__number{
             padding-left: 15px;
 
             >.card__number_link{
