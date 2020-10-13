@@ -10,20 +10,18 @@
 }
 
 .donation__content{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-row-gap: 20px;
 
     .donation__title{
         display: flex;
         flex-direction: column;
         align-items: start;
-        margin-bottom: 20px;
         @include h3;
     }
     
     .donation__subtitle{
         color: $color-dark-l;
-        margin-bottom: 20px;
         @include h5;
     }
     
@@ -40,7 +38,7 @@
         }
 
         .card__number{
-            padding-left: 15px;
+            margin-left: 15px;
 
             >.card__number_link{
                 text-decoration: none;
@@ -49,9 +47,7 @@
                 color: $color-dark-l;
             }
         }
-    }
-    
-    
+    } 
 }
 
 .donation__info{
@@ -61,5 +57,4 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
-    padding-top: 20px;
 }

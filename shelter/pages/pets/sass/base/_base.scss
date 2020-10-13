@@ -4,43 +4,5 @@ html{
 
 body{
     font-size: 1.6rem;
-    font-family: Georgia, serif;
-}
-
-h2{
-    font-family: Georgia, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 44px;
-    line-height: 130%;
-}
-
-h3{
-    font-family: Georgia, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 35px;
-    line-height: 130%;
-    letter-spacing: 0.06em;
-    color: $color-dark-l;
-}
-
-h4{
-    font-family: 'Georgia', serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 23px;
-}
-
-h5{
-    font-family: Georgia, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 110%;
-}
-
-p{
-
+    @extend %font-add;
 }

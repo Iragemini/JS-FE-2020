@@ -1,4 +1,9 @@
+@import "base/normalize";
+
+//abstracts
 @import "abstracts/constants";
+@import "abstracts/placeholders";
+@import "abstracts/mixins";
 
 //Base
 @import "base/base";
@@ -8,6 +13,7 @@
 @import "layout/wrapper";
 @import "layout/header";
 @import "layout/footer";
+@import "layout/colunms";
 
 //Components
 @import "components/pets";

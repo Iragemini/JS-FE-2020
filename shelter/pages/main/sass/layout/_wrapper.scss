@@ -36,9 +36,13 @@
 
 .donation__wrapper{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 81px 0 101px 0;
+    padding-top: 80px;
+
+    &_content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        align-items: start;
+        margin-bottom: 100px;
+    }
 }

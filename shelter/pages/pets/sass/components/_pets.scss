@@ -11,11 +11,8 @@
 }
 
 .pets__header{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 60px;
+    @extend %display-column;
+    @include h3;
 }
 
 .pets__content{
