@@ -22,8 +22,14 @@ class Calculator {
   }
 
   chooseOperation(operation) {
-    if (this.currentOperand === '') return;
-    if (this.previousOperand !== '' && this.previousOperand !== '') {
+    if (this.currentOperand === ''){
+      if(operation !== '-'){
+        return;
+      }else{
+        this.currentOperand = '-';
+      }
+    } 
+    if (this.currentOperand !== '' && this.previousOperand !== '') {
       this.compute();
     }
     this.operation = operation;
@@ -66,8 +72,11 @@ class Calculator {
     let computation;
     const current = parseFloat(this.currentOperand);
     if (this.currentOperand === '' || isNaN(current)) return;
-    this.previousOperand = this.currentOperand;
-    computation = Math.sqrt(current);
+    if(current < 0){
+      computation = "invalid input".toString();
+    }else{
+      computation = parseFloat(Math.sqrt(current).toFixed(7));
+    }   
 
     this.readyToReset = true;
     this.currentOperand = computation;
@@ -101,8 +110,7 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText =
-      this.getDisplayNumber(this.currentOperand)
+    this.currentOperandTextElement.innerText = this.currentOperand ;
     if (this.operation != null) {
       this.previousOperandTextElement.innerText =
         `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
@@ -128,13 +136,18 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
 
-      if(calculator.previousOperand === "" &&
+      if((calculator.previousOperand === "") &&
       calculator.currentOperand !== "" &&
   calculator.readyToReset) {
           calculator.currentOperand = "";
           calculator.readyToReset = false;
       }
-      calculator.appendNumber(button.innerText)
+      if(calculator.previousOperand === "-"){
+        calculator.previousOperand = "";
+        calculator.appendNumber(`-${button.innerText}`)
+      }else{
+        calculator.appendNumber(button.innerText)
+      }
       calculator.updateDisplay();
   })
 })
