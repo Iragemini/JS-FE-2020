@@ -18,20 +18,11 @@ class Calculator {
 
   appendNumber(number) {
     calculator.readyToReset = false;
-    console.log(`number = ${number}, prev = ${this.previousOperand}, includes = ${this.currentOperand.includes('.')}`)
     if (number === '.' && this.currentOperand.includes('.')) return;
-    if(this.previousOperand.toString() === "-"){
-      if(this.currentOperand.includes('-')) return;
-      this.currentOperand = this.previousOperand.toString() + number.toString();
-      this.previousOperand = '';
-    }else{
-      console.log(`currentOperand = ${this.currentOperand}`);
-      this.currentOperand = this.currentOperand.toString() + number.toString();
-    }
+    this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
   chooseOperation(operation) {
-    console.log(`**this.previousOperand = ${this.previousOperand}`)
     if (this.currentOperand === ''){
       if(operation !== '-'){
         return;
@@ -51,11 +42,9 @@ class Calculator {
   }
 
   compute() {
-    console.log(`compute: this.operation = ${this.operation}`);
     let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
-    console.log(`compute : prev = ${prev}, <0 = ${prev < 0}`);
     if ((isNaN(prev) && this.operation !== '√') || isNaN(current)) return;
     switch (this.operation) {
       case '+':
@@ -68,7 +57,7 @@ class Calculator {
         computation = prev * current;
         break
       case '÷':
-        computation = prev / current;
+        computation = current === 0 ? "invalid input" : prev / current;
         break
       case '^':
         computation = Math.pow(prev, current);
@@ -79,7 +68,6 @@ class Calculator {
       default:
         return;
     }
-    console.log(`compute: computation = ${computation} type = ${typeof computation}`);
     if(typeof computation === 'number'){
       computation = parseFloat(computation.toFixed(7));
     }
@@ -106,18 +94,29 @@ class Calculator {
   }
 
   computePow(){
-    let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
     if (isNaN(prev) || isNaN(current)) return;
     this.previousOperand = this.currentOperand + '^';
   }
 
+  addMinus(){
+    const current = this.currentOperand.toString();
+    const prev = this.previousOperand.toString();
+    if(isNaN(current)) return;
+    if(current !== null && current.length > 0){
+      if(current.startsWith('-')){
+        this.currentOperand = current.substring(1, current.length);
+      }else{
+        this.currentOperand = '-' + current;
+      }
+    }
+  }
+
   getDisplayNumber(number) {
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
     const decimalDigits = stringNumber.split('.')[1]
-    console.log(`stringNumber = ${stringNumber}, integerDigits = ${integerDigits}, decimalDigits = ${decimalDigits}`)
     let integerDisplay
     if (isNaN(integerDigits)) {
       integerDisplay = ''
@@ -132,7 +131,6 @@ class Calculator {
   }
 
   updateDisplay() {
-    console.log(`this.previousOperand = ${this.previousOperand}`);
     this.currentOperandTextElement.innerText = this.currentOperand ;
     if (this.operation != null) {
       this.previousOperandTextElement.innerText =
@@ -155,6 +153,7 @@ const previousOperandTextElement = document.querySelector('[data-previous-operan
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 const symbolButton = document.getElementById('symbol');
 const result = document.getElementById('result');
+const plusMinusButton = document.getElementById('plus-minus');
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -206,5 +205,9 @@ deleteButton.addEventListener('click', button => {
   calculator.updateDisplay();
 })
 
+plusMinusButton.addEventListener('click', button => {
+  calculator.addMinus();
+  calculator.updateDisplay();
+})
 
 

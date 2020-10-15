@@ -10,6 +10,14 @@ body {
   background: linear-gradient(to right, darkGray, whiteSmoke);
 }
 
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
 .calculator-grid {
   display: grid;
   justify-content: center;
@@ -59,4 +67,27 @@ body {
 .output .current-operand {
   color: white;
   font-size: 2.5rem;
+}
+
+.instruction{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  padding-top: 100px;
+  width: 500px;
+  height: 500px;
+  background-image: url(/assets/note.png);
+}
+
+.instruction__note{
+  width: 450px;
+  height: 300px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  color: black;
+}
+
+.li{
+  margin-top: 10px;
 }
