@@ -9,33 +9,62 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="calculator-grid">
-    <div class="output">
-      <div data-previous-operand class="previous-operand"></div>
-      <div data-current-operand class="current-operand"></div>
+  <div class="wrapper">
+    <div class="calculator-grid">
+      <div class="output">
+        <div data-previous-operand class="previous-operand"></div>
+        <div data-current-operand class="current-operand"></div>
+      </div>
+      <button data-all-clear class="span-two">AC</button>
+      <button data-delete class="span-two">DEL</button>
+      <button id="plus-minus">±</button>
+  
+      <button data-number>7</button>
+      <button data-number>8</button>
+      <button data-number>9</button>
+      <button data-operation>+</button>
+      <button data-operation>-</button>
+      <button data-number>4</button>
+      <button data-number>5</button>
+      <button data-number>6</button>
+      <button data-operation>*</button>
+      <button data-operation>÷</button>
+      <button data-number>1</button>
+      <button data-number id="symbol">2</button>
+      <button data-number>3</button>
+      <button data-operation-sqrt>√</button>
+      <button data-pow>x<sup>y</sup></button>
+      <button data-number>0</button>
+      <button data-number>.</button>
+      <button data-equals class="span-three" id="result">=</button>
     </div>
-    <button data-all-clear class="span-two">AC</button>
-    <button data-delete class="span-two">DEL</button>
-    <button></button>
-
-    <button data-number>7</button>
-    <button data-number>8</button>
-    <button data-number>9</button>
-    <button data-operation>+</button>
-    <button data-operation>-</button>
-    <button data-number>4</button>
-    <button data-number>5</button>
-    <button data-number>6</button>
-    <button data-operation>*</button>
-    <button data-operation>÷</button>
-    <button data-number>1</button>
-    <button data-number>2</button>
-    <button data-number>3</button>
-    <button data-operation-sqrt>√</button>
-    <button data-pow>x<sup>y</sup></button>
-    <button data-number>0</button>
-    <button data-number>.</button>
-    <button data-equals class="span-three">=</button>
-  </div>
+    <div class="instruction">
+      <span class="instruction__note">
+        <ul>
+          <li>
+            Для того, чтобы сделать число отрецательным используйте кнопку ±.
+          </li>
+          <li class="li">
+            Возведение в степень:
+            <ol>
+              <li>введите число - основание степени</li>
+              <li>нажмите кнопку x<sup>y</li>
+              <li>введите значение степени</li>
+            </ol> 
+          </li>
+          <li class="li">
+            Извлечение квадратного корня:
+            <ol>
+              <li>Введите число</li>
+              <li>Нажмите кнопку √</li>
+            </ol>
+          </li>
+          <li class="li">
+            При выполнении недопустимой операции выводится сообщение с текстом "invalid input"
+          </li>
+        </ul>
+      </span>
+    </div>
+  </div>  
 </body>
 </html>

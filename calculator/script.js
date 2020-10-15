@@ -17,6 +17,7 @@ class Calculator {
   }
 
   appendNumber(number) {
+    calculator.readyToReset = false;
     if (number === '.' && this.currentOperand.includes('.')) return;
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
@@ -32,6 +33,9 @@ class Calculator {
     if (this.currentOperand !== '' && this.previousOperand !== '') {
       this.compute();
     }
+    if(operation === '√' && this.currentOperand !== ''){
+      this.compute();
+    }
     this.operation = operation;
     this.previousOperand = this.currentOperand;
     this.currentOperand = '';
@@ -41,7 +45,7 @@ class Calculator {
     let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
-    if (isNaN(prev) || isNaN(current)) return;
+    if ((isNaN(prev) && this.operation !== '√') || isNaN(current)) return;
     switch (this.operation) {
       case '+':
         computation = prev + current;
@@ -53,15 +57,20 @@ class Calculator {
         computation = prev * current;
         break
       case '÷':
-        computation = prev / current;
+        computation = current === 0 ? "invalid input" : prev / current;
         break
-        case '^':
+      case '^':
         computation = Math.pow(prev, current);
+        break
+      case '√':
+        computation = (prev < 0) ? "invalid input".toString() : Math.sqrt(prev);
         break
       default:
         return;
     }
-    computation = parseFloat(computation.toFixed(7));
+    if(typeof computation === 'number'){
+      computation = parseFloat(computation.toFixed(7));
+    }
     this.readyToReset = true;
     this.currentOperand = computation;
     this.operation = undefined;
@@ -85,11 +94,23 @@ class Calculator {
   }
 
   computePow(){
-    let computation;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
     if (isNaN(prev) || isNaN(current)) return;
     this.previousOperand = this.currentOperand + '^';
+  }
+
+  addMinus(){
+    const current = this.currentOperand.toString();
+    const prev = this.previousOperand.toString();
+    if(isNaN(current)) return;
+    if(current !== null && current.length > 0){
+      if(current.startsWith('-')){
+        this.currentOperand = current.substring(1, current.length);
+      }else{
+        this.currentOperand = '-' + current;
+      }
+    }
   }
 
   getDisplayNumber(number) {
@@ -100,7 +121,7 @@ class Calculator {
     if (isNaN(integerDigits)) {
       integerDisplay = ''
     } else {
-      integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+      integerDisplay = integerDigits.toLocaleString('ru', { maximumFractionDigits: 0 })
     }
     if (decimalDigits != null) {
       return `${integerDisplay}.${decimalDigits}`
@@ -130,6 +151,9 @@ const sqrtButton = document.querySelector('[ data-operation-sqrt]');
 const powButton = document.querySelector('[data-pow]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+const symbolButton = document.getElementById('symbol');
+const result = document.getElementById('result');
+const plusMinusButton = document.getElementById('plus-minus');
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -142,12 +166,7 @@ numberButtons.forEach(button => {
           calculator.currentOperand = "";
           calculator.readyToReset = false;
       }
-      if(calculator.previousOperand === "-"){
-        calculator.previousOperand = "";
-        calculator.appendNumber(`-${button.innerText}`)
-      }else{
-        calculator.appendNumber(button.innerText)
-      }
+      calculator.appendNumber(button.innerText)
       calculator.updateDisplay();
   })
 })
@@ -165,8 +184,10 @@ powButton.addEventListener('click', button => {
 })
 
 sqrtButton.addEventListener('click', button => {
-  calculator.computeSqrt();
+  calculator.chooseOperation('√');
   calculator.updateDisplay();
+  symbolButton.click();
+  result.click();
 })
 
 equalsButton.addEventListener('click', button => {
@@ -184,5 +205,9 @@ deleteButton.addEventListener('click', button => {
   calculator.updateDisplay();
 })
 
+plusMinusButton.addEventListener('click', button => {
+  calculator.addMinus();
+  calculator.updateDisplay();
+})
 
 
