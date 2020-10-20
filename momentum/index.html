@@ -4,11 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="owfont-regular.css" />
   <link rel="stylesheet" href="style.css" />
   <title>momentum</title>
 </head>
 <body>
-  <time class="dmy"></time>
+  <header>
+    <div class="info">
+      <div class="location">
+        <div class="city" contenteditable="true">Минск</div>
+        <time class="dmy"></time>
+        <div class="weather-description"></div>
+      </div>
+      <div class="weather">
+        <div class="temperature_icon">
+          <i class="weather-icon owf"></i>
+          <div div class="temperature"></div>
+        </div>
+        <div class="dop_info">
+          <div class="wind"></div>
+          <div class="humidity"></div>
+        </div>        
+      </div>
+    </div>
+    <div class="quotation">
+      <blockquote> 
+        <q id="quotation_text">Citata</q> 
+        <cite id="autor">autor</cite>
+      </blockquote>
+    </div>
+  </header>
   <time class="time"></time>
   <h1 class="user__greeting">
     <span class="greeting"></span>
@@ -16,6 +41,8 @@
   </h1>
   <h2>What Is Your Focus For Today?</h2>
   <h2 class="focus" contenteditable="true"></h2>
+  
+  
   <script src="script.js"></script>
 </body>
 </html>
