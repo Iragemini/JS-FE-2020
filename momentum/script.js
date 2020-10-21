@@ -5,7 +5,12 @@ const time = document.querySelector('.time'),
   name = document.querySelector('.name'),
   focus = document.querySelector('.focus'),
   city = document.querySelector('.city'),
-  humidity = document.querySelector('.humidity');
+  humidity = document.querySelector('.humidity'),
+  quotationText = document.querySelector('#quotation_text'),
+  author = document.querySelector('#author'),
+  quotationButton = document.querySelector('#quotation_btn'),
+  error = document.querySelector('.error'),
+  weather = document.querySelector('.weather');
 
   // Weather
   const weatherIcon = document.querySelector('.weather-icon');
@@ -148,7 +153,6 @@ focus.onblur = function(e){
   }
 }
 
-
 //Weather
 async function getWeather(){
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&appid=17227db8a8fac1ac6f661ea99d8541a9&units=metric&lang=ru`;
@@ -156,27 +160,84 @@ async function getWeather(){
   const response = await fetch(url);
   const data = await response.json();
 
-  weatherIcon.className = 'weather-icon owf';
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
-  weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Ветер: ${data.wind.speed} км/ч`;
-  humidity.textContent = `Влажность: ${data.main.humidity}%`;
+  console.log(`data = ${data.cod}`);
+  if(data.cod === '404'){
+    console.log(`error = ${data.message}`);
+    weather.className = 'weather';
+    error.className = 'error';
+    weather.classList.add(`error`);
+    error.classList.add(`error__visibility`);
+    error.textContent = `${data.message}`;
+    return;
+  }else{
+    weather.className = 'weather';
+    error.className = 'error';
+    weather.classList.add(`error__visibility`);
+    error.classList.add(`error`);
+    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    wind.textContent = `Ветер: ${data.wind.speed} км/ч`;
+    humidity.textContent = `Влажность: ${data.main.humidity}%`;
+  }  
 }
 
+let currentCity = city.textContent;
+
+//get City
+function getCity() {
+  if (localStorage.getItem('city') === null) {
+    city.textContent = '[Enter City]';
+  } else {
+    city.textContent = localStorage.getItem('city');
+  }
+}
+//  set City
 function setCity(e){
   if(e.which == 13 || e.keyCode == 13){
     getWeather();
+    localStorage.setItem('city', e.target.innerText);
+    currentCity = e.target.innerText;
     city.blur();
+  }else {
+    localStorage.setItem('city', e.target.innerText);
   }
 }
+console.log(`currentCity = ${currentCity}`);
+city.onclick = function(e){
+  e.target.innerText = '';
+}
+
+city.onblur = function(e){
+  let elem = e.target;
+  if(elem.textContent === null || elem.textContent === ""){
+    elem.textContent = '[Enter City]';
+  }
+}
+//Quotes
+async function getQuotes(){
+  const url = `https://quote-garden.herokuapp.com/api/v2/quotes/random`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  quotationText.textContent = data.quote.quoteText;
+  author.textContent = data.quote.quoteAuthor;
+
+}
+quotationButton.onclick = function(){
+  getQuotes();
+}
+
 
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
-document.addEventListener('DOMContentLoaded', getWeather);
 
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+
+document.addEventListener('DOMContentLoaded', getWeather);
+document.addEventListener('DOMContentLoaded', getQuotes);
 city.addEventListener('keypress', setCity);
 
 
