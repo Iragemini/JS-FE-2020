@@ -6,53 +6,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="owfont-regular.css" />
   <link rel="stylesheet" href="style.css" />
-  <title>momentum</title>
+  <title>Momentum</title>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div class="info">
-        <div class="location">
-          <div class="city" contenteditable="true">Минск</div>
-          <time class="dmy"></time>
-          <div class="error"></div>
-        </div>
-        <div class="weather">
-          <div class="temperature_icon">
-            <div class="icon_block">
-              <div class="weather-icon owf"></div>
-              <div class="weather-description"></div>
-            </div>
-            <div div class="temperature"></div>
+  <div class="overlay">
+    <div class="wrapper">
+      <header>
+        <div class="info">
+          <div class="location">
+            <div class="ico__wrapper wrapper_location">
+              <div class="location__ico"></div>
+              <div class="city" contenteditable="true"></div>
+            </div>  
+            <div class="ico__wrapper">
+              <div class="time__ico"></div>
+              <time class="dmy"></time>
+            </div>        
+            <div class="error"></div>
           </div>
-          <div class="dop_info">
-            <div class="wind"></div>
-            <div class="humidity"></div>
-          </div>        
+          <div class="weather">
+            <div class="temperature_icon">
+              <div class="icon_block">
+                <div class="weather-icon owf"></div>
+                <div class="weather-description"></div>
+              </div>
+              <div class="ico__wrapper">
+                <div class="temp_ico" data-title="Температура"></div>
+                <div div class="temperature"></div>
+              </div>
+            </div>
+            <div class="dop_info">
+              <div class="ico__wrapper">
+                <div class="wind__ico" data-title="Ветер"></div>
+                <div class="wind"></div>
+              </div>
+              <div class="ico__wrapper">
+                <div class="humidity__ico" data-title="Влажность"></div>
+                <div class="humidity"></div>
+              </div>
+            </div>        
+          </div>
         </div>
-      </div>
-      <div class="quotation">
-        <blockquote>
-          <q id="quotation_text"></q> 
-        </blockquote>
-        <cite id="author"></cite>
-        <button id="quotation_btn">
-          <span>
-            >>
-          </span>
-        </button>
-      </div>
-    </header>
-    <div class="content">
-      <time class="time"></time>
-      <h1 class="user__greeting">
-        <span class="greeting"></span>
-        <span class="name" contenteditable="true"></span>
-      </h1>
-      <h2>What Is Your Focus For Today?</h2>
-      <h2 class="focus" contenteditable="true"></h2>
-    </div>    
-  </div>  
+        <div class="quotation">
+          <blockquote>
+            <q id="quotation_text"></q> 
+          </blockquote>
+          <cite id="author"></cite>
+          <button class="quotation_btn" data-title="Следующая цитата">
+          </button>
+        </div>
+      </header>
+      <div class="content">
+        <time class="time"></time>
+        <h1 class="user__greeting">
+          <span class="greeting"></span>
+          <span class="name" contenteditable="true"></span>
+        </h1>
+        <h2 class="user__focus">
+          <span>Моя цель на сегодня</span>
+          <span class="focus" contenteditable="true"></span>
+        </h2>
+        <button class="btn" data-title="Сменить фон"></button>
+      </div>    
+    </div>  
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
