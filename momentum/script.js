@@ -100,13 +100,11 @@ function setBgGreet() {
     // Evening
     greeting.textContent = 'Добрый вечер, ';
     document.body.style.color = 'white';
-    document.querySelector('.overlay').style.background = 'rgba(255, 255, 255, 0.3)'
     window.pathFolder = "evening";
   } else{
     // Night
     greeting.textContent = 'Доброй ночи, ';
     document.body.style.color = 'white';
-    document.querySelector('.overlay').style.background = 'rgba(0, 0, 0, 0.5)'
     window.pathFolder = "night";
   }
 }
