@@ -4,41 +4,286 @@
   padding: 0;
 }
 
+html{
+  font-size: 10px;
+}
+
 body {
-  font-family: 'Quicksand', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.6rem;
   height: 100vh;
+  width: 100vw;
   background-size: cover;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
   color: #000000;
 }
 
-.time {
-  font-size: 8rem;
+.overlay
+{
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.dmy{
-  font-size: 2rem;
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 
-h1 {
-  margin-bottom: 3rem;
+header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
 }
 
-.user__greeting{
+.info{
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.location{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.wrapper_location{
+  margin-bottom: 2rem;
+}
+
+.ico__wrapper{
   display: flex;
 }
 
-h2 {
+.location__ico{
+  width: 25px;
+  height: 25px;
+  background-image: url(./assets/images/icons/location-32.svg);
+  background-size: cover;
+  margin-right: 1rem;
+}
+
+.time__ico{
+  width: 25px;
+  height: 25px;
+  background-image: url(./assets/images/icons/calendar-32.svg);
+  background-size: cover;
+  margin-right: 1rem;
+}
+
+.wind__ico{
+  width: 25px;
+  height: 25px;
+  background-image: url(./assets/images/icons/wind-32.svg);
+  background-size: cover;
+  margin-right: 1rem;
+}
+
+.humidity__ico{
+  width: 25px;
+  height: 25px;
+  background-image: url(./assets/images/icons/humidity-32.png);
+  background-size: cover;
+  margin-right: 1rem;
+}
+
+.temp_ico{
+  width: 25px;
+  height: 25px;
+  background-image: url(./assets/images/icons/temperature-32.svg);
+  background-size: cover;
+}
+
+.weather{
+  display: flex;
+  align-items: flex-end;
+}
+
+.icon_block{
+  display: flex;
+  flex-direction: column;
+  width: 90px;
+}
+
+.temperature_icon{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.weather-icon{
+  font-size: 50px;
+  color: beige;
+}
+
+.city{
+  display: inline;
+  font-size: 2.5rem;
+}
+
+.temperature{
+  font-size: 1.6rem;
+}
+
+.dop_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  text-align: left;
+}
+
+.wind{
+  margin-bottom: 10px;
+}
+
+.weather-description{
+  /*margin-top: 0.5rem;*/
+  font-size: 1.4rem;
+}
+
+.time {
+  font-size: 6rem;
+}
+
+.dmy{
+  font-size: 1.4rem;
+}
+
+.user__greeting{
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  display: flex;
+  margin: 4rem 0;
+}
+
+.user__focus{
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   opacity: 0.8;
 }
 
-@media (max-width: 700px) {
+.focus{
+  margin-top: 1rem;
+}
+
+.greeting{
+  margin-right: 0.5rem;
+}
+
+.quotation{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-end;
+  user-select: none;
+  width: 600px;
+  padding-right: 1.5rem;
+}
+
+.quotation_btn{
+  width: 6rem;
+  height: 6rem;
+  border: 0;
+  border-radius: 50%;
+  background-image: url(./assets/images/icons/update_2-64.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  outline: 0;
+  user-select: none;
+  margin-top: 1rem;
+  filter: grayscale();
+}
+.quotation_btn:hover{
+  cursor: pointer;
+  transition: 1s;
+}
+
+[data-title] {
+  position: relative; /* Относительное позиционирование */ 
+}
+
+[data-title]::after {
+  content: attr(data-title); /* Выводим текст */
+  position: absolute; /* Абсолютное позиционирование */
+  width: 100px; /* Ширина подсказки */
+  right: 20px; top: 0; /* Положение подсказки */
+  background: white; /* Синий цвет фона */
+  color: black; /* Цвет текста */
+  padding: 0.5em; /* Поля вокруг текста */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+  pointer-events: none; /* Подсказка */
+  opacity: 0; /* Подсказка невидима */
+  transition: 1s; /* Время появления подсказки */
+}
+[data-title]:hover::after {
+  opacity: 1; /* Показываем подсказку */
+  top: 2em; /* Положение подсказки */
+ }
+
+.error{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: left;
+  font-size: 2rem;
+  color: red;
+  visibility: hidden;
+}
+
+.error__visibility{
+  visibility: visible;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8rem;
+}
+
+.btn {
+  width: 60px;
+  height: 60px;
+  border: 0;
+  background: url(./assets/images/icons/update_2-64.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: grayscale(1);
+  margin: 10px;
+}
+.btn:hover {
+  filter: grayscale(.8);
+}
+.btn:active,
+.btn:focus {
+  outline: 0;
+}
+.btn:active{
+  transform: scale(1.02)
+}
+
+@media (max-width: 320px) {
   .time {
     font-size: 6rem;
   }
+  body{
+    font-size: 8px;
+  }
 }
+
