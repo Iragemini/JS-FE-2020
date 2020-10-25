@@ -87,7 +87,6 @@ function setBgGreet() {
   //let today = new Date('October 20, 2020 8:59:59'),
   let today = new Date(),
     hour = today.getHours();
-  console.log(`hour = ${hour}`);
   
   if (hour >= 6 && hour < 12) {
     // Morning
@@ -189,14 +188,11 @@ async function getWeather(userCity){
     setErrorCity('error');
   }else{
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=17227db8a8fac1ac6f661ea99d8541a9&units=metric&lang=ru`;
-    console.log(`url = ${url}`);
     try{
       const response = await fetch(url);
       const data = await response.json();
     
-      console.log(`data = ${data.cod}`);
       if(data.cod && data.cod === '404'){
-        console.log(`error = ${data.message}`);
         setErrorCity("error");
         error.textContent = `${data.message.toUpperCase()}`;
         return;
@@ -209,7 +205,6 @@ async function getWeather(userCity){
         humidity.textContent = `${data.main.humidity}%`;
       }  
     }catch (e){
-      console.log(`Exeption: ${e}`);
       setErrorCity("error");
       error.textContent = `Ошибка получения данных`.toUpperCase();
     }
@@ -234,7 +229,6 @@ function setErrorCity(mode){
 //Info block location
 //get City
 function getCity() {
-  console.log(`localStorage = ${localStorage.getItem('city')}`);
   clearError();
   weather.className = 'weather';
   weather.classList.add(`error`);
@@ -275,7 +269,6 @@ city.onblur = function(e){
 
 // clearError
 function clearError(){
-  console.log(`error = ${error.textContent}`);
   error.textContent = "";  
   setErrorCity("");
 }
@@ -301,26 +294,21 @@ async function changeBgImage(imgIndex){
   let folder = window.pathFolder;
   const workPeriod = period.slice();
   const sortPeriod = [];
-  console.log(`folder = ${folder}`);
   if(i > 5){
     let position = 0;
     for(let j = 0; j < workPeriod.length; j++){
       if(workPeriod[j] === folder){
         position = j;
-        console.log(`position = ${position}`);
       }
     }
     if(position !== 0){
       let k = 0;
       let len = workPeriod.length; //4
       for(let j = position; j < workPeriod.length; j++){//2
-        console.log(`workPeriod = ${workPeriod}`);
         sortPeriod[k] = workPeriod.splice(j, 1)[0];
-        console.log(`len = ${len} , position = ${position}, j = ${j}`);
         k++;
         //j = position;
       }
-      console.log(`length = ${workPeriod.length}, period = ${workPeriod}`);
       for(let j = 0; j < workPeriod.length; j++){
         sortPeriod[k] = workPeriod[j];
         k++;
@@ -328,7 +316,6 @@ async function changeBgImage(imgIndex){
     }else{
       sortPeriod = period.slice();
     }
-  console.log(`sortPeriod = ${sortPeriod}, 1 = ${sortPeriod[1]}`);
     if(i < 12){
       folder = sortPeriod[1];
     }else if( i < 18){
@@ -337,9 +324,7 @@ async function changeBgImage(imgIndex){
       folder = sortPeriod[3];
     }
   }
-  console.log(`folder = ${folder}`);
   const path = './assets/images/' + folder + '/' + imgIndex;
-  console.log(`path = ${path}`);
   const img = document.createElement('img');
   img.src = path;
   img.onload = () => {      
@@ -348,7 +333,6 @@ async function changeBgImage(imgIndex){
 }
 
 function getImage() {
-  console.log(`i = ${i}, index = ${i % dayArrayImg.length}`);
   const index = i % dayArrayImg.length;
   changeBgImage(dayArrayImg[index]);
   i++;
