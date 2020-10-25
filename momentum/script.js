@@ -55,7 +55,7 @@ const time = document.querySelector('.time'),
 
 // Show Time
 function showTime() {
-  //let today = new Date('October 20, 2020 6:24:00'),
+  //let today = new Date('October 26, 2020 16:24:00'),
   let today = new Date(),
     hour = today.getHours(),
     min = today.getMinutes(),
@@ -84,7 +84,7 @@ function addZero(n) {
 
 // Set Background and Greeting
 function setBgGreet() {
-  //let today = new Date('October 20, 2020 8:59:59'),
+  //let today = new Date('October 26, 2020 16:24:00'),
   let today = new Date(),
     hour = today.getHours();
   
@@ -302,13 +302,14 @@ async function changeBgImage(imgIndex){
     }
     if(position !== 0){
       let k = 0;
-      let len = workPeriod.length; //4
-      for(let j = position; j < workPeriod.length; j++){//2
+      let len = workPeriod.length;
+      for(let j = position; j < workPeriod.length; j++){
         sortPeriod[k] = workPeriod.splice(j, 1)[0];
         k++;
-        //j = position;
+        len--;
+        j--;
       }
-      for(let j = 0; j < workPeriod.length; j++){
+      for(let j = 0; j < len; j++){
         sortPeriod[k] = workPeriod[j];
         k++;
       }
