@@ -188,7 +188,7 @@ async function getWeather(userCity){
   if(userCity === undefined || userCity === null || userCity === ""){
     setErrorCity('error');
   }else{
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=17227db8a8fac1ac6f661ea99d8541a9&units=metric&lang=ru`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=17227db8a8fac1ac6f661ea99d8541a9&units=metric&lang=ru`;
     console.log(`url = ${url}`);
     try{
       const response = await fetch(url);
