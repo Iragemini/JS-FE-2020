@@ -106,6 +106,7 @@ function setBgGreet() {
     // Night
     greeting.textContent = 'Доброй ночи, ';
     document.body.style.color = 'white';
+    document.querySelector('.overlay').style.background = 'rgba(0, 0, 0, 0.5)'
     window.pathFolder = "night";
   }
 }
