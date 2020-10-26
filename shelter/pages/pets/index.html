@@ -20,27 +20,27 @@
             </div>
             <nav class="header__menu">
                 <ul class="navigation">
-                    <li class="navigation__link">
+                    <div class="navigation__link">
                         About the shelter
-                    </li>
-                    <li class="navigation__link">
+                    </div>
+                    <div class="navigation__link navigation__link_active">
                         Our pets
-                    </li>
-                    <li class="navigation__link">
+                    </div>
+                    <div class="navigation__link">
                         Help the shelter
-                    </li>
-                    <li class="navigation__link">
+                    </div>
+                    <div class="navigation__link">
                         Contacts
-                    </li>
+                    </div>
                 </ul>
             </nav>
         </div>
-    </header>    
+    </header>  
     <section class="pets">
         <div class="wrapper pets__wrapper">
             <div class="pets__header">
-                <span><h3>Our friends who</h3></span>
-                <span><h3>are looking for a house</h3></span>
+                <span>Our friends who</span>
+                <span>are looking for a house</span>
             </div>
             <div class="pets__content">
                 <div class="pets__block">
@@ -161,45 +161,67 @@
     </section>    
     <footer class="footer">
         <div class="wrapper footer__wrapper">
-            <div class="contacts">
-                <div class="footer-contacts">
-                    <h3>For questions</h3>
-                    <h3>and suggestions</h3>
+            <div class="contacts contacts_first">
+                <div class="footer__contacts">
+                    <span>For questions</span>
+                    <span>and suggestions</span>
+                </div>
+                <div class="footer__info footer__email">
+                    <span class="footer__ico">
+                        <a href="mailto:email@shelter.com" class="footer__link">
+                            <img src="../../assets/icons/mail.svg" alt="mail">
+                        </a>
+                        </span>
+                    <span>
+                        <a href="mailto:email@shelter.com" class="footer__link">
+                            email@shelter.com
+                        </a>
+                    </span>
                 </div>
                 <div class="footer__info">
                     <span class="footer__ico">
-                        <img src="../../assets/icons/mail.svg" alt="">
+                        <a href="tel:+13 674 567 75 54" class="footer__link">
+                            <img src="../../assets/icons/telephone.svg" alt="phone">
+                        </a>
                     </span>
-                    <h4>email@shelter.com</h4>
-                </div>
-                <div class="footer__info">
-                    <span class="footer__ico">
-                        <img src="../../assets/icons/telephone.svg" alt="">
+                    <span>
+                        <a href="tel:+13 674 567 75 54" class="footer__link">
+                            +13 674 567 75 54
+                        </a>
                     </span>
-                    <h4>+13 674 567 75 54</h4>
                 </div>
             </div>
-            <div class="contacts">
-                <div class="footer-contacts">
-                    <h3>We are waiting</h3>
-                    <h3>for your visit</h3>
+            <div class="contacts contacts_second">
+                <div class="footer__contacts">
+                    <span>We are waiting</span>
+                    <span>for your visit</span>
+                </div>
+                <div class="footer__info footer__location">
+                    <span class="footer__ico">
+                        <a href="https://goo.gl/maps/SLvUBe7ACAuMuYzH9" target="_blank" class="footer__link">
+                            <img src="../../assets/icons/pin.svg" alt="location">
+                        </a>
+                    </span>
+                    <span class="footer__text">
+                        <a href="https://goo.gl/maps/SLvUBe7ACAuMuYzH9" target="_blank" class="footer__link">
+                            1 Central Street, Boston (entrance from the store)
+                        </a>
+                    </span>
                 </div>
                 <div class="footer__info">
                     <span class="footer__ico">
-                        <img src="../../assets/icons/pin.svg" alt="">
+                        <a href="https://goo.gl/maps/SLvUBe7ACAuMuYzH9" target="_blank" class="footer__link">
+                            <img src="../../assets/icons/pin.svg" alt="location">
+                        </a>
                     </span>
-                    <span class="footer_text">
-                        <h4>1 Central Street, Boston (entrance from the store)</h4>
+                    <span class="footer__text">
+                        <a href="https://goo.gl/maps/SLvUBe7ACAuMuYzH9" target="_blank" class="footer__link">
+                            18 South Park, London
+                        </a>
                     </span>
-                </div>
-                <div class="footer__info">
-                    <span class="footer__ico">
-                        <img src="../../assets/icons/pin.svg" alt="">
-                    </span>
-                    <h4>18 South Park, London </h4>
                 </div>
             </div>
-            <div class="footer-img">
+            <div class="footer__img">
                 <img src="../../assets/footer/footer-puppy.png" alt="footer puppy">
             </div>
         </div>
