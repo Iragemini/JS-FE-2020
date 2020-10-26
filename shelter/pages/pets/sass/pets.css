@@ -362,6 +362,7 @@ body {
   letter-spacing: 0.1rem;
   color: #292929;
   transition-duration: 0.5s;
+  outline: none;
 }
 .button:hover {
   background-color: #FDDCC4;
@@ -414,6 +415,7 @@ body {
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0.12rem;
+  outline: none;
 }
 .slider__arrow:hover {
   background-color: #FDDCC4;
@@ -500,6 +502,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.logo:hover{
+  cursor: pointer;
+}
+
 .logo__title {
   color: #545454;
   font-size: 3.2rem;
@@ -509,6 +516,7 @@ body {
   letter-spacing: 0.2rem;
   margin-bottom: 10px;
 }
+
 .logo__subtitle {
   color: #292929;
   font-family: Arial, Helvetica, sans-serif;
