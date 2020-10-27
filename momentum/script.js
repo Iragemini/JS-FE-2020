@@ -30,6 +30,7 @@ const time = document.querySelector('.time'),
 
   // array of images for current day
   const dayArrayImg = randomImg();
+  //console.log(`dayArrayImg = ${dayArrayImg}`);
   function randomImg(){
     let imgArr = [];
       let imgStr = "";
@@ -55,7 +56,6 @@ const time = document.querySelector('.time'),
 
 // Show Time
 function showTime() {
-  //let today = new Date('October 26, 2020 16:24:00'),
   let today = new Date(),
     hour = today.getHours(),
     min = today.getMinutes(),
@@ -84,7 +84,6 @@ function addZero(n) {
 
 // Set Background and Greeting
 function setBgGreet() {
-  //let today = new Date('October 26, 2020 16:24:00'),
   let today = new Date(),
     hour = today.getHours();
   
@@ -316,6 +315,7 @@ async function changeBgImage(imgIndex){
     }else{
       sortPeriod = period.slice();
     }
+    //console.log(`sortPeriod = ${sortPeriod}`);
     if(i < 12){
       folder = sortPeriod[1];
     }else if( i < 18){
@@ -341,8 +341,17 @@ function getImage() {
   }
   btn.disabled = true;
   setTimeout(function() { btn.disabled = false }, 500);
-  setTimeout(getImage, 3600000);
+  loaded(); //смена фона каждый час
 } 
+function loaded() { 
+  var now = new Date().getTime(); 
+  var remain = 3600000 - (now % 3600000);   //узнаем сколько осталось до 00
+  setTimeout(function () {                  //ждём до 00
+    setInterval(getImage, 60 * 60 * 1000);  //запускаем каждые 60мин
+    getImage();                             //запускаем сейчас, т.к. сейчас 00
+  }, remain);
+}
+  
 
 // Events
 name.addEventListener('keypress', setName);
