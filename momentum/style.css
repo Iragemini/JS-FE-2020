@@ -11,6 +11,7 @@ html{
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.6rem;
+  letter-spacing: 0.06rem;
   height: 100vh;
   width: 100vw;
   background-size: cover;
@@ -29,7 +30,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(170, 133, 133, 0.4);
 }
 
 .wrapper{
@@ -46,6 +47,9 @@ header{
   display: flex;
   justify-content: space-between;
   padding-top: 2rem;
+  @media screen and (max-width: 768px){
+    padding-bottom: 15rem;
+  }
 }
 
 .info{
@@ -71,32 +75,32 @@ header{
 }
 
 .location__ico{
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-image: url(./assets/images/icons/location-32.svg);
   background-size: cover;
   margin-right: 1rem;
 }
 
 .time__ico{
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-image: url(./assets/images/icons/calendar-32.svg);
   background-size: cover;
   margin-right: 1rem;
 }
 
 .wind__ico{
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-image: url(./assets/images/icons/wind-32.svg);
   background-size: cover;
   margin-right: 1rem;
 }
 
 .humidity__ico{
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-image: url(./assets/images/icons/humidity-32.png);
   background-size: cover;
   margin-right: 1rem;
@@ -107,8 +111,8 @@ header{
 }
 
 .temp_ico{
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-image: url(./assets/images/icons/temperature-32.svg);
   background-size: cover;
 }
@@ -192,20 +196,31 @@ header{
   margin-right: 0.5rem;
 }
 
+.quotation__block{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 1.5rem;
+  width: 60rem;
+  height: 15rem;
+}
+
 .quotation{
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-end;
   user-select: none;
-  width: 60rem;
-  height: 15rem;
+
   padding-right: 1.5rem;
 }
 
 .quotation_text{
   font-size: 1.4rem;
-  height: 5rem;
+  height: 4rem;
+  overflow: hidden;
 }
 
 .author{
@@ -228,6 +243,13 @@ header{
 .quotation_btn:hover{
   cursor: pointer;
   transition: 1s;
+  transform: translateY(2px);
+  filter: saturate(150%);
+}
+
+.quotation_btn_block{
+  width: 3.2rem;
+  position: static;
 }
 
 [data-title] {
@@ -265,11 +287,18 @@ header{
 }
 
 .content{
+  position: static;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;  
   height: 30rem;
+}
+
+.name{
+  word-wrap: break-word;
+  max-width: 15rem;
+  text-align: left;
 }
 
 .btn {
@@ -284,6 +313,10 @@ header{
 }
 .btn:hover {
   filter: grayscale(.8);
+  cursor: pointer;
+  transition: 1s;
+  transform: translateY(2px);
+  filter: saturate(150%);
 }
 .btn:active,
 .btn:focus {
@@ -292,15 +325,29 @@ header{
 .btn:active{
   transform: scale(1.02)
 }
-
-@media (max-width: 700px) {
-  .time {
-    font-size: 4rem;
+@media screen and (max-width: 768px) {
+  .quotation{
+    width: 40rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    user-select: none;
   }
-  body{
-    font-size: 8px;
-    width: 100%;
+  .weather{
+    width: 25rem;
   }
+}
+@media screen and (max-width: 720px) {
+  .quotation{
+    width: 28rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    user-select: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  
   header{
     display: flex;
     flex-direction: column;
@@ -313,14 +360,36 @@ header{
     margin-bottom: 2rem;
     height: 15rem;
   }
+
+  .time {
+    font-size: 3rem;
+  }
+
   .quotation{
+    width: 50rem;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     user-select: none;
+  }
+
+  .quotation__block{
     width: 100%;
     height: 15rem;
     padding: 0 1.5rem;
   }
+
+
+  @media screen and (max-width: 320px) {
+    .quotation{
+      width: 28rem;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      user-select: none;
+      font-size: 1rem;
+    }
+  }
+
 }
 
