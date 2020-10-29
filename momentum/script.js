@@ -122,7 +122,13 @@ function setName(e) {
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('name', e.target.innerText);
+      if(e.target.innerText !== ""){
+        localStorage.setItem('name', e.target.innerText);
+      }else if(localStorage.getItem('name') !== ""){
+        localStorage.setItem('name', localStorage.getItem('name'));
+      }else{
+        localStorage.setItem('name', '[Введите имя]');
+      }
       name.blur();
     }
   } else {
@@ -155,7 +161,13 @@ function setFocus(e) {
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('focus', e.target.innerText);
+      if(e.target.innerText !== ""){
+        localStorage.setItem('focus', e.target.innerText);
+      }else if(localStorage.getItem('focus') !== ""){
+        localStorage.setItem('focus', localStorage.getItem('focus'));
+      }else{
+        localStorage.setItem('focus', '[Введите цель]');
+      }
       focus.blur();
     }
   } else {
@@ -242,7 +254,13 @@ function setCity(e){
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
-      localStorage.setItem('city', e.target.innerText);
+      if(e.target.innerText !== ""){
+        localStorage.setItem('city', e.target.innerText);
+      }else if(localStorage.getItem('city') !== ""){
+        localStorage.setItem('city', localStorage.getItem('city'));
+      }else{
+        localStorage.setItem('city', '[Введите город]');
+      }
       city.blur();
     }
   } else {
