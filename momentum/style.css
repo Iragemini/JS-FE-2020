@@ -168,6 +168,7 @@ header{
 }
 
 .time {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 6rem;
 }
 
@@ -289,7 +290,11 @@ header{
 }
 
 .content{
-  position: static;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 21rem;
+  bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -338,6 +343,10 @@ header{
   .weather{
     width: 25rem;
   }
+  .content{
+    top: 35rem;
+    bottom: 35rem;
+  }
 }
 @media screen and (max-width: 720px) {
   .quotation{
@@ -347,6 +356,9 @@ header{
     align-items: center;
     user-select: none;
   }
+  .content{
+    bottom: 1rem;
+  }
 }
 @media screen and (max-width: 600px) {
   
@@ -354,17 +366,31 @@ header{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 25rem;
+    height: 28rem;
     justify-content: space-between;
     padding-top: 2rem;
+    overflow: hidden;
   }
+
+  .content{
+    top: 29rem;
+    bottom: 3rem;
+  }
+
   .info{
     margin-bottom: 2rem;
     height: 15rem;
   }
 
+  .time__wrapper{
+    max-width: 180px;
+  }
+
   .time {
     font-size: 3rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
   }
 
   .quotation{
