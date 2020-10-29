@@ -137,7 +137,7 @@ name.onclick = function(e){
 name.onblur = function(e){
   let elem = e.target;
   if(elem.textContent === null || elem.textContent === ""){
-    elem.textContent = '[Введите имя]';
+    elem.textContent = localStorage.getItem('name');
   }
 }
 
@@ -170,7 +170,7 @@ focus.onclick = function(e){
 focus.onblur = function(e){
   let elem = e.target;
   if(elem.textContent === null || elem.textContent === ""){
-    elem.textContent = '[Введите цель]';
+    elem.textContent = localStorage.getItem('focus');
   }
 }
 
