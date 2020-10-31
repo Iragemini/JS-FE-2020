@@ -81,8 +81,8 @@
   background: rgba(0, 0, 0, 0.25);
 }
 
-.voice {
-  width: 100%;
+.additional {
+  width: 60%;
   background-size: contain;
   background-repeat: no-repeat;
   /*background-image: url(./assets/voice_32.svg);*/
@@ -95,13 +95,6 @@
   animation: pulsing 2s infinite;
 }
 
-.mute-voice {
-  width: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  /*background-image: url(./assets/mute_voice_32.svg);*/
-  opacity: 0.3;
-}
 
 @-webkit-keyframes pulsing {
   0% {

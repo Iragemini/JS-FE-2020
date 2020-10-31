@@ -2,6 +2,8 @@ if(!window.localStorage.getItem('language') || window.localStorage.getItem('lang
   window.localStorage.setItem('language', 'ru');
 }
 
+const output = document.querySelector('.use-keyboard-input');
+
 // Создаем распознаватель
 var recognizer = new webkitSpeechRecognition();
 
@@ -12,11 +14,10 @@ recognizer.continuous = true;
 // Используем колбек для обработки результатов
 recognizer.onresult = function (event) {
   var result = event.results[event.resultIndex];
-  //document.querySelector('.use-keyboard-input').value = result[0].transcript;
-  document.querySelector('.use-keyboard-input').value = result[0].transcript;
-  document.querySelector('.use-keyboard-input').focus();
-  //document.querySelector('.voice').classList.remove('voice-active');
+  output.value = result[0].transcript;
+  output.focus();
 };
+
 
 const Keyboard = {
   elements: {
@@ -73,7 +74,7 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
         "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-        `${lang}`, "space", "speech", "stop"
+        `${lang}`, "space", "speech", "stop", "left", "right"
       ];
     }else{
       keyLayout = [
@@ -81,7 +82,7 @@ const Keyboard = {
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "done", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", ",",
-        `${lang}`, "space", "speech", "stop"
+        `${lang}`, "space", "speech", "stop", "left", "right"
       ];
     }
     
@@ -91,10 +92,12 @@ const Keyboard = {
       return `<i class="material-icons">${icon_name}</i>`;
     };
 
-    console.log(`global lang = ${lang}`);
     keyLayout.forEach(key => {
 
       const keyElement = document.createElement("button");
+      
+      this.output = output;
+
       let insertLineBreak = [];
       if(lang === 'en'){
         insertLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
@@ -177,7 +180,7 @@ const Keyboard = {
           break;
 
         case "speech":
-          keyElement.innerHTML = '<span class="voice"><img src="./assets/voice_32.svg" alt="speech"></span>'
+          keyElement.innerHTML = '<span class="additional voice"><img src="./assets/voice_32.svg" alt="speech"></span>'
 
           keyElement.addEventListener("click", () => {
             this.speech ();
@@ -188,12 +191,32 @@ const Keyboard = {
           break;
         
         case "stop":
-          keyElement.innerHTML = '<span class="mute-voice"><img src="./assets/mute_voice_32.svg" alt="stop"></span>'
+          keyElement.innerHTML = '<span class="additional"><img src="./assets/mute_voice_32.svg" alt="stop"></span>'
   
           keyElement.addEventListener("click", () => {
             recognizer.stop();
             keyElement.classList.add("keyboard__key--active");
             document.querySelector('.voice').classList.remove('voice-active');
+            this._triggerEvent("oninput");
+          });
+
+          break;
+
+        case "left":
+          keyElement.innerHTML = '<span class="additional"><img src="./assets/arrow-left_32.svg" alt="stop"></span>'
+  
+          keyElement.addEventListener("click", () => {
+            this.moveCursor(key);
+            this._triggerEvent("oninput");
+          });
+
+          break;
+
+        case "right":
+          keyElement.innerHTML = '<span class="additional"><img src="./assets/arrow-right_32.svg" alt="right"></span>'
+  
+          keyElement.addEventListener("click", () => {
+            this.moveCursor(key);
             this._triggerEvent("oninput");
           });
 
@@ -280,6 +303,20 @@ const Keyboard = {
     recognizer.lang = langRec;
     // Начинаем слушать микрофон и распознавать голос
     recognizer.start();
+  },
+
+  moveCursor (direction) {
+    this.direction = direction;
+    this.output = output;
+    let cursorPos = this.output.selectionStart;
+
+    if(direction === "left") {
+      cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
+    } else if (direction === "right") {
+      cursorPos += 1;
+    }
+
+    this.output.setSelectionRange(cursorPos, cursorPos);
   }
 
 };
