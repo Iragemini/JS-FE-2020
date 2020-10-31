@@ -1,3 +1,23 @@
+if(!window.localStorage.getItem('language') || window.localStorage.getItem('language') === ""){
+  window.localStorage.setItem('language', 'ru');
+}
+
+// Создаем распознаватель
+var recognizer = new webkitSpeechRecognition();
+
+// Ставим опцию, чтобы распознавание началось ещё до того, как пользователь закончит говорить
+recognizer.interimResults = true;
+recognizer.continuous = true;
+
+// Используем колбек для обработки результатов
+recognizer.onresult = function (event) {
+  var result = event.results[event.resultIndex];
+  //document.querySelector('.use-keyboard-input').value = result[0].transcript;
+  document.querySelector('.use-keyboard-input').value = result[0].transcript;
+  document.querySelector('.use-keyboard-input').focus();
+  //document.querySelector('.voice').classList.remove('voice-active');
+};
+
 const Keyboard = {
   elements: {
     main: null,
@@ -16,7 +36,7 @@ const Keyboard = {
   },
 
   init(langCode) {
-    console.log(`init lang = ${langCode}`);
+    //console.log(`init lang = ${langCode}`);
     this.langCode = langCode;
     // Create main elements
     this.elements.main = document.createElement("div");
@@ -53,7 +73,7 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
         "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
         "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-        `${lang}`, "space"
+        `${lang}`, "space", "speech", "stop"
       ];
     }else{
       keyLayout = [
@@ -61,7 +81,7 @@ const Keyboard = {
         "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
         "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
         "done", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", ",",
-        `${lang}`, "space"
+        `${lang}`, "space", "speech", "stop"
       ];
     }
     
@@ -143,17 +163,41 @@ const Keyboard = {
           break;
 
         case ("ru" || "en"):
-            keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
-            keyElement.innerHTML = key;
+          keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
+          keyElement.innerHTML = key;
+
+          keyElement.addEventListener("click", () => {
+            console.log(`key = ${key}`);
+            this.close();
+            this._triggerEvent("onclose");
+            this.changeLanguage(key);
+            document.querySelector('.use-keyboard-input').focus();
+          });
+
+          break;
+
+        case "speech":
+          keyElement.innerHTML = '<span class="voice"><img src="./assets/voice_32.svg" alt="speech"></span>'
+
+          keyElement.addEventListener("click", () => {
+            this.speech ();
+            document.querySelector('.voice').classList.add("voice-active");
+            this._triggerEvent("oninput");
+          });
+
+          break;
+        
+        case "stop":
+          keyElement.innerHTML = '<span class="mute-voice"><img src="./assets/mute_voice_32.svg" alt="stop"></span>'
   
-            keyElement.addEventListener("click", () => {
-              console.log(`key = ${key}`);
-              this.close();
-              this._triggerEvent("onclose");
-              this.changeLanguage(key);
-            });
-  
-            break;
+          keyElement.addEventListener("click", () => {
+            recognizer.stop();
+            keyElement.classList.add("keyboard__key--active");
+            document.querySelector('.voice').classList.remove('voice-active');
+            this._triggerEvent("oninput");
+          });
+
+          break;
 
         default:
           keyElement.textContent = key.toLowerCase();
@@ -178,9 +222,12 @@ const Keyboard = {
 
   // handlerName = oniput, onclose
   _triggerEvent(handlerName) {
-    //console.log(`handlerName = ${handlerName}`);
+    console.log(`handlerName = ${handlerName}`);
+    console.log(`value = ${this.properties.value}`);
     if (typeof this.eventHandlers[handlerName] == "function") {
+      console.log(`this.eventHandlers[handlerName] = ${this.eventHandlers[handlerName]}`);
       this.eventHandlers[handlerName](this.properties.value);
+      document.querySelector('.use-keyboard-input').focus();
     }
   },
 
@@ -209,17 +256,37 @@ const Keyboard = {
   },
 
   changeLanguage(language) {
+    this.language = language;
     console.log(`lang = ${language}`);
-    if(language && language === "ru"){
-      language = "en";
-    }else if(language && language === "en") {
-      language = "ru";
+    if(this.language && this.language === "ru"){
+      this.language = "en";
+    }else if(this.language && this.language === "en") {
+      this.language = "ru";
     }
-    Keyboard.init(language);
+    window.localStorage.setItem('language', this.language);
+    Keyboard.init(this.language);
     document.querySelector('.use-keyboard-input').focus();
+  },
+
+  speech () {
+    let langRec = 'ru-Ru';
+
+    if(window.localStorage.getItem('language') === 'en') {
+      langRec = 'en-US'
+    }
+    console.log(`recognizer.lang = ${langRec}`);
+
+    // Какой язык будем распознавать?
+    recognizer.lang = langRec;
+    // Начинаем слушать микрофон и распознавать голос
+    recognizer.start();
   }
+
 };
 
 window.addEventListener("DOMContentLoaded", function () {
-  Keyboard.init('ru');
+  Keyboard.init(window.localStorage.getItem('language' || 'ru'));
 });
+
+
+
