@@ -82,11 +82,11 @@
 }
 
 .additional {
-  width: 60%;
+  width: 35%;
   background-size: contain;
   background-repeat: no-repeat;
   /*background-image: url(./assets/voice_32.svg);*/
-  opacity: 0.3;
+  opacity: 0.2;
   animation-play-state: paused;
 }
 
