@@ -13,7 +13,6 @@ recognizer.continuous = true;
 const prevOutput = output.value;
 
 recognizer.onresult = function (event) {
-  console.log(`prevOutput = ${prevOutput}`);
   var result = event.results[event.resultIndex];
   output.value = prevOutput + result[0].transcript;
   output.focus();
@@ -39,7 +38,6 @@ const Keyboard = {
   },
 
   init(langCode, shiftOn) {
-    //console.log(`init lang = ${langCode}`);
     this.langCode = langCode;
     this.shiftOn = shiftOn;
     // Create main elements
@@ -55,11 +53,11 @@ const Keyboard = {
 
     // Add to DOM
     this.elements.main.appendChild(this.elements.keysContainer);
+
     document.body.appendChild(this.elements.main);
 
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll(".use-keyboard-input").forEach(element => {
-      console.log(`element = ${element}`);
       element.addEventListener("focus", () => {
         this.open(element.value, currentValue => {
           element.value = currentValue;
@@ -109,10 +107,15 @@ const Keyboard = {
       keyElement.setAttribute("type", "button");
       keyElement.classList.add("keyboard__key");
 
+      keyElement.addEventListener("click", () => {
+        playSound(obj.id);
+      });
+
       switch (name) {
         case "Backspace":
           keyElement.classList.add("keyboard__key--wide");
           keyElement.innerHTML = createIconHTML("backspace");
+          keyElement.dataset['key'] = obj.id;
 
           keyElement.addEventListener("click", () => {
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
@@ -124,6 +127,7 @@ const Keyboard = {
         case "Caps Lock":
           keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
           keyElement.innerHTML = createIconHTML("keyboard_capslock");
+          keyElement.dataset['key'] = obj.id;
 
           keyElement.addEventListener("click", () => {
             this._toggleCapsLock();
@@ -135,6 +139,7 @@ const Keyboard = {
         case "Enter":
           keyElement.classList.add("keyboard__key--wide");
           keyElement.innerHTML = createIconHTML("keyboard_return");
+          keyElement.dataset['key'] = obj.id;
 
           keyElement.addEventListener("click", () => {
             this.properties.value += "\n";
@@ -146,6 +151,7 @@ const Keyboard = {
         case "Space":
           keyElement.classList.add("keyboard__key--extra-wide");
           keyElement.innerHTML = createIconHTML("space_bar");
+          keyElement.dataset['key'] = obj.id;
 
           keyElement.addEventListener("click", () => {
             this.properties.value += " ";
@@ -170,7 +176,6 @@ const Keyboard = {
           keyElement.innerHTML = obj.name;
 
           keyElement.addEventListener("click", () => {
-            console.log(`key = ${obj.name}`);
             this.close();
             this._triggerEvent("onclose");
             this.changeLanguage(obj.name);
@@ -184,7 +189,6 @@ const Keyboard = {
           keyElement.innerHTML = obj.name;
 
           keyElement.addEventListener("click", () => {
-            console.log(`key = ${obj.name}`);
             this.close();
             this._triggerEvent("onclose");
             this.changeLanguage(obj.name);
@@ -218,6 +222,7 @@ const Keyboard = {
 
         case "←":
           keyElement.innerHTML = obj.name;
+          keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
             this.moveCursor(obj.id);
@@ -228,6 +233,7 @@ const Keyboard = {
 
         case "→":
           keyElement.innerHTML = obj.name;
+          keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
             this.moveCursor(obj.id);
@@ -243,6 +249,7 @@ const Keyboard = {
           }else{
             keyElement.classList.remove("glow");
           }
+          keyElement.dataset['key'] = obj.id;
             
           keyElement.addEventListener("click", () => {
             this.close();
@@ -255,8 +262,10 @@ const Keyboard = {
 
         default:
           keyElement.textContent = name.toLowerCase();
-
+          keyElement.dataset['key'] = obj.id;
+          
           keyElement.addEventListener("click", () => {
+            //playSound(obj.id);
             this.properties.value += this.properties.capsLock ? name.toUpperCase() : name.toLowerCase();
             this._triggerEvent("oninput");
           });
@@ -265,6 +274,7 @@ const Keyboard = {
       }
 
       fragment.appendChild(keyElement);
+
 
       if (insertLineBreak) {
         fragment.appendChild(document.createElement("br"));
@@ -278,7 +288,6 @@ const Keyboard = {
   _triggerEvent(handlerName) {
     if (typeof this.eventHandlers[handlerName] == "function") {
       let enterValue = this.properties.value;
-      console.log(`enterValue = ${enterValue}, shiftOn = ${window.shiftOn}, capsLock = ${this.properties.capsLock}`);
       if(window.shiftOn && !this.properties.capsLock) {
         enterValue = enterValue.toUpperCase();
       }
@@ -323,7 +332,6 @@ const Keyboard = {
 
   changeLanguage(language) {
     this.language = language;
-    //console.log(`lang = ${language}`);
     if(this.language && this.language === "ru"){
       this.language = "en";
     }else if(this.language && this.language === "en") {
@@ -341,14 +349,12 @@ const Keyboard = {
     if(window.localStorage.getItem('language') === 'en') {
       langRec = 'en-US'
     }
-    console.log(`recognizer.lang = ${langRec}`);
 
     recognizer.lang = langRec;
     recognizer.start();
   },
 
   moveCursor (direction) {
-    //console.log(`direction = ${direction}`);
     this.direction = direction;
     this.output = output;
     let cursorPos = this.output.selectionStart;
@@ -379,5 +385,21 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  e.target.classList.remove('playing');
+}
 
+function playSound(e) {
+  const audio = document.querySelector(`audio[data-key="all"]`);
+  const key = document.querySelector(`button[data-key="${e}"]`);
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play();
+}
+
+const keys = Array.from(document.querySelectorAll('.keyboard__key'));
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+window.addEventListener('keydown', playSound);
 
