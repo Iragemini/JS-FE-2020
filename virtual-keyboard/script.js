@@ -242,6 +242,28 @@ const Keyboard = {
 
           break;
 
+        case "↑":
+          keyElement.innerHTML = obj.name;
+          keyElement.dataset['key'] = obj.id;
+  
+          keyElement.addEventListener("click", () => {
+            this.moveCursor(obj.id);
+            this._triggerEvent("oninput");
+          });
+
+          break;
+
+        case "↓":
+          keyElement.innerHTML = obj.name;
+          keyElement.dataset['key'] = obj.id;
+  
+          keyElement.addEventListener("click", () => {
+            this.moveCursor(obj.id);
+            this._triggerEvent("oninput");
+          });
+
+          break;
+
         case "Shift":
           keyElement.innerHTML = obj.name;
           if(shiftOn){
@@ -363,6 +385,12 @@ const Keyboard = {
       cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
     } else if (direction === 39) {
       cursorPos += 1;
+    } else if(direction === 38) {
+      const positionFromLeft = this.output.value.slice(0, cursorPos).match(/(\n).*$(?!\1)/g) || [[1]];
+      cursorPos -= positionFromLeft[0].length;
+    }else if(direction === 40) {
+      const positionFromLeft = this.output.value.slice(cursorPos).match(/^.*(\n).*(?!\1)/) || [[1]];
+      cursorPos += positionFromLeft[0].length;
     }
     this.output.setSelectionRange(cursorPos, cursorPos);
   },
