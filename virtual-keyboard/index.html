@@ -9,7 +9,16 @@
 </head>
 <body>
   <textarea class="use-keyboard-input" placeholder="Click here"></textarea>
-  <audio data-key="all" src="./assets/sounds/sound1.mp3" visibility = 'hidden'></audio>
+  <div class="audio">
+    <audio data-key="en" src="./assets/sounds/sound_en.mp3"></audio>
+    <audio data-key="ru" src="./assets/sounds/sound_ru.wav"></audio>
+    <!--Shift, CapsLock, Backspace, Enter.-->
+    <audio data-key="16" src="./assets/sounds/shift.wav"></audio>
+    <audio data-key="20" src="./assets/sounds/caps.wav"></audio>
+    <audio data-key="8" src="./assets/sounds/backspace.wav"></audio>
+    <audio data-key="13" src="./assets/sounds/enter.wav"></audio>
+  </div>
+
   <script src="./js/en.js"></script>
   <script src="./js/ru.js"></script>
   <script src="script.js"></script>
