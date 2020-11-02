@@ -27,7 +27,7 @@ ru = [
     {"id":38,"name":"↑","secondName":null},
 
     {"id":null,"name":"Done","secondName":null},{"id":null,"name":"ru","secondName":null},
-    {"id":17,"name":"Ctrl","secondName":null},{"id":32,"name":"Space","secondName":null},
-    {"id":null,"name":"speech","secondName":null},{"id":null,"name":"stop","secondName":null},
+    {"id":32,"name":"Space","secondName":null},
+    {"id":null,"name":"voice","secondName":null},{"id":null,"name":"audio","secondName":null},
     {"id":37,"name":"←","secondName":null},{"id":40,"name":"↓","secondName":null},{"id":39,"name":"→","secondName":null}
 ]

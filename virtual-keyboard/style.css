@@ -14,7 +14,7 @@
   bottom: 0;
   width: 100%;
   padding: 5px 0;
-  background: #004134;
+  background: #424246;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
@@ -49,7 +49,7 @@
   position: relative;
 }
 
-.keyboard__key:active {
+.keyboard__key_active {
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -86,32 +86,12 @@
   background-size: contain;
   background-repeat: no-repeat;
   /*background-image: url(./assets/voice_32.svg);*/
-  opacity: 0.2;
+  opacity: 0.3;
   animation-play-state: paused;
 }
 
-.voice-active {
-  opacity: 0.6;
-  -webkit-animation: pulsing 2s infinite;
-  animation: pulsing 2s infinite;
+.audio {
+  width: 0;
+  height: 0;
 }
 
-.glow {
-  color: #fff;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-}
-
-@keyframes pulsing {
-  0% {
-    -webkit-transform: scale(0.5, 0.5);
-    transform: scale(0.5, 0.5)
-  }
-  50% {
-    -webkit-transform: scale(1.0, 1.0);
-    transform: scale(1.0, 1.0);
-  }
-  100% {
-    -webkit-transform: scale(0.5, 0.5);
-    transform: scale(0.5, 0.5);
-  }
-}
