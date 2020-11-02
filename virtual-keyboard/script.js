@@ -49,6 +49,10 @@ const Keyboard = {
     play : false
   },
 
+  keyLayout : {
+    keyArr : []
+  },
+
   init() {
     // Create main elements
     this.elements.main = document.createElement("div");
@@ -84,35 +88,41 @@ const Keyboard = {
     
     this.language.value = window.localStorage.getItem('language');
 
-    let keyLayout = [];
+    let arrKeys = [];
+
+    let tempArr = [];
 
     if(this.language.value === "en"){
-      keyLayout = en;
+      tempArr = en.slice();
     }else{
-      keyLayout = ru;
+      tempArr = ru.slice();
     } 
+    for (let i = 0; i < tempArr.length; i++) {
+      if(this.properties.shift){
+        let name = tempArr[i].name;
+        if(tempArr[i].secondName && tempArr[i].secondName !== null){
+          name = tempArr[i].secondName;
+        }
+        arrKeys.push({'id': tempArr[i].id, 'name': name});
+      }else{
+        arrKeys.push({'id': tempArr[i].id, 'name': tempArr[i].name});
+      }
+    }
+    this.keyLayout.keyArr = arrKeys;
 
     // Creates HTML for an icon
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
     };
-    keyLayout.forEach(obj => {
+    this.keyLayout.keyArr.forEach(obj => {
 
       this.output = output;
-            
-      let name = obj.name;
-      if(this.properties.shift){
-        name = obj.secondName;
-        if(name === null){
-          name = obj.name;
-        }
-      }
 
       const keyElement = document.createElement("button");      
 
       let insertLineBreak = [];
 
-      insertLineBreak = ["Backspace", "\\", "Enter", "↑"].indexOf(name) !== -1;
+      insertLineBreak = ["Backspace", "\\", "Enter", "↑"].indexOf(obj.name) !== -1;
 
       // Add attributes/classes
       keyElement.setAttribute("type", "button");
@@ -132,7 +142,7 @@ const Keyboard = {
         }
       });
 
-      switch (name) {
+      switch (obj.name) {
         case "Backspace":
           keyElement.classList.add("keyboard__key--wide");
           keyElement.innerHTML = createIconHTML("backspace");
@@ -141,7 +151,6 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
             this.printToOutput(obj.id, obj.name);
-            //this._triggerEvent("oninput");
           });
 
           break;
@@ -190,7 +199,6 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.sound (obj.id);
             keyElement.classList.toggle("keyboard__key--active", this.audio.play);
-            //this._triggerEvent("oninput");
           });
 
           break;
@@ -208,7 +216,6 @@ const Keyboard = {
             break;
   
         case ("en"):
-            //keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
             keyElement.innerHTML = obj.name;
   
             keyElement.addEventListener("click", () => {
@@ -228,7 +235,6 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value += "\n";
             this.printToOutput(obj.id, obj.name);
-            //this._triggerEvent("oninput");
           });
 
           break;
@@ -241,7 +247,6 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.properties.value += " ";
             this.printToOutput(obj.id, obj.name);
-            //this._triggerEvent("oninput");
           });
 
           break;
@@ -296,20 +301,17 @@ const Keyboard = {
   
           keyElement.addEventListener("click", () => {
             this.printToOutput(obj.id, obj.name);
-            //this._triggerEvent("oninput");
           });
 
           break;
 
         default:
-          keyElement.textContent = name.toLowerCase();
+          keyElement.textContent = obj.name.toLowerCase();
           keyElement.dataset['key'] = obj.id;
           
           keyElement.addEventListener("click", () => {
-            //playSound(obj.id);
-            this.properties.value += this.properties.capsLock ? name.toUpperCase() : name.toLowerCase();
-            //this._triggerEvent("oninput");
-            this.printToOutput(obj.id, obj.name);
+            this.properties.value += this.properties.capsLock ? obj.name.toUpperCase() : obj.name.toLowerCase();
+            this.printToOutput(obj.id, keyElement.textContent);
           });
 
           break;
@@ -343,7 +345,7 @@ const Keyboard = {
 
   printToOutput(keyCode, symbol) {
 
-    let isFnKey = Boolean(symbol.match(/Tab|Back|Enter|Space/));
+    let isFnKey = Boolean(symbol.match(/tab|Back|Enter|Space/));
     let direction = keyCode;
    
     this.output = document.querySelector('.use-keyboard-input');
@@ -353,7 +355,7 @@ const Keyboard = {
     const left = this.output.value.slice(0, cursorPos);
     const right = this.output.value.slice(cursorPos);
 
-    if(symbol === "Tab") {
+    if(symbol === "tab") {
       this.output.value = `${left}\t${right}`;
       cursorPos += 1;
     }
@@ -437,7 +439,6 @@ const Keyboard = {
           }
       }
     });
-    //this.elements.keys = keys;
   },
 
   open(initialValue, oninput, onclose) {
