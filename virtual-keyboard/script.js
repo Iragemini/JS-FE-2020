@@ -121,6 +121,16 @@ const Keyboard = {
       keyElement.addEventListener("click", () => {
         playSound(obj.id, this.audio.play);
       });
+      keyElement.addEventListener("mousedown", (e) => {
+        if(e.which === 1) {
+          keyElement.classList.add("keyboard__key_active");
+        }
+      });
+      keyElement.addEventListener("mouseup", (e) => {
+        if(e.which === 1) {
+          keyElement.classList.remove("keyboard__key_active");
+        }
+      });
 
       switch (name) {
         case "Backspace":
@@ -130,7 +140,8 @@ const Keyboard = {
 
           keyElement.addEventListener("click", () => {
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -155,10 +166,6 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this._toggleShift();
             keyElement.classList.toggle("keyboard__key--active", this.properties.shift);
-
-            /*this.close();
-            this._triggerEvent("onclose");
-            this.shift(this.shiftOn);*/
             document.querySelector('.use-keyboard-input').focus();
           });
 
@@ -183,7 +190,7 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             this.sound (obj.id);
             keyElement.classList.toggle("keyboard__key--active", this.audio.play);
-            this._triggerEvent("oninput");
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -220,7 +227,8 @@ const Keyboard = {
 
           keyElement.addEventListener("click", () => {
             this.properties.value += "\n";
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -232,7 +240,8 @@ const Keyboard = {
 
           keyElement.addEventListener("click", () => {
             this.properties.value += " ";
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -253,8 +262,8 @@ const Keyboard = {
           keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
-            this.moveCursor(obj.id);
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -264,8 +273,8 @@ const Keyboard = {
           keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
-            this.moveCursor(obj.id);
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -275,8 +284,8 @@ const Keyboard = {
           keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
-            this.moveCursor(obj.id);
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -286,8 +295,8 @@ const Keyboard = {
           keyElement.dataset['key'] = obj.id;
   
           keyElement.addEventListener("click", () => {
-            this.moveCursor(obj.id);
-            this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
+            //this._triggerEvent("oninput");
           });
 
           break;
@@ -299,7 +308,8 @@ const Keyboard = {
           keyElement.addEventListener("click", () => {
             //playSound(obj.id);
             this.properties.value += this.properties.capsLock ? name.toUpperCase() : name.toLowerCase();
-            this._triggerEvent("oninput");
+            //this._triggerEvent("oninput");
+            this.printToOutput(obj.id, obj.name);
           });
 
           break;
@@ -329,6 +339,64 @@ const Keyboard = {
       this.eventHandlers[handlerName](enterValue);
       this.output.focus();
     }
+  },
+
+  printToOutput(keyCode, symbol) {
+
+    let isFnKey = Boolean(symbol.match(/Tab|Back|Enter|Space/));
+    let direction = keyCode;
+   
+    this.output = document.querySelector('.use-keyboard-input');
+    
+    let cursorPos = this.output.selectionStart;
+    
+    const left = this.output.value.slice(0, cursorPos);
+    const right = this.output.value.slice(cursorPos);
+
+    if(symbol === "Tab") {
+      this.output.value = `${left}\t${right}`;
+      cursorPos += 1;
+    }
+
+    if(symbol === "Enter") {
+      this.output.value = `${left}\n${right}`;
+      cursorPos += 1;
+    }
+
+    if(symbol === "Backspace") {
+      this.output.value = `${left.slice(0, -1)}${right}`;
+      cursorPos -= 1;
+    }
+    
+    if(symbol === "Space") {
+      this.output.value = `${left} ${right}`;
+      cursorPos += 1;
+    }    
+
+    if (!isFnKey) {
+      if(direction === 37) {
+        cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
+      } else if (direction === 39) {
+        cursorPos += 1;
+      } else if(direction === 38) {
+        const positionFromLeft = this.output.value.slice(0, cursorPos).match(/(\n).*$(?!\1)/g) || [[1]];
+        cursorPos -= positionFromLeft[0].length;
+      }else if(direction === 40) {
+        const positionFromLeft = this.output.value.slice(cursorPos).match(/^.*(\n).*(?!\1)/) || [[1]];
+        cursorPos += positionFromLeft[0].length;
+      } else{
+        if((this.properties.shift && !this.properties.capsLock) || (!this.properties.shift && this.properties.capsLock)) {
+          symbol = symbol.toUpperCase();
+        }
+        if(this.properties.capsLock && this.properties.shift) {
+          symbol = symbol.toLowerCase();
+        }
+        cursorPos += 1;
+        this.output.value = `${left}${symbol || ''}${right}`;
+      }
+    }
+    this.output.focus();
+    this.output.setSelectionRange(cursorPos, cursorPos);
   },
 
   _toggleCapsLock() {
@@ -369,13 +437,7 @@ const Keyboard = {
           }
       }
     });
-    this.elements.keys = keys;
-
-    /*for (const key of this.elements.keys) {
-      if (key.childElementCount === 0 && !key.textContent.match(/tab|Shift|ctrl|en|ru/)) {
-        key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
-      }
-    }*/
+    //this.elements.keys = keys;
   },
 
   open(initialValue, oninput, onclose) {
@@ -429,25 +491,6 @@ const Keyboard = {
 
   sound () {
     this.audio.play = !this.audio.play;
-  },
-
-  moveCursor (direction) {
-    this.direction = direction;
-    this.output = output;
-    let cursorPos = this.output.selectionStart;
-
-    if(direction === 37) {
-      cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
-    } else if (direction === 39) {
-      cursorPos += 1;
-    } else if(direction === 38) {
-      const positionFromLeft = this.output.value.slice(0, cursorPos).match(/(\n).*$(?!\1)/g) || [[1]];
-      cursorPos -= positionFromLeft[0].length;
-    }else if(direction === 40) {
-      const positionFromLeft = this.output.value.slice(cursorPos).match(/^.*(\n).*(?!\1)/) || [[1]];
-      cursorPos += positionFromLeft[0].length;
-    }
-    this.output.setSelectionRange(cursorPos, cursorPos);
   }
 };
 
@@ -484,7 +527,19 @@ function playSound(e, play) {
   }
 }
 
+function clickVirtualButton (e) {
+  e.returnValue = false;
+
+  const keyCode = e.keyCode;
+
+  let button = document.querySelector(`button[data-key="${keyCode}"]`);
+
+  button.click();
+}
+
 const keys = Array.from(document.querySelectorAll('.keyboard__key'));
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 //window.addEventListener('keydown', playSound);
+
+window.addEventListener('keydown', clickVirtualButton);
 

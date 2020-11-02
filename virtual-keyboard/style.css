@@ -49,7 +49,7 @@
   position: relative;
 }
 
-.keyboard__key:active {
+.keyboard__key_active {
   background: rgba(255, 255, 255, 0.12);
 }
 
