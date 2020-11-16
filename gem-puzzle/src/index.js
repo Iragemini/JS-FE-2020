@@ -109,7 +109,7 @@ function createDocument () {
 
     const audioBtn = liF3.appendChild(document.createElement('span'));
     audioBtn.classList.add('audio__btn');
-    audioBtn.innerHTML = '<img src="../assets/sound_mute.png" alt="sound_mute">';
+    audioBtn.innerHTML = '<img src="./assets/sound_mute.png" alt="sound_mute">';
     audioBtn.onclick = function () {
         play = !play;
         if(play) {
