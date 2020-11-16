@@ -1,0 +1,19 @@
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.audio__btn {
+    height: 4rem;
+    width: 4rem;
+}
+
+.audio__btn:hover {
+    cursor: pointer;
+    transition: 1s;
+    transform: translateY(2px);
+    filter: saturate(150%);
+}

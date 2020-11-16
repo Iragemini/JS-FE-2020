@@ -1,3 +1,4 @@
+var play = false;
 
 function createDocument () {
     const body = document.querySelector('body');
@@ -84,23 +85,53 @@ function createDocument () {
     const canvas = main.appendChild(document.createElement("canvas"));
     canvas.id = "canvas";
 
+    const menuFooter = footer.appendChild(document.createElement("div"));
+    menuFooter.classList.add("wrapper__menu");
+    const menuFooterUl = menuFooter.appendChild(document.createElement("ul"));
+    menuFooterUl.classList.add("menu");
+
+    for(let i = 1; i <= 4; i++) {
+        const liF = menuFooterUl.appendChild(document.createElement("li"));
+        liF.id = `liF${i}`;
+        if(i < 4) {
+            liF.classList.add("li__menu");
+        }
+        let text = "";
+        if(i === 1) {
+            text = "";
+        } else if (i === 2) {
+            text = "";
+        } else if (i === 3) {
+            text = "";
+        } else {
+            text = "";
+        }
+        liF.innerText = text;
+    }
+
+    const audioBtn = liF4.appendChild(document.createElement('span'));
+    audioBtn.classList.add('audio__btn');
+    audioBtn.innerHTML = '<img src="../assets/sound_mute.png" alt="sound_mute">';
+    audioBtn.onclick = function () {
+        play = !play;
+        if(play) {
+            audioBtn.innerHTML = '<img src="../assets/sound.png" alt="sound">';
+        } else {
+        audioBtn.innerHTML = '<img src="../assets/sound_mute.png" alt="sound">';
+        }
+    }
+
+    const audio = body.appendChild(document.createElement('audio'));
+    audio.classList.add('audio');
+    audio.src = "./assets/sounds/audio.mp3";
+
     const timerScript = body.appendChild(document.createElement('script'));
     timerScript.src = "./src/js/time.js";    
     const modalWinScript = body.appendChild(document.createElement('script'));
     modalWinScript.src = "./src/js/modalWin.js"; 
+    const audioScript = body.appendChild(document.createElement('script'));
+    audioScript.src = "./src/js/audio.js"; 
 } 
-
-
-/*
-— метод cellView получает координаты и рисует в них пятнашку.
-— метод numView определяет, как выглядит текст (цифра).
-— метод getNullCell возвращает позицию пустой клетки в массиве.
-— метод draw отрисовывает всю игру.
-— метод move обсчитывает перемещение пятнашки на пустую позицию и редактирует текущую схему игрового поля.
-— метод victory проверяет, сложены ли пятнашки.
-— метод mix перемешивает пятнашки заданное количество раз.
-— метод getRandomBool — вспомогательный, возвращает случайное логическое значение.
- */
 
 function createArr (size) {
 
@@ -135,6 +166,8 @@ function Game (size, context, cellSize) {
     //console.log(`arr = ${arr}`);
 
     let clicks = 0;
+
+
 
     function cellView(x, y) {
         //console.log(`x = ${x},  y = ${y}`);
@@ -307,6 +340,7 @@ function loadGame(sizeGem) {
     }
   
     canvas.onclick = function(e) {
+        playSound(play);
         const x = (e.pageX - canvas.offsetLeft) / cellSize | 0;
         const y = (e.pageY - canvas.offsetTop)  / cellSize | 0;
         //console.log(e.pageY, canvas.offsetTop);
