@@ -585,6 +585,8 @@ ul {
   padding: 2px 16px;
   background-color: #c8c9cb;
   opacity: 0.6;
+  display: flex;
+  justify-content: space-between;
 }
 
 .table__result {
