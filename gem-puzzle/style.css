@@ -429,6 +429,38 @@ ul {
   background-size: 0.65em auto, 100%;
 }
 
+@media screen and (max-width: 600px) {
+  .header {
+    padding-top: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-end;
+  }
+}
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.audio__btn {
+  height: 4rem;
+  width: 4rem;
+}
+
+.audio__btn:hover {
+  cursor: pointer;
+  transition: 1s;
+  transform: translateY(2px);
+  filter: saturate(150%);
+}
+
 .main {
   width: 100%;
   display: flex;
@@ -459,6 +491,13 @@ ul {
   text-align: start;
 }
 
+@media screen and (max-width: 600px) {
+  .time_score {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+  }
+}
 #canvas {
   border: 1rem groove #5c3417;
 }

@@ -28,3 +28,11 @@
 .time {
     text-align: start;
 }
+
+@media screen and (max-width: 600px) {
+    .time_score {
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+    }
+}
