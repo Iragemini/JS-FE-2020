@@ -113,9 +113,9 @@ function createDocument () {
     audioBtn.onclick = function () {
         play = !play;
         if(play) {
-            audioBtn.innerHTML = '<img src="../assets/sound.png" alt="sound">';
+            audioBtn.innerHTML = '<img src="./assets/sound.png" alt="sound">';
         } else {
-        audioBtn.innerHTML = '<img src="../assets/sound_mute.png" alt="sound">';
+        audioBtn.innerHTML = '<img src="./assets/sound_mute.png" alt="sound_mute">';
         }
     }
 
