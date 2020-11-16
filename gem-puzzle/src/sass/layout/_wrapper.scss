@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: $content-width;
+    //margin: 0 auto;
+}
+
+.wrapper__menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
