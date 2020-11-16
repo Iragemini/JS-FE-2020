@@ -1,0 +1,99 @@
+#myBtn {
+  color: white;
+  padding: 11.5rem;
+  font-size: 1.2rem 1.8rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  width: 18rem;
+}
+  
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 10rem; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+  
+  
+.modal-content {
+  position: relative;
+  background-color: $color-light-xl;
+  margin: auto;
+  padding: 0;
+  border: 0.5rem solid $color-canvas-border;
+  width: 50%;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0,0,0,0.2),0 0.6rem 2rem 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+@-webkit-keyframes animatetop {
+  from {top:-30rem; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-30rem; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.close {
+  color: white;
+  float: right;
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 0.5rem 1.6rem;
+  background-color: #8b8a87;
+  color: white;
+  font-size: 3.5rem;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  background-color: #c8c9cb;
+  opacity: 0.6;
+}
+
+.table__result {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table__result td, .table__result th {
+  border: 0.1rem solid #ddd;
+  padding: 0.8rem;
+}
+
+.table__result tr:nth-child(even){background-color: #f2f2f2;}
+
+.table__result tr:hover {background-color: #ddd;}
+
+.table__result th {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  text-align: left;
+  background-color: #afafac;
+  color: white;
+}

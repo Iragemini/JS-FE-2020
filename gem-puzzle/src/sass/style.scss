@@ -1,0 +1,26 @@
+//Abstracts
+@import "abstracts/normolize";
+@import "abstracts/constants";
+
+//Base
+@import "base/base";
+
+//Layout
+@import "layout/wrapper";
+@import "layout/header";
+@import "layout/footer";
+
+//Components
+@import "components/main";
+@import "components/canvas";
+@import "components/modal";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
