@@ -5,4 +5,5 @@ function saveGame (user, moves, time, sizeGem, arr) {
     let saveArr = JSON.parse(localStorage.getItem("savedGame"));
     saveArr.push({'user': user, 'time': time, 'sizeGem': sizeGem, 'moves': moves, 'arr': arr});
     localStorage.setItem("savedGame", JSON.stringify(saveArr));
+    alert("Игра сохранена");
 }
