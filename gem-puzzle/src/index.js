@@ -90,26 +90,24 @@ function createDocument () {
     const menuFooterUl = menuFooter.appendChild(document.createElement("ul"));
     menuFooterUl.classList.add("menu");
 
-    for(let i = 1; i <= 4; i++) {
+    for(let i = 1; i <= 3; i++) {
         const liF = menuFooterUl.appendChild(document.createElement("li"));
         liF.id = `liF${i}`;
-        if(i < 4) {
+        if(i < 3) {
             liF.classList.add("li__menu");
         }
         let text = "";
         if(i === 1) {
-            text = "";
+            text = "Сохранить игру";
         } else if (i === 2) {
-            text = "";
-        } else if (i === 3) {
-            text = "";
+            text = "Загрузить игру";
         } else {
             text = "";
         }
         liF.innerText = text;
     }
 
-    const audioBtn = liF4.appendChild(document.createElement('span'));
+    const audioBtn = liF3.appendChild(document.createElement('span'));
     audioBtn.classList.add('audio__btn');
     audioBtn.innerHTML = '<img src="../assets/sound_mute.png" alt="sound_mute">';
     audioBtn.onclick = function () {
@@ -131,6 +129,8 @@ function createDocument () {
     modalWinScript.src = "./src/js/modalWin.js"; 
     const audioScript = body.appendChild(document.createElement('script'));
     audioScript.src = "./src/js/audio.js"; 
+    const saveGameScript = body.appendChild(document.createElement('script'));
+    saveGameScript.src = "./src/js/saveGame.js";
 } 
 
 function createArr (size) {
@@ -207,7 +207,7 @@ function Game (size, context, cellSize) {
 	};
 
     this.draw = function () {
-        console.log(`contex = ${context}, cellSize = ${cellSize}`);
+        //console.log(`contex = ${context}, cellSize = ${cellSize}`);
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size; j++) {
                 if (arr[i][j] > 0) {
@@ -289,6 +289,10 @@ function Game (size, context, cellSize) {
     this.changeSize = function (size) {
         cellSize = size;
     }
+
+    this.getArr = function () {
+        return arr;
+    }
 }
 
 function loadGame(sizeGem) {
@@ -338,6 +342,11 @@ function loadGame(sizeGem) {
         const modal = document.querySelector('#modal-win');
         modal.style.display = "block";
     }
+    
+    const save = document.querySelector('#liF1');
+    save.onclick = function () {
+        saveGame(getUser(), game.getClicks(), getTime(), getSizeGem(), game.getArr());
+    }
   
     canvas.onclick = function(e) {
         playSound(play);
@@ -347,12 +356,12 @@ function loadGame(sizeGem) {
         event(x, y); 
     };
 
-    canvas.ontouchend = function(e) {
+    /*canvas.ontouchend = function(e) {
         const x = (e.touches[0].pageX - canvas.offsetLeft) / cellSize | 0;
         const y = (e.touches[0].pageY - canvas.offsetTop)  / cellSize | 0;
         
         event(x, y);
-    };  
+    };  */
 
     function event(x, y) {
         //console.log(`click = ${game.getClicks()}`);
@@ -396,10 +405,10 @@ function loadGame(sizeGem) {
 
 function createUser() {
     let userName;
-    userName = prompt("Введите Ваше имя", "");
+    /*userName = prompt("Введите Ваше имя", "");
     if(!userName) {
-        userName = "Гость";
-    }
+    }*/
+    userName = "Гость";
     localStorage.setItem('userName', userName);
 }
 
@@ -457,6 +466,6 @@ function saveResult (user, moves, time, sizeGem) {
 window.addEventListener("DOMContentLoaded", function () {
     createDocument();
     loadGame(getSizeGem()); 
-    //createUser();   
+    createUser();   
 });
 
