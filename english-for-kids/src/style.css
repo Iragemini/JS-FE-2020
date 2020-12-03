@@ -79,15 +79,21 @@ body {
   height: 45px;
   margin-top: 4rem;
 }
+@media (max-width: 1190px){
+  .wrapper {
+    max-width: 1000px;
+  }
+}
 
-@media (max-width: 1080px){
+@media (max-width: 900px){
   .wrapper {
       max-width: 650px;
   }
 }
-@media (max-width: 1430px){
+
+@media (max-width: 600px){
   .wrapper {
-    max-width: 1200px;
+      max-width: 350px;
   }
 }
 
@@ -158,12 +164,12 @@ nav {
   color: black;
 }
 
-.hamburger__menu_play {
+.hidden-menu_play {
   background: linear-gradient(40deg,#3DCCCC,#005A5A);
 }
 
 .play {
-  display: none;
+  display: block;
 }
 
 .train {
@@ -343,6 +349,11 @@ nav {
   transition: 0.3s;
 }
 
+.menu-current {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .hidden-menu > li {
   display: flex;
   justify-content: start;
@@ -388,7 +399,7 @@ nav {
   transition: .3s;
 }
 
-.card_train {
+/*.card_train {
   background: -webkit-gradient(linear,left top,left bottom,from(#ffdff0),color-stop(40%,#fab3d9),color-stop(40%,#fff),to(#fff));
   background: linear-gradient(180deg,#ffdff0,#fab3d9 40%,#fff 0,#fff);
 }
@@ -396,24 +407,32 @@ nav {
 .card_play {
   background: -webkit-gradient(linear,left top,left bottom,from(#005A5A),color-stop(40%,#02a2a2),color-stop(40%,#fff),to(#fff));
   background: linear-gradient(180deg,#005A5A,#02a2a2 40%,#fff 0,#fff);
-}
+}*/
 
-.card:hover {
+.card:hover, .flip:hover{
   box-shadow: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
   -webkit-transition: .3s;
   transition: .3s;
+  cursor: pointer;
+}
+
+.flip:hover > .front p {
+  font-size: 3.5rem;
+  transition: .4s;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04);
 }
 
 .front {
   background-color: #fff;
+  z-index: -1;
 }
 .back {
- background-color: #BDBDBD;
+  background-color: #BDBDBD;
   transform: rotateY(180deg);
 }
 
 .text-shadow {
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04), 9px 9px rgba(0, 0, 0, 0.04), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.04), 11px 11px rgba(0, 0, 0, 0.04), 12px 12px rgba(0, 0, 0, 0.04), 13px 13px rgba(0, 0, 0, 0.04), 14px 14px rgba(0, 0, 0, 0.04), 0.625rem 0.625rem rgba(0, 0, 0, 0.04), 16px 16px rgba(0, 0, 0, 0.04), 17px 17px rgba(0, 0, 0, 0.04), 18px 18px rgba(0, 0, 0, 0.04), 19px 19px rgba(0, 0, 0, 0.04), 1.25rem 1.25rem rgba(0, 0, 0, 0.04);
+  opacity: 1;
 }
 
 .flip {
@@ -475,11 +494,12 @@ nav {
   background: #313131;
   border-radius: 10px;
 }
-.flip > .front p,
-.flip > .back p {
-  font-size: 0.9125rem;
+
+p {
+  font-size: 4rem;
   line-height: 160%;
-  color: #999;
+  color: white;
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.5);
 }
 
 .rotate {
@@ -622,10 +642,23 @@ img {
 .info-img {
   margin-right: 1rem;
 }
-
-.answers__scale {
+.top__wrapper {
   padding-top: 3rem;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active__page {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 3rem;
+  font-size: 4.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.answers__scale {  
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

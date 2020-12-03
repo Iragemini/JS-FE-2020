@@ -89,7 +89,7 @@ export const cards = [
       },
       {
         word: 'skip',
-        translation: 'пропускать, прыгать',
+        translation: 'пропускать/прыгать',
         image: '../src/assets/img/category_img/skip.jpg',
         audioSrc: '../src/assets/audio/skip.mp3'
       },
@@ -139,7 +139,7 @@ export const cards = [
       },
       {
         word: 'skip',
-        translation: 'пропускать, прыгать',
+        translation: 'пропускать/прыгать',
         image: '../src/assets/img/category_img/skip.jpg',
         audioSrc: '../src/assets/audio/skip.mp3'
       },
@@ -152,52 +152,52 @@ export const cards = [
     ],
     [
       {
-        word: 'open',
-        translation: 'открывать',
-        image: '../src/assets/img/category_img/open.jpg',
-        audioSrc: '../src/assets/audio/open.mp3'
+        word: 'multicolored',
+        translation: 'разноцветный',
+        image: '../src/assets/img/category_img/multicolored.png',
+        audioSrc: '../src/assets/audio/multicolored.mp3'
       },
       {
-        word: 'play',
-        translation: 'играть',
-        image: '../src/assets/img/category_img/play.jpg',
-        audioSrc: '../src/assets/audio/play.mp3'
+        word: 'orange',
+        translation: 'оранжевый',
+        image: '../src/assets/img/category_img/orange.png',
+        audioSrc: '../src/assets/audio/orange.mp3'
       },
       {
-        word: 'point',
-        translation: 'указывать',
-        image: '../src/assets/img/category_img/point.jpg',
-        audioSrc: '../src/assets/audio/point.mp3'
+        word: 'yellow',
+        translation: 'желтый',
+        image: '../src/assets/img/category_img/yellow.png',
+        audioSrc: '../src/assets/audio/yellow.mp3'
       },
       {
-        word: 'ride',
-        translation: 'ездить',
-        image: '../src/assets/img/category_img/ride.jpg',
-        audioSrc: '../src/assets/audio/ride.mp3'
+        word: 'gray',
+        translation: 'серый',
+        image: '../src/assets/img/category_img/gray.png',
+        audioSrc: '../src/assets/audio/gray.mp3'
       },
       {
-        word: 'run',
-        translation: 'бегать',
-        image: '../src/assets/img/category_img/run.jpg',
-        audioSrc: '../src/assets/audio/run.mp3'
+        word: 'green',
+        translation: 'зелёный',
+        image: '../src/assets/img/category_img/green.png',
+        audioSrc: '../src/assets/audio/green.mp3'
       },
       {
-        word: 'sing',
-        translation: 'петь',
-        image: '../src/assets/img/category_img/sing.jpg',
-        audioSrc: '../src/assets/audio/sing.mp3'
+        word: 'blue',
+        translation: 'синий/голубой',
+        image: '../src/assets/img/category_img/blue.png',
+        audioSrc: '../src/assets/audio/blue.mp3'
       },
       {
-        word: 'skip',
-        translation: 'пропускать, прыгать',
-        image: '../src/assets/img/category_img/skip.jpg',
-        audioSrc: '../src/assets/audio/skip.mp3'
+        word: 'violet',
+        translation: 'фиолетовый',
+        image: '../src/assets/img/category_img/violet.png',
+        audioSrc: '../src/assets/audio/violet.mp3'
       },
       {
-        word: 'swim',
-        translation: 'плавать',
-        image: '../src/assets/img/category_img/swim.jpg',
-        audioSrc: '../src/assets/audio/swim.mp3'
+        word: 'red',
+        translation: 'красный',
+        image: '../src/assets/img/category_img/red.png',
+        audioSrc: '../src/assets/audio/red.mp3'
       }
     ],
     [

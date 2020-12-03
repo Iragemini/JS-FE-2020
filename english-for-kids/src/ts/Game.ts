@@ -14,21 +14,20 @@ export class Game {
         this.page = page;
         this.cardsArr = cardsArr;
         this.pageIndex = pageIndex;
+        setPlayedItem("");
+        this.clear();
         this.randArr = this.createRandomPoll(this.page, this.cardsArr, this.pageIndex);
-        //playArray = this.randArr.slice();        
         for(let i = 0; i < this.randArr.length; i++) {
             console.log(`i = ${i}`);
             let src = this.randArr[i].audioSrc;
             let card = {'index': i, 'audioSrc': src};
             playArray.push(card);
         }
-        setPlayedItem("");
-        counter = 0;
         this.playSound();
     }
 
     private createRandomPoll (page: string, cardsArr: any, pageIndex: string){
-        console.log(`page = ${page}, pageIndex = ${pageIndex}`);
+        //console.log(`page = ${page}, pageIndex = ${pageIndex}`);
         let randArr: any = shuffle(cardsArr.cards[pageIndex]);
         function shuffle(array: any) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -37,8 +36,6 @@ export class Game {
             }
             return array;
         }
-        console.log(`randArr = ${randArr[0].word}`); 
-
         return randArr;
     }
 
@@ -46,7 +43,7 @@ export class Game {
         let item = Math.floor(Math.random() * playArray.length);
         const playedItem = localStorage.getItem('playedItem' || '');
 
-        console.log(`item = ,${item},  itemStr = ,${itemStr},  counter = ${counter}  playArray.length = ${playArray.length}`);
+        //console.log(`item = ,${item},  itemStr = ,${itemStr},  counter = ${counter}  playArray.length = ${playArray.length}`);
         if(counter + 1 > playArray.length) {
             this.gameOver();
             return false;
@@ -75,16 +72,15 @@ export class Game {
         setPlayedItem(itemStr);
     }
 
-    public deleteElem (index: number) {
-        const elem = playArray.splice(index, 1);
-        console.log(` len = ${playArray.length}, elem = ${elem}`);
-    }
-
     private gameOver() {
         alert('game over');
-        const answerScale = document.querySelector('.answers__scale');
-        answerScale.removeChild;
-        answerScale.classList.add('no__display');
+        localStorage.setItem('start', 'false');
+    }
+
+    private clear () {
+        playArray = [];
+        itemStr = "";
+        counter = 0;
     }
 }
 

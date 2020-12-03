@@ -1,87 +1,14 @@
 import * as _ from 'lodash';
 import * as cards from './ts/cards';
 import {Game} from './ts/Game';
+import {Card} from './ts/Card';
+import {createElement} from './ts/Card';
 
 let cardsArray: any = cards;
 
 let game: any;
 
 var menu = document.getElementById("menu");
-
-interface applicationMode {
-  mode: String;
-}
-class Card {
-
-  private imageUrl: string;
-  private audioUrl: string;
-  private description: string;
-  private cardType: string;
-  private mode: string;
-
-  public constructor (imageUrl : string, audioUrl: string, description: string, mode: string, cardType: string) {
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.cardType = cardType;
-    this.mode = mode;
-    this.audioUrl = audioUrl;
-    let carParameters: {} = {
-      imageUrl,
-      audioUrl,
-      description,
-      mode,
-      cardType,
-    };
-    this.createCardBody(carParameters);
-    console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
-  }
-
-  private createCardBody(carParameters: Object): void {
-    let {imageUrl, audioUrl, description, mode, cardType}: any = carParameters;
-
-    const descriptionEn: string = description.split(',')[0];
-    const descriptionRu: string = description.split(',')[1];
-    const mainContainer = document.querySelector('.main-container');
-    const main = document.querySelector('.main');
-
-    let classList: string = `flip,card_${mode},flip-vertical`;
-    if(cardType == "main") {
-      classList = `card,card_${mode}`;
-    }
-    const card = createElement('div', `${classList}`);
-    const divFront = createElement('div', 'front');
-    divFront.style.backgroundImage = `url(${imageUrl})`;
-    const h1 = createElement('h1', 'text-shadow');
-    h1.innerText = descriptionEn;
-    divFront.append(h1);
-
-    if(cardType !== "main") {
-      const divBack = createElement('div','back');
-      divBack.style.backgroundImage = `url(${imageUrl})`;
-      const h1 = createElement('h1', 'text-shadow');
-      h1.innerText = descriptionRu;
-      const rotateDiv = createElement('div', 'rotate');
-      divBack.append(h1);
-      divFront.append(rotateDiv);
-      card.append(divFront, divBack);
-      mainContainer.append(card);
-    } else{
-      card.append(divFront);
-      mainContainer.append(card);
-    }
-  }
-} 
-
-function createElement (elementName: string, className: string) {
-  const element = document.createElement(elementName);
-  if (className !== "") {
-    let classNameArr = className.split(",");
-    for (let i: number = 0; i < classNameArr.length; i++) {
-      element.classList.add(classNameArr[i]);
-    }
-  }
-  return element;
-}
 
 function drawCard (init: string, mode: string) {
   setPage(init);
@@ -96,17 +23,16 @@ function drawCard (init: string, mode: string) {
     mainContainer.onclick = function(event: any) {
       //alert(`event.target.tagName = ${event.target.tagName}`);
       if(event.target.tagName !== 'DIV') return;
-      let h1 = event.target.querySelector('h1');
-      let text = h1.innerHTML;
-      console.log(`h1 = ${h1}, text = ${text}`);
+      let p = event.target.querySelector('p');
+      let text = p.innerHTML;
+      //console.log(`p = ${p}, text = ${text}`);
       changeCardsList(event, text);
+      changeMenuItemStyle(text);
     }
   }
   const main = document.querySelector('.main');
   main.append(mainContainer);
-
-  console.log(`cardsArr = ${cardsArr}, init = ${init}`);
-  
+ 
   if(init == "main") {
     setPageIndex(0);
     for (let i: number = 0; i < cardsArr.length; i++) {
@@ -128,7 +54,7 @@ function drawCard (init: string, mode: string) {
       audioSrc = categoryArr[i].audioSrc;
       description = `${categoryArr[i].word},${categoryArr[i].translation}`; 
       //console.log(`imageSrc = ${imageSrc}, description = ${description}`);
-      const category = new Card(imageSrc, audioSrc, description, `${mode}`, init);
+      new Card(imageSrc, audioSrc, description, `${mode}`, init);
     }
   }
   playMode();
@@ -152,15 +78,17 @@ function setMode (mode: string) {
 }
 
 function getMode () {
-  return localStorage.getItem('mode' || 'train');
+  return localStorage.getItem('mode');
 }
 
 function setPage (page: string) {
   localStorage.setItem('page', page);
+  const activePage = document.querySelector('.active__page');
+  activePage.innerHTML = page;
 }
 
 function getPage () {
-  return localStorage.getItem('page' || 'main');
+  return localStorage.getItem('page');
 }
 
 function setPageIndex (pageIndex: number) {
@@ -168,7 +96,7 @@ function setPageIndex (pageIndex: number) {
 }
 
 function getPageIndex () {
-  return localStorage.getItem('pageIndex' || '0');
+  return localStorage.getItem('pageIndex');
 }
 
 function showGameBtn () {
@@ -191,22 +119,24 @@ function playMode () {
     const rotateDiv = item.querySelector('.rotate');
     const textDiv = item.querySelector('.text-shadow');
 
-    console.log(`rotateDiv = ${rotateDiv.classList}`);
-    if(getMode() === 'play') {
+    console.log(`rotateDiv = ${rotateDiv.classList}, getMode() = ${getMode()}`);
+    console.log(`getMode() == 'play' = ${getMode() == 'play'}`);
+    console.log(`getMode() == 'train' = ${getMode() == 'train'}`);
+    if(getMode() == 'play') {
       item.classList.add('card_play');
       item.classList.remove('card_train');
       rotateDiv.classList.add('no__display');
       textDiv.classList.add('no__display');
-      if(getStartGame) {
-        item.addEventListener( 'click', function(event: any) {
-          const div = event.target.innerText;
-          let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
-          console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
-          item.dataset['index'] = index.toString();
-          compare(index);
-        });
-      }
-    } else {
+      console.log(`getStartGame() = ${getStartGame()}`);
+      item.addEventListener( 'click', function(event: any) {
+        const div = event.target.innerText;
+        let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
+        console.log(`play inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
+        item.dataset['index'] = index.toString();
+        compare(index);
+      });
+    } 
+    if (getMode() == 'train') {
       item.classList.add('card_train');
       item.classList.remove('card_play');
       rotateDiv.classList.remove('no__display');
@@ -222,29 +152,64 @@ function playMode () {
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
         console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         let audioSrc = cardsArray.cards[getPageIndex()][index].audioSrc;
-        console.log(`audioSrc = ${audioSrc}`);
-        audioPlay(audioSrc);
+        console.log(`train audioSrc = ${audioSrc}`);
+        if(getMode() == 'train') {
+          audioPlay(audioSrc);
+        }
       });
     }
   })
+
+  const menu = document.querySelector('#menu');
+  const divPlay = document.querySelectorAll('.play');
+  const divTrain = document.querySelectorAll('.train');
+  if (getMode() == 'play') {
+    menu.classList.remove('hidden-menu_train');
+    menu.classList.add('hidden-menu_play');
+    divPlay.forEach(function(item: any) {
+      item.classList.remove('no__display');
+    });
+    divTrain.forEach(function(item: any) {
+      item.classList.add('no__display');
+    });
+  } else {
+    menu.classList.remove('hidden-menu_play');
+    menu.classList.add('hidden-menu_train');
+    divPlay.forEach(function(item: any) {
+      item.classList.add('no__display');
+    });
+    divTrain.forEach(function(item: any) {
+      item.classList.remove('no__display');
+    });
+  }
 }
 
 function compare (index: number) {
-  let playedItem = localStorage.getItem('playedItem').trim();
+  if(getStartGame() == 'false') {
+    return;
+  }
+  let playedItemStr = localStorage.getItem('playedItem').trim();
+  let playedItem = playedItemStr.split(',')[playedItemStr.split(',').length - 1];
   let clickItem = index.toString().trim();
+  console.log(`playedItemStr = ${playedItemStr}  playedItem = ${playedItem}  clickItem= ${clickItem} `);
   const answerScale = document.querySelector('.answers__scale');
   answerScale.classList.remove('no__display');
   if(playedItem == clickItem) {
+    audioPlay('../src/assets/audio/correct-answer.mp3');
     answerScale.appendChild(createElement('div', 'correct_answer'));
   } else {
+    audioPlay('../src/assets/audio/error.mp3');
     answerScale.appendChild(createElement('div', 'wrong_answer'));
   }
-  game.playSound();
+  if(getStartGame() === 'true') {
+    game.playSound();
+  }
 }
 
 function audioPlay (audioSrc: string) {
   let audio = document.querySelector('audio');
   audio.src = audioSrc;
+  console.log(`audioSrc = ${audioSrc} audio = ${audio}`);
   if (!audio) return;  
   audio.addEventListener('canplay', function () {
       audio.play();
@@ -255,13 +220,16 @@ function getStartGame() {
   return localStorage.getItem('start');
 }
 
-function setStartGame (start: any) {
-  localStorage.setItem('start', start || false);
+function setStartGame (start: string) {
+  localStorage.setItem('start', start || 'false');
 }
 
 const startGame = <HTMLDivElement>document.querySelector('.start-btn');
 startGame.onclick = function(e) {
-  setStartGame(true);
+  setStartGame('true');
+  if(document.querySelector('.answers__scale')) {
+    clearAnswerScale();
+  }
   game = new Game(getPage(), cards, getPageIndex());
 }
 
@@ -270,9 +238,12 @@ document.addEventListener("DOMContentLoaded", function() {
   let modeSwitcher = new Switcher('unchecked');
   setPage('main');
   setMode('train');
-  setStartGame(false);
+  setStartGame('false');
   setPageIndex(0);
- 
+   /*
+  switcher.unchecked => train mode
+  switcher.checked => play mode
+  */
   const switcher = document.querySelector('.checkbox__switcher');
   console.log(switcher);
   switcher.addEventListener('change', function () {
@@ -284,36 +255,51 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log('unchecked');
       modeSwitcher.setSwitcher('unchecked');
       setMode('train');
-      setStartGame(false);
+      setStartGame('false');
+    }
+    if(document.querySelector('.answers__scale')) {
+      clearAnswerScale();
     }
     showGameBtn();
     playMode();
   });
 
   console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
-
-  /*
-  switcher.unchecked => train mode
-  switcher.checked => play mode
-  */
-
-  drawCard(getPage(), getMode());  
- 
+  drawCard(getPage(), getMode());   
 });
 
 menu.onclick = function(event: any) { 
   if(event.target.tagName !== 'A') return;
   const checkboxMenu = <HTMLInputElement>document.querySelector('.hidden-menu-ticker');
   //console.log(`checkboxMenu = ${checkboxMenu}`);
+  const activeMenu = document.querySelector('.menu-current');
+  console.log(`activeMenu = ${activeMenu} class = ${activeMenu.className}`)
+  activeMenu.classList.remove('menu-current');
   const li = event.target;
+  li.classList.add('menu-current');
   const menuItem = li.innerHTML;
   //console.log(li.innerHTML);
   changeCardsList(event, menuItem);
   checkboxMenu.checked = false;
 }
 
+function changeMenuItemStyle(elem: string) {
+  console.log(`elem = ${elem}`);
+  const menuItem = document.querySelectorAll('.menu-item');
+  menuItem.forEach(function(item) {
+    item.classList.remove('menu-current');
+    if(item.innerHTML === elem) {
+      //console.log(`item = ${item.innerHTML}`);
+      item.classList.add('menu-current');
+    }
+  })
+}
+
 function changeCardsList (event: any, menuItem: string) {
 
+  if(document.querySelector('.answers__scale')) {
+    clearAnswerScale();
+  }
   if(menuItem.toUpperCase().startsWith("MAIN")) {
     menuItem = "main";
   }  
@@ -338,6 +324,12 @@ function changeCardsList (event: any, menuItem: string) {
     const div: any = containerItem[+<HTMLElement>a.target];
     div.style.transform = 'rotateY(180deg)';
   }
+}
+
+function clearAnswerScale () {
+  const answerScale = document.querySelector('.answers__scale');
+  answerScale.innerHTML = "";
+  answerScale.classList.add('no__display');
 }
 
 
