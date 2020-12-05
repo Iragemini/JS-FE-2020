@@ -102,52 +102,52 @@ export const cards = [
     ],
     [
       {
-        word: 'open',
-        translation: 'открывать',
-        image: '../src/assets/img/category_img/open.jpg',
-        audioSrc: '../src/assets/audio/open.mp3'
+        word: 'sleep',
+        translation: 'спать',
+        image: '../src/assets/img/category_img/sleep.jpg',
+        audioSrc: '../src/assets/audio/sleep.mp3'
       },
       {
-        word: 'play',
-        translation: 'играть',
-        image: '../src/assets/img/category_img/play.jpg',
-        audioSrc: '../src/assets/audio/play.mp3'
+        word: 'eat',
+        translation: 'есть',
+        image: '../src/assets/img/category_img/eat.jpg',
+        audioSrc: '../src/assets/audio/eat.mp3'
       },
       {
-        word: 'point',
-        translation: 'указывать',
-        image: '../src/assets/img/category_img/point.jpg',
-        audioSrc: '../src/assets/audio/point.mp3'
+        word: 'blow',
+        translation: 'дуть',
+        image: '../src/assets/img/category_img/blow.jpg',
+        audioSrc: '../src/assets/audio/blow.mp3'
       },
       {
-        word: 'ride',
-        translation: 'ездить',
-        image: '../src/assets/img/category_img/ride.jpg',
-        audioSrc: '../src/assets/audio/ride.mp3'
+        word: 'call',
+        translation: 'звонить',
+        image: '../src/assets/img/category_img/call.jpg',
+        audioSrc: '../src/assets/audio/call.mp3'
       },
       {
-        word: 'run',
-        translation: 'бегать',
-        image: '../src/assets/img/category_img/run.jpg',
-        audioSrc: '../src/assets/audio/run.mp3'
+        word: 'take pictures',
+        translation: 'фотографировать',
+        image: '../src/assets/img/category_img/take_pictures.jpg',
+        audioSrc: '../src/assets/audio/take_pictures.mp3'
       },
       {
-        word: 'sing',
-        translation: 'петь',
-        image: '../src/assets/img/category_img/sing.jpg',
-        audioSrc: '../src/assets/audio/sing.mp3'
+        word: 'shop',
+        translation: 'делать покупки',
+        image: '../src/assets/img/category_img/shop.jpg',
+        audioSrc: '../src/assets/audio/shop.mp3'
       },
       {
-        word: 'skip',
-        translation: 'пропускать/прыгать',
-        image: '../src/assets/img/category_img/skip.jpg',
-        audioSrc: '../src/assets/audio/skip.mp3'
+        word: 'win',
+        translation: 'побеждать/выигрывать',
+        image: '../src/assets/img/category_img/win.jpg',
+        audioSrc: '../src/assets/audio/win.mp3'
       },
       {
-        word: 'swim',
-        translation: 'плавать',
-        image: '../src/assets/img/category_img/swim.jpg',
-        audioSrc: '../src/assets/audio/swim.mp3'
+        word: 'read',
+        translation: 'читать',
+        image: '../src/assets/img/category_img/read.jpg',
+        audioSrc: '../src/assets/audio/read.mp3'
       }
     ],
     [

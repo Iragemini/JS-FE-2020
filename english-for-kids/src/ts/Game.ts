@@ -61,9 +61,12 @@ export class Game {
         let audio = document.querySelector('audio');
         audio.src = audioSrc;
         if (!audio) return;  
+        if (audio.play) {
+            audio.pause;
+        }
         audio.addEventListener('canplay', function () {
             audio.play();
-        })
+        }, true);
         if(playedItem !== "") {
             itemStr = `${playedItem},${item.toString()}`;
         } else {

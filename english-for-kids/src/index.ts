@@ -3,12 +3,14 @@ import * as cards from './ts/cards';
 import {Game} from './ts/Game';
 import {Card} from './ts/Card';
 import {createElement} from './ts/Card';
+import {Stat} from './ts/Stat';
 
 let cardsArray: any = cards;
 
 let game: any;
 
 var menu = document.getElementById("menu");
+var body = document.getElementsByTagName('body');
 
 function drawCard (init: string, mode: string) {
   setPage(init);
@@ -119,9 +121,9 @@ function playMode () {
     const rotateDiv = item.querySelector('.rotate');
     const textDiv = item.querySelector('.text-shadow');
 
-    console.log(`rotateDiv = ${rotateDiv.classList}, getMode() = ${getMode()}`);
+    /*console.log(`rotateDiv = ${rotateDiv.classList}, getMode() = ${getMode()}`);
     console.log(`getMode() == 'play' = ${getMode() == 'play'}`);
-    console.log(`getMode() == 'train' = ${getMode() == 'train'}`);
+    console.log(`getMode() == 'train' = ${getMode() == 'train'}`);*/
     if(getMode() == 'play') {
       item.classList.add('card_play');
       item.classList.remove('card_train');
@@ -142,8 +144,9 @@ function playMode () {
       rotateDiv.classList.remove('no__display');
       textDiv.classList.remove('no__display');
       item.addEventListener( 'click', function(event: any) {
+        console.log(`event.currentTarget  = ${event.target.classList }`);
         const div = event.target.innerText;
-        const rotateDiv = <HTMLElement>event.currentTarget;
+        const rotateDiv = <HTMLElement>event.target;
         const classList = rotateDiv.classList;
         console.log(`classList = ${classList}`);
         if(rotateDiv.className == 'rotate') {
@@ -195,25 +198,24 @@ function compare (index: number) {
   const answerScale = document.querySelector('.answers__scale');
   answerScale.classList.remove('no__display');
   if(playedItem == clickItem) {
-    audioPlay('../src/assets/audio/correct-answer.mp3');
+    correct('../src/assets/audio/correct-answer.mp3');
     answerScale.appendChild(createElement('div', 'correct_answer'));
   } else {
     audioPlay('../src/assets/audio/error.mp3');
     answerScale.appendChild(createElement('div', 'wrong_answer'));
   }
-  if(getStartGame() === 'true') {
-    game.playSound();
-  }
 }
 
 function audioPlay (audioSrc: string) {
-  let audio = document.querySelector('audio');
-  audio.src = audioSrc;
-  console.log(`audioSrc = ${audioSrc} audio = ${audio}`);
-  if (!audio) return;  
-  audio.addEventListener('canplay', function () {
-      audio.play();
-  }) 
+  const audio = new Audio(audioSrc);
+  audio.play();
+}
+
+async function correct(src: string) {
+  await audioPlay(src);
+  if(getStartGame() === 'true') {
+    game.playSound()
+  }
 }
 
 function getStartGame() {
@@ -227,9 +229,7 @@ function setStartGame (start: string) {
 const startGame = <HTMLDivElement>document.querySelector('.start-btn');
 startGame.onclick = function(e) {
   setStartGame('true');
-  if(document.querySelector('.answers__scale')) {
-    clearAnswerScale();
-  }
+  clearAnswerScale();
   game = new Game(getPage(), cards, getPageIndex());
 }
 
@@ -257,9 +257,7 @@ document.addEventListener("DOMContentLoaded", function() {
       setMode('train');
       setStartGame('false');
     }
-    if(document.querySelector('.answers__scale')) {
-      clearAnswerScale();
-    }
+    clearAnswerScale();
     showGameBtn();
     playMode();
   });
@@ -297,9 +295,8 @@ function changeMenuItemStyle(elem: string) {
 
 function changeCardsList (event: any, menuItem: string) {
 
-  if(document.querySelector('.answers__scale')) {
-    clearAnswerScale();
-  }
+  clearAnswerScale();
+
   if(menuItem.toUpperCase().startsWith("MAIN")) {
     menuItem = "main";
   }  
@@ -311,7 +308,7 @@ function changeCardsList (event: any, menuItem: string) {
   let containerItem = document.querySelectorAll('.flip');
   let rotate = document.querySelectorAll('.rotate');
   
-  console.log(`rotate = ${rotate}`);
+  console.log(`311 rotate = ${rotate}`);
 
   if(rotate) {
     rotate.forEach(function(a) {
@@ -327,10 +324,29 @@ function changeCardsList (event: any, menuItem: string) {
 }
 
 function clearAnswerScale () {
+  if(!document.querySelector('.answers__scale')) {
+    return;
+  }
   const answerScale = document.querySelector('.answers__scale');
   answerScale.innerHTML = "";
   answerScale.classList.add('no__display');
 }
 
-
-
+document.addEventListener('click', function(event: any) {
+  //console.log(`target = ${event.target}`);
+  const checkboxMenu = <HTMLInputElement>document.querySelector('.hidden-menu-ticker');
+  const targetElem = event.target;
+  //console.log(`targetElem.classList = ${targetElem.classList.toString()} type = ${typeof targetElem.classList}  checkboxMenu.checked = ${checkboxMenu.checked}`);
+  const classArr = targetElem.classList.toString().split(' ');
+  for (let i = 0; i < classArr.length; i++) {
+    //console.log(`classArr[i] = ${classArr[i]}`);
+    if (classArr[i] == 'menu' || classArr[i] == 'visually__hidden' ||  classArr[i] == 'li-item' ||
+        (checkboxMenu.checked == true && classArr[i].startsWith('bar'))) {
+      return;
+    }
+  }
+  if(checkboxMenu.checked) {
+    checkboxMenu.checked = false;
+  }
+  //if(event.target != )
+})
