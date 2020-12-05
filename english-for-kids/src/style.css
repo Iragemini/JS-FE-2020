@@ -398,16 +398,6 @@ nav {
   transition: .3s;
 }
 
-/*.card_train {
-  background: -webkit-gradient(linear,left top,left bottom,from(#ffdff0),color-stop(40%,#fab3d9),color-stop(40%,#fff),to(#fff));
-  background: linear-gradient(180deg,#ffdff0,#fab3d9 40%,#fff 0,#fff);
-}
-
-.card_play {
-  background: -webkit-gradient(linear,left top,left bottom,from(#005A5A),color-stop(40%,#02a2a2),color-stop(40%,#fff),to(#fff));
-  background: linear-gradient(180deg,#005A5A,#02a2a2 40%,#fff 0,#fff);
-}*/
-
 .card:hover, .flip:hover{
   box-shadow: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
   -webkit-transition: .3s;
@@ -423,6 +413,10 @@ nav {
 
 .front {
   background-color: #fff;
+  height: 280px;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
   z-index: -1;
 }
 .back {
@@ -493,6 +487,12 @@ nav {
   padding: 1rem 2rem;
   background: #313131;
   border-radius: 10px;
+}
+
+.flip-disable {
+  pointer-events: none !important; 
+  cursor: default !important;
+  opacity: 0.5 !important;
 }
 
 p {
@@ -578,8 +578,14 @@ p {
 }
 
 .start-btn_repeat {
-  width: 50px !important;
+  padding: 0.5rem !important;
+  height: 60px !important;
+  width: 60px !important;
   border-radius: 50% !important;
+  background-image: url(./assets/img/repeat.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   transition: .3s;
 }
 

@@ -1,4 +1,5 @@
 import { cards } from "./cards";
+import {audioPlay} from "../index";
 
 export let playArray: any = [];
 let itemStr: string = "";
@@ -56,7 +57,7 @@ export class Game {
         const audioSrc = playArray[item].audioSrc;
         console.log(`item = ${item} src = ${audioSrc} len = ${playArray.length}`);
         if(playArray.length === 0) {
-            this.gameOver();
+            setTimeout(this.gameOver, 2000);
         }
         let audio = document.querySelector('audio');
         audio.src = audioSrc;
@@ -76,7 +77,7 @@ export class Game {
     }
 
     private gameOver() {
-        alert('game over');
+        audioPlay('../src/assets/audio/success.mp3');
         localStorage.setItem('start', 'false');
     }
 
@@ -87,7 +88,7 @@ export class Game {
     }
 }
 
-function setPlayedItem (item: string) {
+export function setPlayedItem (item: string) {
     localStorage.setItem('playedItem', item);
 }
 

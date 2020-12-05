@@ -42,8 +42,10 @@ export class Card {
       divFront.style.backgroundImage = `url(${imageUrl})`;
       const p = createElement('p', 'text-shadow');
       p.innerText = descriptionEn;
-      divFront.append(p);
-  
+      if(cardType !== 'main') {
+        divFront.append(p);
+      }
+        
       if(cardType !== "main") {
         const divBack = createElement('div','back');
         divBack.style.backgroundImage = `url(${imageUrl})`;
@@ -55,7 +57,7 @@ export class Card {
         card.append(divFront, divBack);
         mainContainer.append(card);
       } else{
-        card.append(divFront);
+        card.append(divFront, p);
         mainContainer.append(card);
       }
     }
@@ -71,3 +73,5 @@ export class Card {
     }
     return element;
   }
+
+  

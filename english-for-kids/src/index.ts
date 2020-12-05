@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as cards from './ts/cards';
-import {Game, playArray} from './ts/Game';
+import {Game, playArray, setPlayedItem} from './ts/Game';
 import {Card} from './ts/Card';
 import {createElement} from './ts/Card';
 import {Stat} from './ts/Stat';
@@ -10,7 +10,6 @@ let cardsArray: any = cards;
 let game: any;
 
 var menu = document.getElementById("menu");
-var body = document.getElementsByTagName('body');
 
 function drawCard (init: string, mode: string) {
   setPage(init);
@@ -24,10 +23,14 @@ function drawCard (init: string, mode: string) {
   if(init == "main") {
     mainContainer.onclick = function(event: any) {
       //alert(`event.target.tagName = ${event.target.tagName}`);
-      if(event.target.tagName !== 'DIV') return;
-      let p = event.target.querySelector('p');
+      let p: any = "";
+      if(event.target.tagName !== 'P') {
+        p = event.target.querySelector('p');
+      } else {
+        p = event.target;
+      }
       let text = p.innerHTML;
-      //console.log(`p = ${p}, text = ${text}`);
+      console.log(`p = ${p}, text = ${text}`);
       changeCardsList(event, text);
       changeMenuItemStyle(text);
     }
@@ -122,9 +125,6 @@ function playMode () {
     const rotateDiv = item.querySelector('.rotate');
     const textDiv = item.querySelector('.text-shadow');
 
-    /*console.log(`rotateDiv = ${rotateDiv.classList}, getMode() = ${getMode()}`);
-    console.log(`getMode() == 'play' = ${getMode() == 'play'}`);
-    console.log(`getMode() == 'train' = ${getMode() == 'train'}`);*/
     if(getMode() == 'play') {
       item.classList.add('card_play');
       item.classList.remove('card_train');
@@ -136,12 +136,16 @@ function playMode () {
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
         console.log(`play inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         item.dataset['index'] = index.toString();
-        compare(index);
+        const isTrue: string = compare(index);
+        console.log(`isTrue = ${isTrue} event.currentTarget.classList = ${event.currentTarget.classList}`);
+        if(isTrue === "1") {
+          <HTMLElement>event.currentTarget.classList.add("flip-disable");
+        }
       });
     } 
     if (getMode() == 'train') {
       item.classList.add('card_train');
-      item.classList.remove('card_play');
+      item.classList.remove('card_play', 'flip-disable');
       rotateDiv.classList.remove('no__display');
       textDiv.classList.remove('no__display');
       item.addEventListener( 'click', function(event: any) {
@@ -190,7 +194,7 @@ function playMode () {
 
 function compare (index: number) {
   if(getStartGame() == 'false') {
-    return;
+    return "";
   }
   let playedItemStr = localStorage.getItem('playedItem').trim();
   let playedItem = playedItemStr.split(',')[playedItemStr.split(',').length - 1];
@@ -201,13 +205,15 @@ function compare (index: number) {
   if(playedItem == clickItem) {
     correct('../src/assets/audio/correct-answer.mp3');
     answerScale.appendChild(createElement('div', 'correct_answer'));
+    return "1";
   } else {
     audioPlay('../src/assets/audio/error.mp3');
     answerScale.appendChild(createElement('div', 'wrong_answer'));
+    return "0";
   }
 }
 
-function audioPlay (audioSrc: string) {
+export function audioPlay (audioSrc: string) {
   const audio = new Audio(audioSrc);
   audio.play();
 }
@@ -215,7 +221,7 @@ function audioPlay (audioSrc: string) {
 async function correct(src: string) {
   await audioPlay(src);
   if(getStartGame() === 'true') {
-    game.playSound()
+    game.playSound();
   }
 }
 
@@ -285,6 +291,7 @@ document.addEventListener("DOMContentLoaded", function() {
     clearAnswerScale();
     showGameBtn();
     playMode();
+    setPlayedItem("");
   });
 
   console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
@@ -322,6 +329,7 @@ function changeMenuItemStyle(elem: string) {
 function changeCardsList (event: any, menuItem: string) {
 
   clearAnswerScale();
+  setPlayedItem("");
 
   if(menuItem.toUpperCase().startsWith("MAIN")) {
     menuItem = "main";
@@ -332,7 +340,7 @@ function changeCardsList (event: any, menuItem: string) {
   drawCard(menuItem, getMode());
     
   let containerItem = document.querySelectorAll('.flip');
-  let rotate = document.querySelectorAll('.rotate');
+  let rotate = document.querySelectorAll('.front');
   
   console.log(`311 rotate = ${rotate}`);
 
@@ -343,16 +351,15 @@ function changeCardsList (event: any, menuItem: string) {
     });    
   }
   function flipCard(a: any) {
-    console.log(`a = ${a}`);
-    const div: any = containerItem[+<HTMLElement>a.target];
+    console.log(`a = ${a.currentTarget}`);
+    //let div = containerItem[+<HTMLElement>a.currentTarget];
+    const div = a.currentTarget;
     div.style.transform = 'rotateY(180deg)';
+    //div.classList.add('front-rotate');
   }
 }
 
 function clearAnswerScale () {
-  if(!document.querySelector('.answers__scale')) {
-    return;
-  }
   const answerScale = document.querySelector('.answers__scale');
   answerScale.innerHTML = "";
   answerScale.classList.add('no__display');
