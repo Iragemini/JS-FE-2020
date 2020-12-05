@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as cards from './ts/cards';
-import {Game} from './ts/Game';
+import {Game, playArray} from './ts/Game';
 import {Card} from './ts/Card';
 import {createElement} from './ts/Card';
 import {Stat} from './ts/Stat';
@@ -105,7 +105,8 @@ function showGameBtn () {
   const startBtn = document.querySelector('.start__game');
   if(getPage() !== 'main') {
     if(getMode() === "play") {
-      startBtn.classList.add("start__game-vis");
+      startBtn.classList.add("start__game-vis")
+      changeStyleStartButton("start");
     } else {
       startBtn.classList.remove("start__game-vis");
     }
@@ -225,14 +226,38 @@ function getStartGame() {
 function setStartGame (start: string) {
   localStorage.setItem('start', start || 'false');
 }
-
 const startGame = <HTMLDivElement>document.querySelector('.start-btn');
-startGame.onclick = function(e) {
-  setStartGame('true');
-  clearAnswerScale();
-  game = new Game(getPage(), cards, getPageIndex());
+
+function changeStyleStartButton (mode: string) {
+  console.log(`mode = ${mode}`);
+  const startImgBtn = document.querySelector(".image-btn");
+  const startRepeat = document.querySelector(".start-repeat");
+  if(mode == 'repeat') {
+    startGame.classList.add("start-btn_repeat");
+    startImgBtn.classList.add("no__display");
+    startRepeat.innerHTML = '';
+  } else {
+    startGame.classList.remove("start-btn_repeat");
+    startImgBtn.classList.remove("no__display");
+    startRepeat.innerHTML = 'Start game';
+  }
 }
 
+startGame.onclick = function(e) {
+  if(getStartGame() == 'false') {
+    setStartGame('true');
+    clearAnswerScale();
+    game = new Game(getPage(), cards, getPageIndex());
+    changeStyleStartButton('repeat');
+  } else {
+    let playedItemStr = localStorage.getItem('playedItem').trim();
+    let playedItem: any = playedItemStr.split(',')[playedItemStr.split(',').length - 1];
+    const audioSrc: any = playArray[Number.parseInt(playedItem)].audioSrc;
+    audioPlay(audioSrc);
+  }
+}
+
+/* ONLOAD */
 document.addEventListener("DOMContentLoaded", function() {
  
   let modeSwitcher = new Switcher('unchecked');
@@ -279,6 +304,7 @@ menu.onclick = function(event: any) {
   //console.log(li.innerHTML);
   changeCardsList(event, menuItem);
   checkboxMenu.checked = false;
+  setStartGame('false');
 }
 
 function changeMenuItemStyle(elem: string) {

@@ -1,6 +1,6 @@
 import { cards } from "./cards";
 
-let playArray: any = [];
+export let playArray: any = [];
 let itemStr: string = "";
 let counter: number = 0;
 

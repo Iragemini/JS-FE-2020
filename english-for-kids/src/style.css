@@ -578,7 +578,9 @@ p {
 }
 
 .start-btn_repeat {
-  width: 50px;
+  width: 50px !important;
+  border-radius: 50% !important;
+  transition: .3s;
 }
 
 .image-btn {
