@@ -3,7 +3,7 @@ import * as cards from './ts/cards';
 import {Game, playArray, setPlayedItem} from './ts/Game';
 import {Card} from './ts/Card';
 import {createElement} from './ts/Card';
-import {Stat, createStatObj} from './ts/Stat';
+import {Stat, createStatObj, updateStatistics} from './ts/Stat';
 
 let cardsArray: any = cards;
 
@@ -138,8 +138,11 @@ function playMode () {
         item.dataset['index'] = index.toString();
         const isTrue: string = compare(index);
         console.log(`isTrue = ${isTrue} event.currentTarget.classList = ${event.currentTarget.classList}`);
-        if(isTrue === "1") {
+        if(isTrue == "1") {
           <HTMLElement>event.currentTarget.classList.add("flip-disable");
+          updateStatistics(getPage().trim(), 'play', div, true);
+        } else if (isTrue == "0") {
+          updateStatistics(getPage().trim(), 'play', div, false);
         }
       });
     } 
@@ -163,6 +166,9 @@ function playMode () {
         console.log(`train audioSrc = ${audioSrc}`);
         if(getMode() == 'train') {
           audioPlay(audioSrc);
+          if(getPage() !== 'main') {
+            updateStatistics(getPage().trim(), 'train', div.trim(), false);
+          }
         }
       });
     }
@@ -301,8 +307,10 @@ document.addEventListener("DOMContentLoaded", function() {
   stat.addEventListener('click', function () {
     new Stat(JSON.parse(localStorage.getItem('statistics')));
   })
-  drawCard(getPage(), getMode()); 
-  createStatObj(cardsArray);  
+  drawCard(getPage(), getMode());
+  if(!localStorage.getItem('statistics') || localStorage.getItem('statistics') == '') {
+    createStatObj(cardsArray);  
+  }
 });
 
 menu.onclick = function(event: any) { 

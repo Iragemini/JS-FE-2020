@@ -38,13 +38,45 @@ export class Stat {
             const tdNum = tr.appendChild(document.createElement('td'));
             tdNum.innerHTML = `${j}`;
             const tdCategory = tr.appendChild(document.createElement('td'));
-            const ulCategory = tdCategory.appendChild(document.createElement('ul'));
-            ulCategory.classList.add('ul');
-            ulCategory.innerHTML = statistics[i][0];
-            for(let k = 0; k < statisticsPart.length; k++) {
-                const liCategory = ulCategory.appendChild(document.createElement('li'));
-                liCategory.classList.add('li');
-                liCategory.innerHTML = `${statisticsPart[k].word} (${statisticsPart[k].translation})`;
+            const tableCategory = tdCategory.appendChild(document.createElement('table'));
+            tableCategory.classList.add('category-table');
+            const caption = tableCategory.appendChild(document.createElement('caption'));
+            caption.innerHTML = statistics[i][0];
+            for(let k = 1; k <= 6; k++){
+                const th = tableCategory.appendChild(document.createElement('th'));
+                if(k === 1) {
+                    th.innerHTML = 'Word';
+                    th.style.width = '3rem';
+                } else if(k === 2) {
+                    th.innerHTML = 'Translation';
+                } else if(k === 3) {
+                    th.innerHTML = 'Train clicks';
+                } else if(k === 4) {
+                    th.innerHTML = 'Success answers';
+                } else if(k === 5) {
+                    th.innerHTML = 'Wrong answers';
+                } else {
+                    th.innerHTML = 'Success answers, %';
+                }
+            }
+            for(let q = 0; q < statisticsPart.length; q++) {
+                const liTr = tableCategory.appendChild(document.createElement('tr'));
+                for(let k = 1; k <= 6; k++){
+                    const td = liTr.appendChild(document.createElement('td'));
+                    if(k === 1) {
+                        td.innerHTML = statisticsPart[q].word;
+                    } else if(k === 2) {
+                        td.innerHTML = statisticsPart[q].translation;
+                    } else if(k === 3) {
+                        td.innerHTML = statisticsPart[q].train_clicks;
+                    } else if(k === 4) {
+                        td.innerHTML = statisticsPart[q].success_clicks;
+                    } else if(k === 5) {
+                        td.innerHTML = statisticsPart[q].wrong_clicks;
+                    } else {
+                        td.innerHTML = statisticsPart[q].percents;
+                    }
+                }
             }
         }
 
@@ -81,7 +113,36 @@ export function createStatObj (cardsArray: any) {
     localStorage.setItem("statistics", JSON.stringify(statistics));
 }
 
-export function updateStatistics (mode: string, word: string, correct: boolean) {
+export function updateStatistics (category:string, mode: string, word: string, success: boolean) {
 
+    const statistics = JSON.parse(localStorage.getItem("statistics"));
+
+    console.log(`category = ${category}, mode = ${mode}, word = ${word}, success = ${success}`);
+
+    for(let i = 0; i < statistics.length; i++) {
+        //console.log(`statistics[i][0] = ${statistics[i][0]}`);
+        const categoryStat = statistics[i][0];
+        if(categoryStat == category) {
+            const statisticsPart = statistics[i][1];
+            for(let j = 0; j < statisticsPart.length; j++) {
+                //console.log(`statisticsPart[j].word = ${statisticsPart[j].word}`);
+                if(statisticsPart[j].translation == word) {
+                    if(mode == 'train') {
+                        statisticsPart[j].train_clicks = statisticsPart[j].train_clicks + 1;
+                        //console.log(`statisticsPart[j].train_clicks = ${statisticsPart[j].train_clicks}`);
+                    } else {
+                        if(success == true) {
+                            statisticsPart[j].success_clicks = statisticsPart[j].success_clicks + 1;
+                        } else {
+                            statisticsPart[j].wrong_clicks = statisticsPart[j].wrong_clicks + 1;
+                        }
+                        const percents = (100 / (statisticsPart[j].success_clicks + statisticsPart[j].wrong_clicks)) * statisticsPart[j].success_clicks;
+                        statisticsPart[j].percents = percents;
+                    }
+                }
+            }
+        }
+    }
+    localStorage.setItem("statistics", JSON.stringify(statistics));
 }
 

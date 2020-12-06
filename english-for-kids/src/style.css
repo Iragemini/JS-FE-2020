@@ -801,3 +801,12 @@ img {
   list-style: decimal;
   margin: 1rem 0;
 }
+
+.category-table {
+  width: 100%;
+}
+
+.category-table th {
+  background-color: #ffdff0;
+  color: black;
+}
