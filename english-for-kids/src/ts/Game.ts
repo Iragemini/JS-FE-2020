@@ -1,5 +1,5 @@
 import { cards } from "./cards";
-import {audioPlay} from "../index";
+import {audioPlay, changeCardsList} from "../index";
 
 export let playArray: any = [];
 let itemStr: string = "";
@@ -77,7 +77,30 @@ export class Game {
     }
 
     private gameOver() {
-        audioPlay('../src/assets/audio/success.mp3');
+        if(!localStorage.getItem("wrong") || localStorage.getItem("wrong") == ""){
+            audioPlay('../src/assets/audio/success.mp3');
+            modalWin('win');
+        } else {
+            audioPlay('../src/assets/audio/failure.mp3');
+            localStorage.setItem("wrong", "");
+            modalWin('fail');
+        }
+
+        function modalWin (value: string) {
+            const modal = document.body.appendChild(document.createElement("div"));
+            modal.classList.add('modal');
+            const img = modal.appendChild(document.createElement('div'));
+            img.classList.add('modal-img');
+            if(value === 'fail') {
+                img.style.backgroundImage = 'url(../src/assets/img/try_again_2.png)';
+            } else {
+                img.style.backgroundImage = 'url(../src/assets/img/winner.png)';
+            }
+            setTimeout(() => {
+                document.body.removeChild(modal);
+                changeCardsList("", "main");
+            }, 3000);
+        }
         localStorage.setItem('start', 'false');
     }
 

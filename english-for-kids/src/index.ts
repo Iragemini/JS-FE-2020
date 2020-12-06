@@ -209,6 +209,7 @@ function compare (index: number) {
   } else {
     audioPlay('../src/assets/audio/error.mp3');
     answerScale.appendChild(createElement('div', 'wrong_answer'));
+    localStorage.setItem("wrong", "yes");
     return "0";
   }
 }
@@ -326,7 +327,7 @@ function changeMenuItemStyle(elem: string) {
   })
 }
 
-function changeCardsList (event: any, menuItem: string) {
+export function changeCardsList (event: any, menuItem: string) {
 
   clearAnswerScale();
   setPlayedItem("");
