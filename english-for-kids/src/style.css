@@ -766,3 +766,38 @@ img {
   font-size: 3rem;
 
 }
+
+.table__result {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table__result td, .table__result th {
+  border: 0.1rem solid #ddd;
+  padding: 0.8rem;
+}
+
+.table__result tr:nth-child(even){background-color: #f2f2f2;}
+
+.table__result tr:hover {
+  background-color: #0fa9a9;
+}
+
+.table__result th {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  text-align: left;
+  background-color: #005A5A;
+  color: white;
+}
+
+.ul {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.li {
+  list-style: decimal;
+  margin: 1rem 0;
+}

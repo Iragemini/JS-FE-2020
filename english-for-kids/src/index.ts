@@ -88,8 +88,8 @@ function getMode () {
 
 function setPage (page: string) {
   localStorage.setItem('page', page);
-  const activePage = document.querySelector('.active__page');
-  activePage.innerHTML = page;
+  /*const activePage = document.querySelector('.active__page');
+  activePage.innerHTML = page;*/
 }
 
 function getPage () {
@@ -297,6 +297,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
+  const stat = document.querySelector(".open-stat");
+  stat.addEventListener('click', function () {
+    new Stat(cardsArray);
+  })
   drawCard(getPage(), getMode());   
 });
 
