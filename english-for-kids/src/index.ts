@@ -3,7 +3,7 @@ import * as cards from './ts/cards';
 import {Game, playArray, setPlayedItem} from './ts/Game';
 import {Card} from './ts/Card';
 import {createElement} from './ts/Card';
-import {Stat} from './ts/Stat';
+import {Stat, createStatObj} from './ts/Stat';
 
 let cardsArray: any = cards;
 
@@ -299,9 +299,10 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
   const stat = document.querySelector(".open-stat");
   stat.addEventListener('click', function () {
-    new Stat(cardsArray);
+    new Stat(JSON.parse(localStorage.getItem('statistics')));
   })
-  drawCard(getPage(), getMode());   
+  drawCard(getPage(), getMode()); 
+  createStatObj(cardsArray);  
 });
 
 menu.onclick = function(event: any) { 
