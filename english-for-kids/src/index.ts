@@ -209,7 +209,7 @@ function compare (index: number) {
   } else {
     audioPlay('../src/assets/audio/error.mp3');
     answerScale.appendChild(createElement('div', 'wrong_answer'));
-    localStorage.setItem("wrong", "yes");
+    localStorage.setItem("wrong", (Number.parseInt(localStorage.getItem("wrong" || "0")) + 1).toString());
     return "0";
   }
 }
@@ -272,7 +272,8 @@ document.addEventListener("DOMContentLoaded", function() {
   setMode('train');
   setStartGame('false');
   setPageIndex(0);
-   /*
+  localStorage.setItem("wrong", "0");
+  /*
   switcher.unchecked => train mode
   switcher.checked => play mode
   */

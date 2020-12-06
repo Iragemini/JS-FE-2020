@@ -77,24 +77,32 @@ export class Game {
     }
 
     private gameOver() {
-        if(!localStorage.getItem("wrong") || localStorage.getItem("wrong") == ""){
+        if(!localStorage.getItem("wrong") || localStorage.getItem("wrong") == "0"){
             audioPlay('../src/assets/audio/success.mp3');
             modalWin('win');
         } else {
             audioPlay('../src/assets/audio/failure.mp3');
-            localStorage.setItem("wrong", "");
             modalWin('fail');
+            localStorage.setItem("wrong", "0");
         }
 
         function modalWin (value: string) {
             const modal = document.body.appendChild(document.createElement("div"));
             modal.classList.add('modal');
-            const img = modal.appendChild(document.createElement('div'));
+            const divInfo = modal.appendChild(document.createElement('div'));
+            divInfo.classList.add("modal-info");
+            const img = document.createElement('div');
             img.classList.add('modal-img');
-            if(value === 'fail') {
-                img.style.backgroundImage = 'url(../src/assets/img/try_again_2.png)';
+            divInfo.appendChild(img);
+            if(value === 'win') {
+                img.style.backgroundImage = 'url(../src/assets/img/success.jpg)';
+                modal.appendChild(divInfo);
             } else {
-                img.style.backgroundImage = 'url(../src/assets/img/winner.png)';
+                img.style.backgroundImage = 'url(../src/assets/img/failure.jpg)';
+                const info = divInfo.appendChild(document.createElement('span'));
+                info.classList.add('modal-info_text');
+                info.innerHTML = "Количество ошибок: " + localStorage.getItem("wrong");
+                modal.appendChild(divInfo);
             }
             setTimeout(() => {
                 document.body.removeChild(modal);
