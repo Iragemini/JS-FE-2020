@@ -19,7 +19,7 @@ export class Game {
         this.clear();
         this.randArr = this.createRandomPoll(this.page, this.cardsArr, this.pageIndex);
         for(let i = 0; i < this.randArr.length; i++) {
-            console.log(`i = ${i}`);
+            //console.log(`i = ${i}`);
             let src = this.randArr[i].audioSrc;
             let card = {'index': i, 'audioSrc': src};
             playArray.push(card);
@@ -55,7 +55,7 @@ export class Game {
         }
         counter ++;
         const audioSrc = playArray[item].audioSrc;
-        console.log(`item = ${item} src = ${audioSrc} len = ${playArray.length}`);
+        //console.log(`item = ${item} src = ${audioSrc} len = ${playArray.length}`);
         if(playArray.length === 0) {
             setTimeout(this.gameOver, 2000);
         }

@@ -22,7 +22,7 @@ export class Card {
         cardType,
       };
       this.createCardBody(carParameters);
-      console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
+      //console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
     }
   
     private createCardBody(carParameters: Object): void {
@@ -40,24 +40,27 @@ export class Card {
       const card = createElement('div', `${classList}`);
       const divFront = createElement('div', 'front');
       divFront.style.backgroundImage = `url(${imageUrl})`;
-      const p = createElement('p', 'text-shadow');
-      p.innerText = descriptionEn;
-      if(cardType !== 'main') {
+      const pEn = createElement('p', 'text-shadow');
+      pEn.innerText = descriptionEn;
+      /*if(cardType !== 'main') {
         divFront.append(p);
-      }
+      }*/
         
       if(cardType !== "main") {
         const divBack = createElement('div','back');
         divBack.style.backgroundImage = `url(${imageUrl})`;
-        const p = createElement('p', 'text-shadow');
+        const p = createElement('p', 'text-shadow,text-shadow_back');
         p.innerText = descriptionRu;
         const rotateDiv = createElement('div', 'rotate');
+        const rotateImg: any = createElement('img', 'rotate-img');
+        rotateImg.src = '../../src/assets/img/flip.png';
+        rotateDiv.append(pEn, rotateImg);
         divBack.append(p);
         divFront.append(rotateDiv);
         card.append(divFront, divBack);
         mainContainer.append(card);
       } else{
-        card.append(divFront, p);
+        card.append(divFront, pEn);
         mainContainer.append(card);
       }
     }
