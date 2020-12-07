@@ -53,7 +53,7 @@ export class Card {
         p.innerText = descriptionRu;
         const rotateDiv = createElement('div', 'rotate');
         const rotateImg: any = createElement('img', 'rotate-img');
-        rotateImg.src = '../../src/assets/img/flip.png';
+        rotateImg.src = '../src/assets/img/flip.png';
         rotateDiv.append(pEn, rotateImg);
         divBack.append(p);
         divFront.append(rotateDiv);

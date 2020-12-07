@@ -154,13 +154,10 @@ function playMode () {
       textDiv.classList.remove('no__display');
       item.addEventListener( 'click', function(event: any) {
         //console.log(`event.currentTarget  = ${event.target.classList }`);
+        if(event.target.tagName == 'P') return;
         const div = event.target.innerText;
         const rotateDiv = <HTMLElement>event.target;
         const classList = rotateDiv.classList;
-        //console.log(`classList = ${classList}`);
-        if(rotateDiv.className == 'rotate') {
-          //console.log(`rotateDiv = ${rotateDiv}`);
-        }
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
         //console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         let audioSrc = cardsArray.cards[getPageIndex()][index].audioSrc;
