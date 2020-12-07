@@ -420,7 +420,7 @@ nav {
 }
 
 .flip:hover {
-  box-shadow: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
+  border: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
   -webkit-transition: .3s;
   transition: .3s;
   cursor: pointer;
@@ -463,8 +463,8 @@ nav {
   border-radius: 10px;
   background-position: center;
   background-size: cover;
-  z-index: -1;
   transform: rotateY(0deg);
+  z-index: -1;
 }
 .back {
   position: absolute;
@@ -483,6 +483,10 @@ nav {
 
 .text-shadow {
   opacity: 1;
+}
+.text-shadow_back {
+  background-color: rgba(155, 157, 159, 0.7);
+  border-radius: 10px;
 }
 /*++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -507,27 +511,11 @@ p {
   padding: 0.5rem;
   border-radius: 10px;
   background-color: rgba(155, 157, 159, 0.7);
-  /*position: absolute;
-  width: 95%;
-  height: 50px;
-  background-color: rgba(193, 194, 194, 0.3);
-  background-image: url(./assets/img/turn.png);
-  background-size: 32px;
-  background-repeat: no-repeat;
-  background-position: right 1rem;
-  bottom: 5px;
-  right: 5px;
-  border-radius: 10px;
-  -webkit-transition: .3s;
-  transition: .3s;
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1);
-  cursor: pointer;
-  z-index: -1;*/
 }
 
 .rotate-img {
   filter: grayscale(1);
+  z-index: 100;
 }
 
 .rotate-img:hover {

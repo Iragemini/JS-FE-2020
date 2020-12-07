@@ -22,7 +22,7 @@ export class Card {
         cardType,
       };
       this.createCardBody(carParameters);
-      console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
+      //console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
     }
   
     private createCardBody(carParameters: Object): void {
@@ -49,7 +49,7 @@ export class Card {
       if(cardType !== "main") {
         const divBack = createElement('div','back');
         divBack.style.backgroundImage = `url(${imageUrl})`;
-        const p = createElement('p', 'text-shadow');
+        const p = createElement('p', 'text-shadow,text-shadow_back');
         p.innerText = descriptionRu;
         const rotateDiv = createElement('div', 'rotate');
         const rotateImg: any = createElement('img', 'rotate-img');

@@ -120,7 +120,7 @@ export function updateStatistics (category:string, mode: string, word: string, s
 
     const statistics = JSON.parse(localStorage.getItem("statistics"));
 
-    console.log(`category = ${category}, mode = ${mode}, word = ${word}, success = ${success}`);
+    //console.log(`category = ${category}, mode = ${mode}, word = ${word}, success = ${success}`);
 
     for(let i = 0; i < statistics.length; i++) {
         //console.log(`statistics[i][0] = ${statistics[i][0]}`);
@@ -140,7 +140,7 @@ export function updateStatistics (category:string, mode: string, word: string, s
                             statisticsPart[j].wrong_clicks = statisticsPart[j].wrong_clicks + 1;
                         }
                         const percents = (100 / (statisticsPart[j].success_clicks + statisticsPart[j].wrong_clicks)) * statisticsPart[j].success_clicks;
-                        statisticsPart[j].percents = percents;
+                        statisticsPart[j].percents = percents.toFixed();
                     }
                 }
             }

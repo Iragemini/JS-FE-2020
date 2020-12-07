@@ -31,7 +31,7 @@ function drawCard (init: string, mode: string) {
         p = event.target;
       }
       let text = p.innerHTML;
-      console.log(`p = ${p}, text = ${text}`);
+      //console.log(`p = ${p}, text = ${text}`);
       changeCardsList(event, text);
       changeMenuItemStyle(text);
     }
@@ -50,11 +50,11 @@ function drawCard (init: string, mode: string) {
     }
   } else {
     let index: number = cardsArr.findIndex((item) => item == init);
-    console.log(`index = ${index}`);
+    //console.log(`index = ${index}`);
     index += 1;
     setPageIndex(index);
     let categoryArr = cardsArray.cards[index];
-    console.log(`categoryArr = ${categoryArr[0].word}`);
+    //console.log(`categoryArr = ${categoryArr[0].word}`);
     for (let i: number = 0; i < categoryArr.length; i++) {
       imageSrc = categoryArr[i].image;
       audioSrc = categoryArr[i].audioSrc;
@@ -131,14 +131,14 @@ function playMode () {
       item.classList.remove('card_train');
       rotateDiv.classList.add('no__display');
       textDiv.classList.add('no__display');
-      console.log(`getStartGame() = ${getStartGame()}`);
+      //console.log(`getStartGame() = ${getStartGame()}`);
       item.addEventListener( 'click', function(event: any) {
         const div = event.target.innerText;
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
-        console.log(`play inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
+        //console.log(`play inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         item.dataset['index'] = index.toString();
         const isTrue: string = compare(index);
-        console.log(`isTrue = ${isTrue} event.currentTarget.classList = ${event.currentTarget.classList}`);
+        //console.log(`isTrue = ${isTrue} event.currentTarget.classList = ${event.currentTarget.classList}`);
         if(isTrue == "1") {
           <HTMLElement>event.currentTarget.classList.add("flip-disable");
           updateStatistics(getPage().trim(), 'play', div, true);
@@ -153,18 +153,18 @@ function playMode () {
       rotateDiv.classList.remove('no__display');
       textDiv.classList.remove('no__display');
       item.addEventListener( 'click', function(event: any) {
-        console.log(`event.currentTarget  = ${event.target.classList }`);
+        //console.log(`event.currentTarget  = ${event.target.classList }`);
         const div = event.target.innerText;
         const rotateDiv = <HTMLElement>event.target;
         const classList = rotateDiv.classList;
-        console.log(`classList = ${classList}`);
+        //console.log(`classList = ${classList}`);
         if(rotateDiv.className == 'rotate') {
-          console.log(`rotateDiv = ${rotateDiv}`);
+          //console.log(`rotateDiv = ${rotateDiv}`);
         }
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
-        console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
+        //console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         let audioSrc = cardsArray.cards[getPageIndex()][index].audioSrc;
-        console.log(`train audioSrc = ${audioSrc}`);
+        //console.log(`train audioSrc = ${audioSrc}`);
         if(getMode() == 'train') {
           audioPlay(audioSrc);
           if(getPage() !== 'main') {
@@ -172,6 +172,24 @@ function playMode () {
           }
         }
       });
+          
+      let rotate = document.querySelectorAll('.text-shadow');
+      if(rotate) {
+        rotate.forEach(function(item: any) {
+          //console.log(`forEach item = ${item.classList}`);
+          item.addEventListener('click', function(event: any) {
+            event.target.closest('DIV').style.transform = 'rotateY(0deg)';
+            event.target.closest('DIV').style.opacity = 1;
+            event.target.closest('DIV').style.transition = '1.5s'
+          });
+          item.addEventListener('mouseout', function(event: any) {
+            event.target.closest('DIV').style.transform = 'rotateY(-180deg)';
+            event.target.closest('DIV').style.opacity = 0;
+            event.target.closest('DIV').style.transition = '1.5s'
+          })
+        });    
+      }
+  
     }
   })
 
@@ -206,7 +224,7 @@ function compare (index: number) {
   let playedItemStr = localStorage.getItem('playedItem').trim();
   let playedItem = playedItemStr.split(',')[playedItemStr.split(',').length - 1];
   let clickItem = index.toString().trim();
-  console.log(`playedItemStr = ${playedItemStr}  playedItem = ${playedItem}  clickItem= ${clickItem} `);
+  //console.log(`playedItemStr = ${playedItemStr}  playedItem = ${playedItem}  clickItem= ${clickItem} `);
   const answerScale = document.querySelector('.answers__scale');
   answerScale.classList.remove('no__display');
   if(playedItem == clickItem) {
@@ -243,7 +261,7 @@ function setStartGame (start: string) {
 const startGame = <HTMLDivElement>document.querySelector('.start-btn');
 
 function changeStyleStartButton (mode: string) {
-  console.log(`mode = ${mode}`);
+  //console.log(`mode = ${mode}`);
   const startImgBtn = document.querySelector(".image-btn");
   const startRepeat = document.querySelector(".start-repeat");
   if(mode == 'repeat') {
@@ -285,14 +303,14 @@ document.addEventListener("DOMContentLoaded", function() {
   switcher.checked => play mode
   */
   const switcher = document.querySelector('.checkbox__switcher');
-  console.log(switcher);
+  //console.log(switcher);
   switcher.addEventListener('change', function () {
     if ( this.checked ) {
-        console.log('checked');
+        //console.log('checked');
         modeSwitcher.setSwitcher('checked');
         setMode('play');
       } else {
-      console.log('unchecked');
+      //console.log('unchecked');
       modeSwitcher.setSwitcher('unchecked');
       setMode('train');
       setStartGame('false');
@@ -301,9 +319,10 @@ document.addEventListener("DOMContentLoaded", function() {
     showGameBtn();
     playMode();
     setPlayedItem("");
+    rotateBack();
   });
 
-  console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
+  //console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
   const stat: any = document.querySelector(".open-stat");
   stat.addEventListener('click', function () {
     new Stat(JSON.parse(localStorage.getItem('statistics')));
@@ -329,7 +348,7 @@ menu.onclick = function(event: any) {
   const checkboxMenu = <HTMLInputElement>document.querySelector('.hidden-menu-ticker');
   //console.log(`checkboxMenu = ${checkboxMenu}`);
   const activeMenu = document.querySelector('.menu-current');
-  console.log(`activeMenu = ${activeMenu} class = ${activeMenu.className}`)
+  //console.log(`activeMenu = ${activeMenu} class = ${activeMenu.className}`)
   activeMenu.classList.remove('menu-current');
   const li = event.target;
   li.classList.add('menu-current');
@@ -339,10 +358,11 @@ menu.onclick = function(event: any) {
   checkboxMenu.checked = false;
   setStartGame('false');
   clearStat.classList.add('no__display');
+  rotateBack();
 }
 
 function changeMenuItemStyle(elem: string) {
-  console.log(`elem = ${elem}`);
+  //console.log(`elem = ${elem}`);
   const menuItem = document.querySelectorAll('.menu-item');
   menuItem.forEach(function(item) {
     item.classList.remove('menu-current');
@@ -365,31 +385,20 @@ export function changeCardsList (event: any, menuItem: string) {
   let mainContainer = document.querySelector(".main-container");
   mainContainer.remove();
   drawCard(menuItem, getMode());
-    
-  let containerItem = document.querySelectorAll('.flip');
-  let rotate = document.querySelectorAll('.front');
-  
-  console.log(`311 rotate = ${rotate}`);
-
-  if(rotate) {
-    rotate.forEach(function(a) {
-      console.log(`forEach a = ${a.classList}`);
-      a.addEventListener('click', flipCard);
-    });    
-  }
-  function flipCard(a: any) {
-    console.log(`a = ${a.currentTarget}`);
-    //let div = containerItem[+<HTMLElement>a.currentTarget];
-    const div = a.currentTarget;
-    div.style.transform = 'rotateY(180deg)';
-    //div.classList.add('front-rotate');
-  }
 }
 
 function clearAnswerScale () {
   const answerScale = document.querySelector('.answers__scale');
   answerScale.innerHTML = "";
   answerScale.classList.add('no__display');
+}
+
+function rotateBack () {
+  let back = document.querySelectorAll('.back');
+  back.forEach(function(item: any) {
+    item.style.transform = 'rotateY(-180deg)';
+    item.style.opacity = 0;
+  })
 }
 
 document.addEventListener('click', function(event: any) {
