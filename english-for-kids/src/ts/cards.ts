@@ -127,7 +127,7 @@ export const cards = [
       },
       {
         word: 'take pictures',
-        translation: 'фотографировать',
+        translation: 'фотографи-ровать',
         image: '../src/assets/img/category_img/take_pictures.jpg',
         audioSrc: '../src/assets/audio/take_pictures.mp3'
       },
@@ -153,7 +153,7 @@ export const cards = [
     [
       {
         word: 'multicolored',
-        translation: 'разноцветный',
+        translation: 'разно-цветный',
         image: '../src/assets/img/category_img/multicolored.png',
         audioSrc: '../src/assets/audio/multicolored.mp3'
       },

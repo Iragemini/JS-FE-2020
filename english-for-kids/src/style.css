@@ -52,6 +52,23 @@ textarea {
   margin: 0;
   /* 2 */
 }
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
 
 html {
   font-size: 10px;
@@ -106,8 +123,6 @@ nav {
 }
 
 .toggle__menu {
-  /*top: 11px;
-  left: 0;*/
   display: block;
   position: absolute; 
   z-index: 3;
@@ -337,7 +352,6 @@ nav {
   font-size: 22px;
   cursor: pointer;
   text-decoration: none;
-  /*font-family: Roboto;*/
   color: black;
   min-width: 145px;
   text-align: left;
@@ -380,8 +394,8 @@ nav {
 
 .card {
   position: relative;
-  width: 300px;
-  height: 280px;
+  width: 280px;
+  height: 220px;
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
   color: #212529;
@@ -398,7 +412,14 @@ nav {
   transition: .3s;
 }
 
-.card:hover, .flip:hover{
+.card:hover{
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.flip:hover {
   box-shadow: 0 8px 10px 0 rgba(0,0,0,.16), 0 8px 18px 0 rgba(0,0,0,.12);
   -webkit-transition: .3s;
   transition: .3s;
@@ -407,87 +428,63 @@ nav {
 
 .flip:hover > .front p {
   font-size: 3.5rem;
+  color: #fab3d9;
   transition: .4s;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04);
 }
 
-.front {
-  background-color: #fff;
-  height: 280px;
-  border-radius: 10px;
-  background-position: center;
-  background-size: cover;
-  z-index: -1;
-}
-.back {
-  background-color: #BDBDBD;
-  transform: rotateY(180deg);
-}
-
-.text-shadow {
-  opacity: 1;
-}
+/*++++++++++++++++++++++++++++++++++++++++*/
 
 .flip {
   position: relative;
   border-radius: 15px;
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 1rem;
+  width: 280px;
+  height: 220px;
 }
-
-.flip > .front,
-.flip > .back {
-  display: block;
-  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.front,.back {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
   transition-duration: 1.5s;
   transition-property: transform, opacity;
+  color: white;
+  width: inherit;
+  height: inherit;
+  background-size: cover !important;
+  background-position: center !important;
+  background: #313131;
+  border-radius: 10px;
 }
-.flip > .front {
+.front {
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
   transform: rotateY(0deg);
 }
-.flip > .back {
+.back {
   position: absolute;
   opacity: 0;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: 100%;
   transform: rotateY(-180deg);
 }
-.front-rotate {
+/*.flip:hover >.front {
   transform: rotateY(180deg);
 }
-.back-rotate {
-  opacity: 1;
-  transform: rotateY(0deg);
-}
-.flip.flip-vertical > .back {
-  transform: rotateX(-180deg);
-}
-/*.flip.flip-vertical:hover > .front {
-  transform: rotateX(180deg);
-}
-.flip.flip-vertical:hover > .back {
-  transform: rotateX(0deg);
+.flip:hover >.back {
+    opacity: 1;
+    transform: rotateY(0deg);
 }*/
 
-.flip {
-  position: relative;
-  display: inline-block;
-  margin-right: 2px;
-  margin-bottom: 1rem;
-  width: 250px;
+.text-shadow {
+  opacity: 1;
 }
-.flip > .front,
-.flip > .back {
-  display: block;
-  color: white;
-  width: inherit;
-  background-size: cover !important;
-  background-position: center !important;
-  height: 220px;
-  padding: 1rem 2rem;
-  background: #313131;
-  border-radius: 10px;
-}
+/*++++++++++++++++++++++++++++++++++++++++++*/
 
 .flip-disable {
   pointer-events: none !important; 
@@ -496,28 +493,45 @@ nav {
 }
 
 p {
-  font-size: 4rem;
+  padding-left: 1rem;
+  max-width: 200px;
+  font-size: 3rem;
   line-height: 160%;
-  color: white;
-  -webkit-text-stroke: 1.5px rgba(0,0,0,0.5);
+  color: #0f0f0f;
 }
 
 .rotate {
-  position: absolute;
-  width: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: rgba(155, 157, 159, 0.7);
+  /*position: absolute;
+  width: 95%;
   height: 50px;
-  background-image: url(./assets/img/rotate.png);
+  background-color: rgba(193, 194, 194, 0.3);
+  background-image: url(./assets/img/turn.png);
   background-size: 32px;
   background-repeat: no-repeat;
-  background-position: center 16px;
+  background-position: right 1rem;
   bottom: 5px;
   right: 5px;
+  border-radius: 10px;
   -webkit-transition: .3s;
   transition: .3s;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
   cursor: pointer;
-  z-index: -1;
+  z-index: -1;*/
+}
+
+.rotate-img {
+  filter: grayscale(1);
+}
+
+.rotate-img:hover {
+  cursor: pointer;
 }
 
 .rotate:hover {
@@ -827,3 +841,8 @@ img {
 .clear-stat:hover {
   cursor: pointer;
 }
+
+
+
+
+
