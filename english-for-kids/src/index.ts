@@ -10,6 +10,7 @@ let cardsArray: any = cards;
 let game: any;
 
 var menu = document.getElementById("menu");
+const clearStat: any = document.querySelector('.clear-stat');
 
 function drawCard (init: string, mode: string) {
   setPage(init);
@@ -106,7 +107,7 @@ function getPageIndex () {
 
 function showGameBtn () {
   const startBtn = document.querySelector('.start__game');
-  if(getPage() !== 'main') {
+  if(getPage() !== 'main' && getPage() !== 'stat') {
     if(getMode() === "play") {
       startBtn.classList.add("start__game-vis")
       changeStyleStartButton("start");
@@ -303,14 +304,24 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
-  const stat = document.querySelector(".open-stat");
+  const stat: any = document.querySelector(".open-stat");
   stat.addEventListener('click', function () {
     new Stat(JSON.parse(localStorage.getItem('statistics')));
-  })
+    clearStat.classList.remove('no__display');
+    setPage('stat');
+    showGameBtn();
+  });
+
+  clearStat.onclick = function() {
+    updateStatistics('all', 'clear', '', false);
+    new Stat(JSON.parse(localStorage.getItem('statistics')));
+  }
+
   drawCard(getPage(), getMode());
   if(!localStorage.getItem('statistics') || localStorage.getItem('statistics') == '') {
     createStatObj(cardsArray);  
-  }
+  }  
+  
 });
 
 menu.onclick = function(event: any) { 
@@ -327,6 +338,7 @@ menu.onclick = function(event: any) {
   changeCardsList(event, menuItem);
   checkboxMenu.checked = false;
   setStartGame('false');
+  clearStat.classList.add('no__display');
 }
 
 function changeMenuItemStyle(elem: string) {

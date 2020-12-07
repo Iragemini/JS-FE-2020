@@ -696,7 +696,7 @@ img {
 }
 
 .stat {
-  width: 25rem;
+  width: 35rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -715,6 +715,7 @@ img {
 .open-stat {
   font-size: 2.4rem;
   font-weight: bold;
+  width: 20rem;
 }
 
 .open-stat:hover {
@@ -809,4 +810,20 @@ img {
 .category-table th {
   background-color: #ffdff0;
   color: black;
+}
+
+.clear-stat {
+  margin-left: 2rem;
+  padding: .5rem 1rem;
+  width: 40px;
+  height: 30px;
+  border-radius: 10px;
+  background-image: url('./assets/img/clear.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.clear-stat:hover {
+  cursor: pointer;
 }

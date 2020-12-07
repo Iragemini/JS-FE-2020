@@ -12,8 +12,8 @@ export class Stat {
     }
     private createStatBody(statistics: any): void {
 
-       // let cardsArr: [] = cardsArray.cards[0];
-
+        const main = document.querySelector('.main');
+        const stat = document.querySelector(".stat");
         let mainContainer = document.querySelector('.main-container');
         mainContainer.remove();
         mainContainer = createElement('div', 'main-container');
@@ -46,17 +46,22 @@ export class Stat {
                 const th = tableCategory.appendChild(document.createElement('th'));
                 if(k === 1) {
                     th.innerHTML = 'Word';
-                    th.style.width = '3rem';
+                    th.style.width = '20%';
                 } else if(k === 2) {
                     th.innerHTML = 'Translation';
+                    th.style.width = '20%';
                 } else if(k === 3) {
                     th.innerHTML = 'Train clicks';
+                    th.style.width = '10%';
                 } else if(k === 4) {
                     th.innerHTML = 'Success answers';
+                    th.style.width = '10%';
                 } else if(k === 5) {
                     th.innerHTML = 'Wrong answers';
+                    th.style.width = '10%';
                 } else {
                     th.innerHTML = 'Success answers, %';
+                    th.style.width = '10%';
                 }
             }
             for(let q = 0; q < statisticsPart.length; q++) {
@@ -79,8 +84,6 @@ export class Stat {
                 }
             }
         }
-
-        const main = document.querySelector('.main');
         main.append(mainContainer);
     }
 }
@@ -122,8 +125,8 @@ export function updateStatistics (category:string, mode: string, word: string, s
     for(let i = 0; i < statistics.length; i++) {
         //console.log(`statistics[i][0] = ${statistics[i][0]}`);
         const categoryStat = statistics[i][0];
+        const statisticsPart = statistics[i][1];
         if(categoryStat == category) {
-            const statisticsPart = statistics[i][1];
             for(let j = 0; j < statisticsPart.length; j++) {
                 //console.log(`statisticsPart[j].word = ${statisticsPart[j].word}`);
                 if(statisticsPart[j].translation == word) {
@@ -140,6 +143,14 @@ export function updateStatistics (category:string, mode: string, word: string, s
                         statisticsPart[j].percents = percents;
                     }
                 }
+            }
+        }
+        if(mode == 'clear') {
+            for(let j = 0; j < statisticsPart.length; j++) {
+                statisticsPart[j].train_clicks = 0;
+                statisticsPart[j].success_clicks = 0;
+                statisticsPart[j].wrong_clicks = 0;
+                statisticsPart[j].percents = 0;
             }
         }
     }
