@@ -84,6 +84,7 @@ body {
 .wrapper {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -95,23 +96,6 @@ body {
   width: 100%;
   height: 45px;
   margin-top: 4rem;
-}
-@media (max-width: 1190px){
-  .wrapper {
-    max-width: 1000px;
-  }
-}
-
-@media (max-width: 900px){
-  .wrapper {
-      max-width: 650px;
-  }
-}
-
-@media (max-width: 600px){
-  .wrapper {
-      max-width: 350px;
-  }
 }
 
 .main {
@@ -283,7 +267,7 @@ nav {
 }
 
 .hidden-menu-ticker:checked ~ .btn-menu {
-  left: 300px;
+  left: 280px;
 }
 .hidden-menu-ticker:checked ~ .hidden-menu {
   left: 0;
@@ -607,15 +591,45 @@ p {
   align-items: flex-end;
   padding: 1.5rem 1rem;
 }
+@media (max-width: 1190px){
+  .wrapper {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 900px){
+  .wrapper {
+      max-width: 650px;
+  }
+  .header_wrapper {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 600px){
+  .wrapper {
+      max-width: 350px;
+  }
+}
 
 @media (max-width: 450px){
   .footer {
       flex-direction: column;
       align-items: flex-start;
   }
-
+  .wrapper {
+    max-width: 350px;
+    margin: 0;
+  }
+  .card, .flip {
+    width: 250px;
+  }
   .info {
     margin-bottom: 1.5rem;
+  }
+  .hidden-menu {
+    width: 320px;
+    left: -320px;
   }
 }
 
