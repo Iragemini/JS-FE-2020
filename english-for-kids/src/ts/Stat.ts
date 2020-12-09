@@ -28,12 +28,10 @@ export class Stat {
         thCategory.innerHTML = "Категория";
 
         let len = statistics.length;
-        //console.log(`len = ${len}`);
 
         for(let i = 0; i < len; i++) {
             let j = i + 1;
             let statisticsPart: any = statistics[i][1];
-            //console.log(`statisticsPart = ${statisticsPart}`);
             const tr = table.appendChild(document.createElement('tr'));
             const tdNum = tr.appendChild(document.createElement('td'));
             tdNum.innerHTML = `${j}`;
@@ -120,19 +118,14 @@ export function updateStatistics (category:string, mode: string, word: string, s
 
     const statistics = JSON.parse(localStorage.getItem("statistics"));
 
-    //console.log(`category = ${category}, mode = ${mode}, word = ${word}, success = ${success}`);
-
     for(let i = 0; i < statistics.length; i++) {
-        //console.log(`statistics[i][0] = ${statistics[i][0]}`);
         const categoryStat = statistics[i][0];
         const statisticsPart = statistics[i][1];
         if(categoryStat == category) {
             for(let j = 0; j < statisticsPart.length; j++) {
-                //console.log(`statisticsPart[j].word = ${statisticsPart[j].word}`);
                 if(statisticsPart[j].translation == word) {
                     if(mode == 'train') {
                         statisticsPart[j].train_clicks = statisticsPart[j].train_clicks + 1;
-                        //console.log(`statisticsPart[j].train_clicks = ${statisticsPart[j].train_clicks}`);
                     } else {
                         if(success == true) {
                             statisticsPart[j].success_clicks = statisticsPart[j].success_clicks + 1;
@@ -156,4 +149,3 @@ export function updateStatistics (category:string, mode: string, word: string, s
     }
     localStorage.setItem("statistics", JSON.stringify(statistics));
 }
-

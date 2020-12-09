@@ -22,7 +22,6 @@ export class Card {
         cardType,
       };
       this.createCardBody(carParameters);
-      //console.log(`cards ${cards} type = ${typeof cards}, cardType = ${cardType}`);
     }
   
     private createCardBody(carParameters: Object): void {
@@ -42,9 +41,6 @@ export class Card {
       divFront.style.backgroundImage = `url(${imageUrl})`;
       const pEn = createElement('p', 'text-shadow');
       pEn.innerText = descriptionEn;
-      /*if(cardType !== 'main') {
-        divFront.append(p);
-      }*/
         
       if(cardType !== "main") {
         const divBack = createElement('div','back');
@@ -76,5 +72,4 @@ export class Card {
     }
     return element;
   }
-
-  
+    

@@ -19,7 +19,6 @@ export class Game {
         this.clear();
         this.randArr = this.createRandomPoll(this.page, this.cardsArr, this.pageIndex);
         for(let i = 0; i < this.randArr.length; i++) {
-            //console.log(`i = ${i}`);
             let src = this.randArr[i].audioSrc;
             let card = {'index': i, 'audioSrc': src};
             playArray.push(card);
@@ -28,7 +27,6 @@ export class Game {
     }
 
     private createRandomPoll (page: string, cardsArr: any, pageIndex: string){
-        //console.log(`page = ${page}, pageIndex = ${pageIndex}`);
         let randArr: any = shuffle(cardsArr.cards[pageIndex]);
         function shuffle(array: any) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -44,7 +42,6 @@ export class Game {
         let item = Math.floor(Math.random() * playArray.length);
         const playedItem = localStorage.getItem('playedItem' || '');
 
-        //console.log(`item = ,${item},  itemStr = ,${itemStr},  counter = ${counter}  playArray.length = ${playArray.length}`);
         if(counter + 1 > playArray.length) {
             this.gameOver();
             return false;
@@ -55,7 +52,6 @@ export class Game {
         }
         counter ++;
         const audioSrc = playArray[item].audioSrc;
-        //console.log(`item = ${item} src = ${audioSrc} len = ${playArray.length}`);
         if(playArray.length === 0) {
             setTimeout(this.gameOver, 2000);
         }
@@ -122,4 +118,3 @@ export class Game {
 export function setPlayedItem (item: string) {
     localStorage.setItem('playedItem', item);
 }
-

@@ -23,7 +23,6 @@ function drawCard (init: string, mode: string) {
   mainContainer.id = "main-container";
   if(init == "main") {
     mainContainer.onclick = function(event: any) {
-      //alert(`event.target.tagName = ${event.target.tagName}`);
       let p: any = "";
       if(event.target.tagName !== 'P') {
         p = event.target.querySelector('p');
@@ -31,7 +30,6 @@ function drawCard (init: string, mode: string) {
         p = event.target;
       }
       let text = p.innerHTML;
-      //console.log(`p = ${p}, text = ${text}`);
       changeCardsList(event, text);
       changeMenuItemStyle(text);
     }
@@ -45,21 +43,17 @@ function drawCard (init: string, mode: string) {
       let j: number = i + 1;
       imageSrc = cardsArray.cards[j][0].image;
       description = cardsArr[i];
-      //console.log(`imageArr = ${imageArr}`);
       const card = new Card(imageSrc, "", description, `${mode}`, init);
     }
   } else {
     let index: number = cardsArr.findIndex((item) => item == init);
-    //console.log(`index = ${index}`);
     index += 1;
     setPageIndex(index);
     let categoryArr = cardsArray.cards[index];
-    //console.log(`categoryArr = ${categoryArr[0].word}`);
     for (let i: number = 0; i < categoryArr.length; i++) {
       imageSrc = categoryArr[i].image;
       audioSrc = categoryArr[i].audioSrc;
       description = `${categoryArr[i].word},${categoryArr[i].translation}`; 
-      //console.log(`imageSrc = ${imageSrc}, description = ${description}`);
       new Card(imageSrc, audioSrc, description, `${mode}`, init);
     }
   }
@@ -89,8 +83,6 @@ function getMode () {
 
 function setPage (page: string) {
   localStorage.setItem('page', page);
-  /*const activePage = document.querySelector('.active__page');
-  activePage.innerHTML = page;*/
 }
 
 function getPage () {
@@ -131,14 +123,11 @@ function playMode () {
       item.classList.remove('card_train');
       rotateDiv.classList.add('no__display');
       textDiv.classList.add('no__display');
-      //console.log(`getStartGame() = ${getStartGame()}`);
       item.addEventListener( 'click', function(event: any) {
         const div = event.target.innerText;
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
-        //console.log(`play inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         item.dataset['index'] = index.toString();
         const isTrue: string = compare(index);
-        //console.log(`isTrue = ${isTrue} event.currentTarget.classList = ${event.currentTarget.classList}`);
         if(isTrue == "1") {
           <HTMLElement>event.currentTarget.classList.add("flip-disable");
           updateStatistics(getPage().trim(), 'play', div, true);
@@ -153,15 +142,12 @@ function playMode () {
       rotateDiv.classList.remove('no__display');
       textDiv.classList.remove('no__display');
       item.addEventListener( 'click', function(event: any) {
-        //console.log(`event.currentTarget  = ${event.target.classList }`);
         if(event.target.tagName == 'P') return;
         const div = event.target.innerText;
         const rotateDiv = <HTMLElement>event.target;
         const classList = rotateDiv.classList;
         let index: number = cardsArray.cards[getPageIndex()].findIndex((e: any) => e.translation === div);
-        //console.log(`inner = ${div}, index = ${index}, pageIndex = ${getPageIndex()}`);
         let audioSrc = cardsArray.cards[getPageIndex()][index].audioSrc;
-        //console.log(`train audioSrc = ${audioSrc}`);
         if(getMode() == 'train') {
           audioPlay(audioSrc);
           if(getPage() !== 'main') {
@@ -173,7 +159,6 @@ function playMode () {
       let rotate = document.querySelectorAll('.text-shadow');
       if(rotate) {
         rotate.forEach(function(item: any) {
-          //console.log(`forEach item = ${item.classList}`);
           item.addEventListener('click', function(event: any) {
             event.target.closest('DIV').style.transform = 'rotateY(0deg)';
             event.target.closest('DIV').style.opacity = 1;
@@ -221,7 +206,6 @@ function compare (index: number) {
   let playedItemStr = localStorage.getItem('playedItem').trim();
   let playedItem = playedItemStr.split(',')[playedItemStr.split(',').length - 1];
   let clickItem = index.toString().trim();
-  //console.log(`playedItemStr = ${playedItemStr}  playedItem = ${playedItem}  clickItem= ${clickItem} `);
   const answerScale = document.querySelector('.answers__scale');
   answerScale.classList.remove('no__display');
   if(playedItem == clickItem) {
@@ -258,7 +242,6 @@ function setStartGame (start: string) {
 const startGame = <HTMLDivElement>document.querySelector('.start-btn');
 
 function changeStyleStartButton (mode: string) {
-  //console.log(`mode = ${mode}`);
   const startImgBtn = document.querySelector(".image-btn");
   const startRepeat = document.querySelector(".start-repeat");
   if(mode == 'repeat') {
@@ -300,14 +283,11 @@ document.addEventListener("DOMContentLoaded", function() {
   switcher.checked => play mode
   */
   const switcher = document.querySelector('.checkbox__switcher');
-  //console.log(switcher);
   switcher.addEventListener('change', function () {
     if ( this.checked ) {
-        //console.log('checked');
         modeSwitcher.setSwitcher('checked');
         setMode('play');
       } else {
-      //console.log('unchecked');
       modeSwitcher.setSwitcher('unchecked');
       setMode('train');
       setStartGame('false');
@@ -319,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function() {
     rotateBack();
   });
 
-  //console.log(`getSwitcher = ${modeSwitcher.getSwitcher()}`);
   const stat: any = document.querySelector(".open-stat");
   stat.addEventListener('click', function () {
     new Stat(JSON.parse(localStorage.getItem('statistics')));
@@ -343,14 +322,11 @@ document.addEventListener("DOMContentLoaded", function() {
 menu.onclick = function(event: any) { 
   if(event.target.tagName !== 'A') return;
   const checkboxMenu = <HTMLInputElement>document.querySelector('.hidden-menu-ticker');
-  //console.log(`checkboxMenu = ${checkboxMenu}`);
   const activeMenu = document.querySelector('.menu-current');
-  //console.log(`activeMenu = ${activeMenu} class = ${activeMenu.className}`)
   activeMenu.classList.remove('menu-current');
   const li = event.target;
   li.classList.add('menu-current');
   const menuItem = li.innerHTML;
-  //console.log(li.innerHTML);
   changeCardsList(event, menuItem);
   checkboxMenu.checked = false;
   setStartGame('false');
@@ -359,12 +335,10 @@ menu.onclick = function(event: any) {
 }
 
 function changeMenuItemStyle(elem: string) {
-  //console.log(`elem = ${elem}`);
   const menuItem = document.querySelectorAll('.menu-item');
   menuItem.forEach(function(item) {
     item.classList.remove('menu-current');
     if(item.innerHTML === elem) {
-      //console.log(`item = ${item.innerHTML}`);
       item.classList.add('menu-current');
     }
   })
@@ -399,13 +373,10 @@ function rotateBack () {
 }
 
 document.addEventListener('click', function(event: any) {
-  //console.log(`target = ${event.target}`);
   const checkboxMenu = <HTMLInputElement>document.querySelector('.hidden-menu-ticker');
   const targetElem = event.target;
-  //console.log(`targetElem.classList = ${targetElem.classList.toString()} type = ${typeof targetElem.classList}  checkboxMenu.checked = ${checkboxMenu.checked}`);
   const classArr = targetElem.classList.toString().split(' ');
   for (let i = 0; i < classArr.length; i++) {
-    //console.log(`classArr[i] = ${classArr[i]}`);
     if (classArr[i] == 'menu' || classArr[i] == 'visually__hidden' ||  classArr[i] == 'li-item' ||
         (checkboxMenu.checked == true && classArr[i].startsWith('bar'))) {
       return;
@@ -414,5 +385,4 @@ document.addEventListener('click', function(event: any) {
   if(checkboxMenu.checked) {
     checkboxMenu.checked = false;
   }
-  //if(event.target != )
 })
