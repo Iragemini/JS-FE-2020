@@ -1,14 +1,13 @@
 .world-data {
   display: flex;
   justify-content: space-between;
-  font-family: $ff-prim;
-  color: $white;
+  font-family: 'Roboto', sans-serif;
+  color: #ffff;
 
   &__card {
     box-sizing: border-box;
     width: 32.5%;
-    padding: 5px 10px;
-    font-weight: 500;
+    padding: 10px;
     text-align: center;
     background-color: $grey-dark-v2;
     border-radius: 3px;

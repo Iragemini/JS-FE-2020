@@ -16,7 +16,6 @@
 @mixin scrollbar() {
   &::-webkit-scrollbar {
     width: 10px;
-    height: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -26,10 +25,6 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: $grey-dark;
-  }
-
-  &::-webkit-scrollbar-corner {
     background: $grey-dark;
   }
 }

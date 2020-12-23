@@ -12,10 +12,7 @@ function configChart() {
   Chart.defaults.global.defaultFontFamily = 'Roboto';
   Chart.defaults.global.defaultFontColor = '#eeeeee';
   Chart.Legend.prototype.afterFit = function () {
-    this.height += 0;
-  };
-  Chart.Title.prototype.afterFit = function () {
-    this.height -= 38;
+    this.height += 15;
   };
 }
 let chart = null;
@@ -94,7 +91,7 @@ class CreateChart {
       data: chartData,
       borderWidth: 2,
       backgroundColor: getChartColors(this.showType, 'background'),
-      hoverBorderColor: getChartColors(),
+      hoverBorderColor: '#eeeeee',
       borderColor: getChartColors(this.showType, 'border'),
       fill: false,
     };
@@ -113,22 +110,18 @@ class CreateChart {
           position: 'top',
           text: this.country,
           fontSize: 18,
-          fontStyle: '500',
         },
         legend: {
           display: true,
           position: 'top',
-          align: 'end',
-          labels: {
-            fontSize: 14,
-          },
+          align: 'start',
         },
         tooltips: {
           borderWidth: 2,
-          borderColor: getChartColors('font', 'chart'),
-          backgroundColor: getChartColors(),
-          titleFontColor: getChartColors('font', 'chart'),
-          bodyFontColor: getChartColors('font', 'chart'),
+          borderColor: '#1c1c22',
+          backgroundColor: '#eeeeee',
+          titleFontColor: '#1c1c22',
+          bodyFontColor: '#1c1c22',
           callbacks: {
             labelColor(tooltipItem, labelChart) {
               const currentSet = labelChart.config.data.datasets[tooltipItem.datasetIndex];
@@ -144,10 +137,6 @@ class CreateChart {
         scales: {
           yAxes: [
             {
-              gridLines: {
-                color: getChartColors('gridLine', 'chart'),
-                borderDash: [6, 2],
-              },
               id: 'linearYAxis',
               type: 'linear',
               display: 'auto',
@@ -161,23 +150,15 @@ class CreateChart {
               display: 'auto',
             },
           ],
-          xAxes: [
-            {
-              gridLines: {
-                display: true,
-                color: getChartColors('gridLine', 'chart'),
-                borderDash: [2, 4],
-              },
-              offsetGridLines: true,
-              type: 'time',
-              position: 'bottom',
-              time: {
-                displayFormats: { day: 'MM/YY' },
-                tooltipFormat: 'DD/MM/YY',
-                unit: 'month',
-              },
+          xAxes: [{
+            type: 'time',
+            position: 'bottom',
+            time: {
+              displayFormats: { day: 'MM/YY' },
+              tooltipFormat: 'DD/MM/YY',
+              unit: 'month',
             },
-          ],
+          }],
         },
       },
     });
@@ -188,13 +169,9 @@ export default async function newChart(json, country, typeStatus, showType, show
   try {
     const location = document.querySelector('.location');
     const selectedLocation = location.options[location.selectedIndex].text;
-    let globalData = null;
 
-    if (selectedLocation === 'Global') {
-      globalData = await getData('World');
-    }
     const choice = (selectedLocation === 'Global') ? selectedLocation : country;
-    const { population } = (selectedLocation === 'Global') ? globalData : json.find((obj) => obj.country === country);
+    const { population } = (selectedLocation === 'Global') ? json : json.find((obj) => obj.country === country);
     const countryAPI = (selectedLocation === 'Global') ? 'all' : country;
     const countryData = await getData('chartAPI', countryAPI);
     const chartNew = new CreateChart(countryData, choice, typeStatus, showType, show, population);

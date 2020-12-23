@@ -1,15 +1,12 @@
 .button {
-  box-sizing: border-box;
-  padding: 5px 10px;
-  font-family: $ff-prim;
-  font-size: 0.9rem;
-  color: $white;
+  padding: 10px;
+  color: #ffff;
   background: $grey-dark;
-  border: 1px solid $grey-dark;
+  border: none;
   outline: none;
 
   &:hover {
     cursor: pointer;
-    background: $grey-light;
+    background: $grey-lighter;
   }
 }

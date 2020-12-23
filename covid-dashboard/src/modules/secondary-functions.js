@@ -16,6 +16,7 @@ function increasePerDay(value, prevValue) {
 }
 
 function getChartColors(status, type) {
+  console.log(status);
   if (type === 'background') {
     if (status === 'cases') {
       return '#c8354e';
@@ -36,14 +37,6 @@ function getChartColors(status, type) {
     }
     if (status === 'deaths') {
       return '#888888';
-    }
-  }
-  if (type === 'chart') {
-    if (status === 'gridLine') {
-      return '#666666';
-    }
-    if (status === 'font') {
-      return '#1c1c22';
     }
   }
   return '#eeeeee';

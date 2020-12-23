@@ -4,7 +4,7 @@
   justify-content: center;
   padding: 10px;
   margin: 5px 0 0;
-  font-family: $ff-prim;
+  font-family: 'Roboto', sans-serif;
   color: $white;
   background-color: #2f2f33;
   border-radius: 3px;
@@ -12,14 +12,6 @@
   @media screen and (max-width: 1600px) {
     flex-direction: column;
     padding: 10px;
-  }
-
-  @media screen and (max-width: 679px) {
-    flex-direction: row;
-  }
-
-  @media screen and (max-width: 359px) {
-    flex-direction: column;
   }
 
   &__country {
@@ -45,14 +37,6 @@
     list-style: none;
 
     @media screen and (max-width: 1600px) {
-      margin: 10px 0 0;
-    }
-
-    @media screen and (max-width: 679px) {
-      margin: 0 0 0 20px;
-    }
-
-    @media screen and (max-width: 359px) {
       margin: 10px 0 0;
     }
   }
