@@ -95,8 +95,5 @@
       "no-eq-null": 2,
       "no-unused-expressions": 0
     }
-  },
-  "dependencies": {
-    "detect.js": "^2.2.3"
   }
 }
