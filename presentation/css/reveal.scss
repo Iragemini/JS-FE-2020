@@ -1811,6 +1811,63 @@ $notesWidthPercent: 25%;
 	visibility: hidden;
 }
 
+table.browserref {
+	width: 100%;
+	display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+table.browserref th:first-child, table.browserref td:first-child {
+    padding-left: 16px;
+}
+table.browserref th {
+    height: 44px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #d4d4d4;
+    background-color: #ffffff;
+    font-weight: normal;
+    color: #555555;
+    padding: 11px 5px 11px 5px;
+    vertical-align: middle;
+}
+table.browserref td {
+    border: 1px solid #d4d4d4;
+    text-align: center;
+    padding: 8px;
+	vertical-align: top;
+	font-size: 18px;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+table.browserref tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table.browserref .bsChrome {
+	background-image: url(../dist/assets/chrome_browser_logo_icon_153007.png);
+}
+
+table.browserref .bsEdge {
+    background-image: url(../dist/assets/edge_browser_logo_icon_152998.png);
+}
+
+table.browserref .bsFirefox {
+    background-image: url(../dist/assets/firefox_browser_logo_icon_152991.png);
+}
+
+table.browserref .bsSafari {
+    background-image: url(../dist/assets/safari_browser_logo_icon_152965.png);
+}
+
+table.browserref .bsOpera {
+    background-image: url(../dist/assets/opera_browser_logo_icon_152972.png);
+}
 
 /*********************************************
  * PRINT STYLES

@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
+		<link rel="stylesheet" href="dist/theme/serif.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
@@ -16,8 +16,771 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h3>Type conversions performance in different browsers</h3>
+					<span style="text-align: left; font-size: 24px;">
+						<p class="fragment">
+							There are only three types of conversion in JavaScript:
+						</p>
+						<ul>
+							<li  class="fragment">to string</li>
+							<li  class="fragment">to boolean</li>
+							<li  class="fragment">to number</li>
+						</ul>
+						<p class="fragment">
+							JavaScript variables can be converted to a new variable and another data type:<br>
+						</p>
+						<ul>
+							<li  class="fragment">
+								By the use of a JavaScript function (Explicit coercion)
+							</li>
+							<li  class="fragment">
+								Automatically by JavaScript itself (Implicit coercion)
+							</li>
+						</ul>
+					</span>
+				</section>
+				
+				<section>
+					<section>
+						<h3>to String conversion</h3>
+						<p style="font-size: 24px;">
+							The abstract operation ToString takes argument <em>argument</em>. 
+							It converts argument to a value of type String according to Table 1:
+						</p>
+						<div>
+							<div style="font-size: 18px;">
+								Table 1: ToString Conversions
+							</div>
+							<div>
+								<img src="./dist/assets/toString.png" alt="toString" style="width: 50%; height: 35%;">
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>There are several ways to convert values to strings:</h3>
+						<p>String()</p>
+						<p>toString()</p>
+						<div style="background-color: gainsboro; display: flex; flex-direction: column; justify-content: center;  width: 100%;">
+							<span style="font-size: 15px; float: left; text-align: left;">
+								For numbers only
+							</span>
+							<div>
+								<p style="margin-top: 0;">toFixed ()</p>
+								<p>toExponential ()</p>
+								<p>toPrecision ()</p>
+							</div>
+						</div>
+						<p>Implicit conversion</p>
+					</section>  
+					<section>
+						<h4>String()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>String()</b> function converts the value of an object to a string.<br>
+								Note: The String() function returns the same value as toString() of the individual objects.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: String(object)
+							</p>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										var number = 12;
+
+										var newString = String(number);	// returns “12”;
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>  
+					<section>
+						<h4>toString()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>toString()</b> method converts a number to a string. 
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: number.toString(radix)
+							</p>
+							<div style="font-size: 18px;">
+								<em>radix:</em>	optional. Which base to use for representing a numeric value. Must be an integer between 2 and 36.<br>
+								2 - The number will show as a binary value<br>
+								8 - The number will show as an octal value<br>
+								16 - The number will show as an hexadecimal value
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										var number = 12;
+
+										number.toString(2);	// returns “1100”
+ 
+										number.toString(8);	// returns “14”
+										
+										number.toString(16);	// returns “c”
+									</code>
+								</pre>
+							</p>
+							<p>
+								For <b>null</b> and <b>undefined</b> values returns TypeError
+							</p>
+						</span>
+					</section>  
+					<section>
+						<h4>toFixed ()</h4>
+						<span style="font-size: 18px; text-align: left;">
+							<b>For number to string conversion only</b>
+						</span>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>toFixed()</b> method converts a number into a string, rounding to a specified number of decimals.<br>
+								Note: if the desired number of decimals are higher than the actual number, zeros are added to create the desired decimal length.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: number.toFixed(x)
+							</p>
+							<div style="font-size: 18px;">
+								<em>x:</em>	optional. The number of digits after the decimal point. Default is 0 (no digits after the decimal point).<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										var number = 123456.789;
+
+										number.toFixed(3);	// returns “123456.789”
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section> 
+					<section>
+						<h4>toExponential ()</h4>
+						<span style="font-size: 18px; text-align: left;">
+							<b>For number to string conversion only</b>
+						</span>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>toExponential()</b> method converts a number into an exponential notation.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: number.toExponential(x)
+							</p>
+							<div style="font-size: 18px;">
+								<em>x:</em>	optional. An integer between 0 and 20 representing the number of digits in the notation after the decimal point.
+								 If omitted, it is set to as many digits as necessary to represent the value.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										var number = 123456.789;
+
+										number.toExponential(1);	// returns “1.235e+5”
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section> 
+					<section>
+						<h4>toPrecision ()</h4>
+						<span style="font-size: 18px; text-align: left;">
+							<b>For number to string conversion only</b>
+						</span>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>toPrecision()</b> method formats a number to a specified length.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: number.toPrecision(x)
+							</p>
+							<div style="font-size: 18px;">
+								<em>x:</em>	optional. The number of digits. If omitted, it returns the entire number (without any formatting).<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										var number = 123456.789;
+	
+										number.toPrecision(7);	// returns “123456.8”
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>Implicit conversions</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<ul>
+								<li>
+									Implicit coercion is triggered by the binary + operator, when any operand is a string.
+									<p>
+										<pre>
+											<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+												var boolValue = true;
+			
+												console.log(boolValue + " story");// returns “true story”
+											</code>
+										</pre>
+									</p>
+								</li>
+								<li>
+									Template strings bring simple string interpolation to JavaScript. 
+									That is, they’re a nice-looking, convenient way to plug JavaScript values into a string.
+									<pre>
+										<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+											var val;
+		
+											console.log(`value is ${val}`);// returns “value is undefined”
+	
+											var val = null;
+		
+											console.log(`value is ${val}`);// returns “value is null”
+	
+											var val = 2021;
+		
+											console.log(`Happy new ${val} year!`);// returns “Happy new 2021 year!”
+										</code>
+									</pre>
+								</li>
+							</ul>
+						</span>
+					</section>
+					<section>
+						<h4>Symbols to String</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<ul>
+								<li>
+									Symbols can converted to string only explicity
+									<pre>
+										<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+											var symbol = Symbol.for("mySymbol");
+											
+											symbol.toString();	// returns 'Symbol(mySymbol)'
+											
+											String(symbol);	// returns 'Symbol(mySymbol)'
+										</code>
+									</pre>
+								</li>
+								<li>
+									If you try to concatenate the symbol directly with a string, an error will be thrown
+									<pre>
+										<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+											var symbol = Symbol.for("mySymbol");
+											
+											symbol + " ";	// returns TypeError
+										</code>
+									</pre>
+								</li>
+							</ul>
+						</span>
+					</section>			
+				</section>
+				<section>
+					<section>
+						<h3>to Boolean conversion</h3>
+						<p style="font-size: 24px;">
+							The abstract operation ToBoolean (argument) takes argument <em>argument</em>. 
+							It converts argument to a value of type Boolean according to Table 2
+						</p>
+						<div>
+							<div style="font-size: 18px;">
+								Table 2: ToBoolean Conversions
+							</div>
+							<div>
+								<img src="./dist/assets/toBoolean.png" alt="toBoolean"  style="width: 100%; height: 50%;">
+							</div>
+						</div>
+					</section>
+					<section>
+						<p>
+							There are two ways to convert values to Boolean in JavaScript:
+						</p>
+						<div>
+							<ul>
+								<li>Boolean() function </li>
+								<li>Implicit conversion (|| && !)</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h4>Boolean ()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								<b>Boolean ()</b> function returns the boolean value of variable. 
+								It can also be used to find boolean result of a condition, expression etc.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: Boolean(variable/expression) 
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em>A variable or object which has value are treated as true boolean values. 
+								‘0’, ‘NaN’, empty string, ‘undefined’, ‘null’ are treated as false boolean values.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										Boolean(10);	// returns true
+	
+										Boolean('false');	// returns true
+
+										Boolean('');	// returns false
+
+										Boolean(1 < 2);	// returns true
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>Implicit conversion</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								Implicit conversion happens in logical context, or is triggered by logical operators ( || && !) .
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em> Logical operators such as <b>||</b> and <b>&&</b> do boolean conversions internally, 
+								but actually return the value of original operands, even if they are not boolean.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										2021 || 'JavaScript'	// implicit due to logical operator
+
+										if ("value") { ... }      // implicit due to logical context
+
+										let str = 'JavaScript' && 2021 // returns number 2021, instead of returning true
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>Double Negation</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>double-negation !!</b> is not a distinct JavaScript operator nor a special syntax but rather just a sequence of two negations. 
+								It is used to convert the value of any type to its appropriate true or false Boolean value depending on whether it is truthy or falsy.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: !!value 
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em> many professionals consider the practice of using such syntax unacceptable 
+								and recommend simpler to read alternatives, even if they're longer to write.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										!!1 // returns true
+
+										!!0 // returns false
+
+										!!{} // returns true
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>to Number conversion</h3>
+						<p style="font-size: 24px;">
+							The abstract operation ToNumber takes argument argument. 
+							It converts argument to a value of type Number according to Table 3:
+						</p>
+						<div>
+							<div style="font-size: 18px;">
+								Table 3: ToNumber Conversions
+							</div>
+							<div>
+								<img src="./dist/assets/toNumber.png" alt="toNumber" style="width: 50%; height: 35%;">
+							</div>
+						</div>
+					</section>
+					<section>
+						<p>
+							There are three different ways to convert into a number:
+						</p>
+						<div>
+							<ul>
+								<li>parseInt() </li>
+								<li>parseFloat()</li>
+								<li>Number()</li>
+								<li>Implicit conversion</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h4>parseInt ()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>parseInt ()</b>  function parses a string and returns an integer. 
+								The radix parameter is used to specify which numeral system to be used.<br>
+								If the radix parameter is omitted, JavaScript assumes the following:
+								<ul>
+									<li>If the string begins with "0x", the radix is 16 (hexadecimal)</li>
+									<li>If the string begins with "0", the radix is 8 (octal). This feature is deprecated</li>
+									<li>If the string begins with any other value, the radix is 10 (decimal)</li>
+								</ul>
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: parseInt(string, radix)
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em>If the first character cannot be converted to a number, NaN is returned.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										let str = '25px';
+
+										let intValue = parseInt(str, 10);	// returns 25
+
+										str = 'width: 25px';
+
+										intValue = parseInt(str, 10);	// returns NaN
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>parseFloat ()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>parseFloat ()</b> function parses a string and returns a floating point number. 
+								This function determines if the first character in the specified string is a number. 
+								If it is, it parses the string until it reaches the end of the number, and returns the number as a number, not as a string.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: parseFloat(string)
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em> If the first character cannot be converted to a number, NaN is returned<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										let str = '2.55 rubles';
+
+										let intValue = parseFloat(str);	// returns 2.55
+
+										str = 'cost 2.55 rubles';
+
+										intValue = parseFloat(str)	// returns NaN
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>Number ()</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>
+								The <b>Number ()</b> function converts the object argument to a number that represents the object's value.
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax: Number(object)
+							</p>
+							<div style="font-size: 18px;">
+								<em>Note:</em> Returns different object values to their numbers. 
+								If the value cannot be converted to a legal number, NaN is returned. If no argument is provided, it returns 0.<br>
+							</div>
+							<p>
+								Code examples:
+							</p>
+							<p>
+								<pre>
+									<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+										let str = '2.55 rubles';
+
+										let intValue = Number(str);	// returns NaN
+
+										str = '2021';
+
+										intValue = Number(str)	// returns 2021
+
+										let boolStr = true;
+
+										intValue = Number(boolStr)	// returns 1
+
+										boolStr = false;
+
+										intValue = Number(boolStr)	// returns 0
+									</code>
+								</pre>
+							</p>
+						</span>
+					</section>
+					<section>
+						<h4>Implicit conversion</h4>
+						<span style="text-align: left; font-size: 24px;">
+							<p>Primitives are coerced to number when using</p>
+							<ul>
+								<li>
+									comparison operators
+									<pre>
+										<code class="javascript" data-trim style="font-size: 18px; letter-spacing: 0.6px;">
+											"25" >= 15  -> 25 >= 15  -> true // numeric string with number
+	
+											"true" > 1  -> NaN > 1   -> false // text string with number
+										</code>
+									</pre>
+								</li>
+								<li>
+									arithmetic operators (except for + when one operand is a string)
+									<pre>
+										<code class="javascript" data-trim style="font-size: 18px; letter-spacing: 0.6px;">
+											"25" - 15  -> 25 - 15  -> 10 // numeric string with number
+
+											undefined - 1 -> NaN - 1 -> NaN // undefined with number
+
+											null + 2 -> 0 + 2 -> 2 // null with number
+										</code>
+									</pre>
+								</li>
+								<li>
+									the unary + operator
+									<pre>
+										<code class="javascript" data-trim style="font-size: 18px; letter-spacing: 0.6px;">
+											+'2021' -> 2021
+
+											+true -> 1
+
+											+undefined -> NaN
+
+											+null -> 0
+										</code>
+									</pre>
+								</li>
+							</ul>
+						</span>
+					</section>
+				</section>
+				<section>
+					<table class="browserref notranslate">
+						<tbody>
+						<tr>
+						  <th style="width:20%;font-size:16px;text-align:left;">Function</th>
+						  <th style="width:16%;" class="bsChrome" title="Chrome"></th>
+						  <th style="width:16%;" class="bsEdge" title="Internet Explorer / Edge"></th>
+						  <th style="width:16%;" class="bsFirefox" title="Firefox"></th>
+						  <th style="width:16%;" class="bsSafari" title="Safari"></th>
+						  <th style="width:16%;" class="bsOpera" title="Opera"></th>                
+						</tr>
+						<tr>
+							<td colspan='6' style="text-align: center;">
+								to String conversion
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">String()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						  </tr>
+						<tr>
+						  <td style="text-align:left;">toString()</td>
+						  <td>Yes</td>
+						  <td>Yes</td>
+						  <td>Yes</td>
+						  <td>Yes</td>
+						  <td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">toFixed()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">toExponential()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">toPrecision()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">Template literals</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td colspan='6' style="text-align: center;">
+								to Boolean conversion
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">Boolean()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">Double Negation (!!)</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td colspan='6' style="text-align: center;">
+								to Number conversion
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">parseInt()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">parseFloat()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">Number()</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td style="text-align:left;">Unary plus (+)</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+					  </tbody>
+					</table>
+				</section>
+				<section>Slide 5</section>
+				<section>
+					<h4>Resourses</h4>
+					<div style="font-size: 24px;">
+						<ul>
+							<li>
+								<a href="https://www.w3schools.com/js/default.asp target="_blank">
+									JavaScript Tutorial
+								</a>
+							</li>
+							<li>
+								<a href="https://tc39.es/ecma262/#sec-toboolean" target="_blank">
+									ToBoolean ( argument )
+								</a>
+							</li>
+							<li>
+								<a href="https://riptutorial.com/javascript/example/3047/double-negation----x-" target="_blank">
+									Double Negation (!!x)
+								</a>
+							</li>
+							<li>
+								<a href="https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/" target="_blank">
+									JavaScript type coercion explained
+								</a>
+							</li>
+							<li>
+								<a href="https://leanpub.com/understandinges6/read/#leanpub-auto-symbol-coercion" target="_blank">
+									Symbol Coercion
+								</a>
+							</li>
+							<li>
+								<a href="https://medium.com/front-end-weekly/implicit-coercion-in-javascript-5077ad5510d" target="_blank">
+									Implicit Coercion in JavaScript
+								</a>
+							</li>
+							<li>
+								<a href="https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/" target="_blank">
+									ES6 In Depth: Template strings
+								</a>
+							</li>
+							<li>
+								<a href="https://coderoad.ru/5765398/%D0%9A%D0%B0%D0%BA-%D0%BB%D1%83%D1%87%D1%88%D0%B5-%D0%B2%D1%81%D0%B5%D0%B3%D0%BE-%D0%BF%D1%80%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D1%87%D0%B8%D1%81%D0%BB%D0%BE-%D0%B2-%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83-%D0%B2-JavaScript" target="_blank">
+									Как лучше всего преобразовать число в строку в JavaScript?
+								</a>
+							</li>
+							<li>
+								<a href="https://www.geeksforgeeks.org/javascript-boolean/#:~:text=Boolean%20is%20a%20datatype%20that,terms%20of%20true%20or%20false." target="_blank">
+									JavaScript Boolean
+								</a>
+							</li>
+							<li>
+								<a href="https://es5.javascript.ru/x9.html#x9.2" target="_blank">
+									Спецификация ECMAScript 5.1 с аннотациями 
+								</a>
+							</li>
+							<li>
+								<a href="https://zametkinapolyah.ru/veb-programmirovanie/zametki-po-javascript/preobrazovanie-chislo-v-stroku-javascript-preobrazovanie-stroka-v-chislo-javascript.html#__JavaScript_JavaScript_String_JavaScript_toString_toFixed_toExponential_toPrecision" target="_blank">
+									Преобразование число в строку JavaScript. Преобразование строка в число JavaScript
+								</a>
+							</li>
+							<li>
+								<a href="https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/" target="_blank">
+									Converting strings to numbers with vanilla JavaScript
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
 			</div>
 		</div>
 
