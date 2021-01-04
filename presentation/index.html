@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Presentation</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -589,6 +589,7 @@
 					</section>
 				</section>
 				<section>
+					<h4>Browser Support</h4>
 					<table class="browserref notranslate">
 						<tbody>
 						<tr>
@@ -713,7 +714,81 @@
 					  </tbody>
 					</table>
 				</section>
-				<section>Slide 5</section>
+				<section>
+					<section>
+						<h4>
+							Performance testing
+						</h4>
+					</section>
+					<section>
+						<h4>
+							Code Example
+						</h4>
+						<pre>
+							<code class="javascript" data-trim style="font-size: 20px; letter-spacing: 0.6px;">
+								function testFunction () {
+
+									console.time("String(n)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = String(i);
+									}
+									console.timeEnd("String(n)");
+								
+									...
+								
+									console.time("`${n}`");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = `${i}`;
+									}
+									console.timeEnd("`${n}`");
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Bar charts</h4>
+						<p style="font-size: 24px;">to String conversions</p>
+						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+							<div class="charts">
+								<div>
+									<a href="./dist/assets/charts/ChromeToString.png" target="_blank">
+										<img src="./dist/assets/charts/ChromeToString.png" alt="Chrome">
+									</a>
+								</div>
+								<div>
+									<a href="./dist/assets/charts/EdgeToString.png" target="_blank">
+										<img src="./dist/assets/charts/EdgeToString.png" alt="Edge">
+									</a>
+								</div>
+								<div>
+									<a href="./dist/assets/charts/FirefoxToString.png" target="_blank">
+										<img src="./dist/assets/charts/FirefoxToString.png" alt="Firefox">
+									</a>
+								</div>
+							</div>
+							<div class="charts">
+								<div>
+									<a href="./dist/assets/charts/SafariToString.png" target="_blank">
+										<img src="./dist/assets/charts/SafariToString.png" alt="Safari">
+									</a>
+								</div><div>
+									<a href="./dist/assets/charts/OperaToString.png" target="_blank">
+										<img src="./dist/assets/charts/OperaToString.png" alt="Opera">
+									</a>
+								</div>
+							</div>
+						</div>
+						<span style="font-size: 14px; display: flex; text-align: left; width: 100%;">
+							* To zoom chart click on it
+						</span>
+					</section>
+					<div>
+
+					</div>
+					<div>
+
+					</div>
+				</section>
 				<section>
 					<h4>Resourses</h4>
 					<div style="font-size: 24px;">

@@ -1869,6 +1869,12 @@ table.browserref .bsOpera {
     background-image: url(../dist/assets/opera_browser_logo_icon_152972.png);
 }
 
+.charts {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 /*********************************************
  * PRINT STYLES
  *********************************************/
