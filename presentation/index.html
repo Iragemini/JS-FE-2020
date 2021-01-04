@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Presentation</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -589,6 +589,7 @@
 					</section>
 				</section>
 				<section>
+					<h4>Browser Support</h4>
 					<table class="browserref notranslate">
 						<tbody>
 						<tr>
@@ -713,7 +714,320 @@
 					  </tbody>
 					</table>
 				</section>
-				<section>Slide 5</section>
+				<section>
+					<h4>
+						Test workstations and environment
+					</h4>
+					<ul style="font-size: 24px;">
+						<li>
+							Windows OS 10 Home x64, core i7 1.50 Ghz, 16GB RAM
+							<ol>
+								Firefox v84.0.1, Chrome v87.0.4280.88 , Opera v73.0.3856.284, Edge v87.0.664.66:
+							</ol>
+							<ol>
+								nodejs v12.19.1
+							</ol>
+						</li>
+						<li>
+							Mac OS 10.15.6, core i7 2.2 Ghz, 16GB RAM
+							<ol>
+								Safari v13.1.2:
+							</ol>
+							<ol>
+								nodejs v15.5.0
+							</ol>
+						</li>
+						<li>
+							Bar charts was created with Chart.js v2.9.4
+						</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h4>
+							to String test function
+						</h4>
+						<pre>
+							<code class="javascript" data-trim style="font-size: 17px; letter-spacing: 0.6px;">
+								function testFunctionToStr () {
+
+									console.log(` ${user.browser.family}`);
+								
+									console.time("String(n)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = String(i);
+									}
+									console.timeEnd("String(n)");
+								
+									console.time("n.toString()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toString();
+									}
+									console.timeEnd("n.toString()");
+								
+									console.time("n.toFixed ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toFixed ();
+									}
+									console.timeEnd("n.toFixed ()");
+								
+									console.time("n.toExponential ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toExponential ();
+									}
+									console.timeEnd("n.toExponential ()");
+								
+									console.time("n.toPrecision ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toPrecision ();
+									}
+									console.timeEnd("n.toPrecision ()");
+								
+									console.time("'' + n");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = '' + i;
+									}
+									console.timeEnd("'' + n");
+								
+									console.time("n + ''");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i + '';
+									}
+									console.timeEnd("n + ''");
+								
+									console.time("`${n}`");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = `${i}`;
+									}
+									console.timeEnd("`${n}`");
+								};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Detailed bar charts</h4>
+						<p style="font-size: 24px;">to String conversions</p>
+						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+							<div class="charts">
+								<div>
+									<p class="chart__description">Chrome</p>
+									<a href="./dist/assets/charts/ChromeToString.png" target="_blank">
+										<img src="./dist/assets/charts/ChromeToString.png" alt="Chrome">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Edge</p>
+									<a href="./dist/assets/charts/EdgeToString.png" target="_blank">
+										<img src="./dist/assets/charts/EdgeToString.png" alt="Edge">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Firefox</p>
+									<a href="./dist/assets/charts/FirefoxToString.png" target="_blank">
+										<img src="./dist/assets/charts/FirefoxToString.png" alt="Firefox">
+									</a>
+								</div>
+							</div>
+							<div class="charts">
+								<div>
+									<p class="chart__description">Safari</p>
+									<a href="./dist/assets/charts/SafariToString.png" target="_blank">
+										<img src="./dist/assets/charts/SafariToString.png" alt="Safari">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Opera</p>
+									<a href="./dist/assets/charts/OperaToString.png" target="_blank">
+										<img src="./dist/assets/charts/OperaToString.png" alt="Opera">
+									</a>
+								</div>
+							</div>
+						</div>
+						<span style="font-size: 14px; display: flex; text-align: left; width: 100%;">
+							* To zoom chart click on it
+						</span>
+					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toStringAll.png" target="_blank">
+								<img src="./dist/assets/charts/toStringAll.png" alt="toStringAll">
+							</a>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h4>
+							to Boolean test function
+						</h4>
+						<pre>
+							<code class="javascript" data-trim style="font-size: 17px; letter-spacing: 0.6px;">
+								function testFunctionToBool () {
+									console.time("Boolean(n)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const bool = Boolean(i);
+									}
+									console.timeEnd("Boolean(n)");
+								
+									console.time("!!n");
+									for (let i = 0; i < 10000000; i += 1) {
+										const bool = !!i;
+									}
+									console.timeEnd("!!n");
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Detailed bar charts</h4>
+						<p style="font-size: 24px;">to String conversions</p>
+						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+							<div class="charts">
+								<div>
+									<p class="chart__description">Chrome</p>
+									<a href="./dist/assets/charts/ChromeToBool.png" target="_blank">
+										<img src="./dist/assets/charts/ChromeToBool.png" alt="Chrome">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Edge</p>
+									<a href="./dist/assets/charts/EdgeToBool.png" target="_blank">
+										<img src="./dist/assets/charts/EdgeToBool.png" alt="Edge">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Firefox</p>
+									<a href="./dist/assets/charts/FirefoxToBool.png" target="_blank">
+										<img src="./dist/assets/charts/FirefoxToBool.png" alt="Firefox">
+									</a>
+								</div>
+							</div>
+							<div class="charts">
+								<div>
+									<p class="chart__description">Safari</p>
+									<a href="./dist/assets/charts/SafariToBool.png" target="_blank">
+										<img src="./dist/assets/charts/SafariToBool.png" alt="Safari">
+									</a>
+								</div><div>
+									<p class="chart__description">Opera</p>
+									<a href="./dist/assets/charts/OperaToBool.png" target="_blank">
+										<img src="./dist/assets/charts/OperaToBool.png" alt="Opera">
+									</a>
+								</div>
+							</div>
+						</div>
+						<span style="font-size: 14px; display: flex; text-align: left; width: 100%;">
+							* To zoom chart click on it
+						</span>
+					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toBooleanAll.png" target="_blank">
+								<img src="./dist/assets/charts/toBooleanAll.png" alt="toBooleanAll">
+							</a>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h4>
+							to Number test function
+						</h4>
+						<pre>
+							<code class="javascript" data-trim style="font-size: 17px; letter-spacing: 0.6px;">
+								(function testFunctionToNumber (str) {
+									console.time("parseInt(str)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const intValue = parseInt(str);
+									}
+									console.timeEnd("parseInt(str)");
+								
+									console.time("parseFloat(str)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const intValue = parseFloat(str);
+									}
+									console.timeEnd("parseFloat(str)");
+								
+									console.time("Number(str)");
+									for (let i = 0; i < 10000000; i += 1) {
+										const intValue = Number(str);
+									}
+									console.timeEnd("Number(str)");
+								
+									console.time("unary +str");
+									for (let i = 0; i < 10000000; i += 1) {
+										const intValue = +str;
+									}
+									console.timeEnd("unary +str");
+								})('3.14');
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Detailed bar charts</h4>
+						<p style="font-size: 24px;">to String conversions</p>
+						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+							<div class="charts">
+								<div>
+									<p class="chart__description">Chrome</p>
+									<a href="./dist/assets/charts/ChromeToNumber.png" target="_blank">
+										<img src="./dist/assets/charts/ChromeToNumber.png" alt="Chrome">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Edge</p>
+									<a href="./dist/assets/charts/EdgeToNumber.png" target="_blank">
+										<img src="./dist/assets/charts/EdgeToNumber.png" alt="Edge">
+									</a>
+								</div>
+								<div>
+									<p class="chart__description">Firefox</p>
+									<a href="./dist/assets/charts/FirefoxToNumber.png" target="_blank">
+										<img src="./dist/assets/charts/FirefoxToNumber.png" alt="Firefox">
+									</a>
+								</div>
+							</div>
+							<div class="charts">
+								<div>
+									<p class="chart__description">Safari</p>
+									<a href="./dist/assets/charts/SafariToNumber.png" target="_blank">
+										<img src="./dist/assets/charts/SafariToNumber.png" alt="Safari">
+									</a>
+								</div><div>
+									<p class="chart__description">Opera</p>
+									<a href="./dist/assets/charts/OperaToNumber.png" target="_blank">
+										<img src="./dist/assets/charts/OperaToNumber.png" alt="Opera">
+									</a>
+								</div>
+							</div>
+						</div>
+						<span style="font-size: 14px; display: flex; text-align: left; width: 100%;">
+							* To zoom chart click on it
+						</span>
+					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toNumberAll.png" target="_blank">
+								<img src="./dist/assets/charts/toNumberAll.png" alt="toNumberAll">
+							</a>
+						</div>
+					</section>
+				</section>
+				<section>
+					<h4>
+						Conclusion	
+					</h4>
+					
+				</section>
 				<section>
 					<h4>Resourses</h4>
 					<div style="font-size: 24px;">
@@ -776,6 +1090,11 @@
 							<li>
 								<a href="https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/" target="_blank">
 									Converting strings to numbers with vanilla JavaScript
+								</a>
+							</li>
+							<li>
+								<a href="https://www.chartjs.org/docs/latest/" target="_blank">
+									Chart.js
 								</a>
 							</li>
 						</ul>
