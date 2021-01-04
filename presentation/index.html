@@ -716,23 +716,29 @@
 				</section>
 				<section>
 					<h4>
-						Comparison resource
+						Test workstations and environment
 					</h4>
-					<ul style="font-size: 18px;">
+					<ul style="font-size: 24px;">
 						<li>
-							For browsers: Firefox v.84.0.1, Chrome v.87.0.4280.88 , Opera v.73.0.3856.284, Edge v.87.0.664.66:
+							Windows OS 10 Home x64, core i7 1.50 Ghz, 16GB RAM
+							<ol>
+								Firefox v84.0.1, Chrome v87.0.4280.88 , Opera v73.0.3856.284, Edge v87.0.664.66:
+							</ol>
 							<ol>
 								nodejs v12.19.1
 							</ol>
+						</li>
+						<li>
+							Mac OS 10.15.6, core i7 2.2 Ghz, 16GB RAM
 							<ol>
-								Windows OS 10 Home x64, core i7 1.30 Ghz 1.50 Ghz, 16GB 
+								Safari v13.1.2:
+							</ol>
+							<ol>
+								nodejs v15.5.0
 							</ol>
 						</li>
 						<li>
-							For Safari v.13.1.2:
-							<ol>
-								Mac OS 10.15.6, core i7 2.2 Ghz, 16GB 2400 DDR4 RAM
-							</ol>
+							Bar charts was created with Chart.js v2.9.4
 						</li>
 					</ul>
 				</section>
@@ -745,25 +751,61 @@
 							<code class="javascript" data-trim style="font-size: 17px; letter-spacing: 0.6px;">
 								function testFunctionToStr () {
 
+									console.log(` ${user.browser.family}`);
+								
 									console.time("String(n)");
 									for (let i = 0; i < 10000000; i += 1) {
 										const str = String(i);
 									}
 									console.timeEnd("String(n)");
 								
-									...
+									console.time("n.toString()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toString();
+									}
+									console.timeEnd("n.toString()");
+								
+									console.time("n.toFixed ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toFixed ();
+									}
+									console.timeEnd("n.toFixed ()");
+								
+									console.time("n.toExponential ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toExponential ();
+									}
+									console.timeEnd("n.toExponential ()");
+								
+									console.time("n.toPrecision ()");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i.toPrecision ();
+									}
+									console.timeEnd("n.toPrecision ()");
+								
+									console.time("'' + n");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = '' + i;
+									}
+									console.timeEnd("'' + n");
+								
+									console.time("n + ''");
+									for (let i = 0; i < 10000000; i += 1) {
+										const str = i + '';
+									}
+									console.timeEnd("n + ''");
 								
 									console.time("`${n}`");
 									for (let i = 0; i < 10000000; i += 1) {
 										const str = `${i}`;
 									}
 									console.timeEnd("`${n}`");
-								}
+								};
 							</code>
 						</pre>
 					</section>
 					<section>
-						<h4>Bar charts</h4>
+						<h4>Detailed bar charts</h4>
 						<p style="font-size: 24px;">to String conversions</p>
 						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 							<div class="charts">
@@ -792,7 +834,8 @@
 									<a href="./dist/assets/charts/SafariToString.png" target="_blank">
 										<img src="./dist/assets/charts/SafariToString.png" alt="Safari">
 									</a>
-								</div><div>
+								</div>
+								<div>
 									<p class="chart__description">Opera</p>
 									<a href="./dist/assets/charts/OperaToString.png" target="_blank">
 										<img src="./dist/assets/charts/OperaToString.png" alt="Opera">
@@ -803,6 +846,16 @@
 						<span style="font-size: 14px; display: flex; text-align: left; width: 100%;">
 							* To zoom chart click on it
 						</span>
+					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toStringAll.png" target="_blank">
+								<img src="./dist/assets/charts/toStringAll.png" alt="toStringAll">
+							</a>
+						</div>
 					</section>
 				</section>
 				<section>
@@ -829,7 +882,7 @@
 						</pre>
 					</section>
 					<section>
-						<h4>Bar charts</h4>
+						<h4>Detailed bar charts</h4>
 						<p style="font-size: 24px;">to String conversions</p>
 						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 							<div class="charts">
@@ -870,6 +923,16 @@
 							* To zoom chart click on it
 						</span>
 					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toBooleanAll.png" target="_blank">
+								<img src="./dist/assets/charts/toBooleanAll.png" alt="toBooleanAll">
+							</a>
+						</div>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -907,7 +970,7 @@
 						</pre>
 					</section>
 					<section>
-						<h4>Bar charts</h4>
+						<h4>Detailed bar charts</h4>
 						<p style="font-size: 24px;">to String conversions</p>
 						<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 							<div class="charts">
@@ -948,11 +1011,22 @@
 							* To zoom chart click on it
 						</span>
 					</section>
+					<section>
+						<h4>
+							Generalized chart
+						</h4>
+						<div>
+							<a href="./dist/assets/charts/toNumberAll.png" target="_blank">
+								<img src="./dist/assets/charts/toNumberAll.png" alt="toNumberAll">
+							</a>
+						</div>
+					</section>
 				</section>
 				<section>
 					<h4>
-						Conclusions	
+						Conclusion	
 					</h4>
+					
 				</section>
 				<section>
 					<h4>Resourses</h4>
@@ -1016,6 +1090,11 @@
 							<li>
 								<a href="https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/" target="_blank">
 									Converting strings to numbers with vanilla JavaScript
+								</a>
+							</li>
+							<li>
+								<a href="https://www.chartjs.org/docs/latest/" target="_blank">
+									Chart.js
 								</a>
 							</li>
 						</ul>
