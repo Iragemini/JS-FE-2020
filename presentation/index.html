@@ -19,26 +19,30 @@
 				<section>
 					<h3>Type conversions performance in different browsers</h3>
 					<span style="text-align: left; font-size: 24px;">
-						<p class="fragment">
+						<div class="fragment">
+							<p>
+								JavaScript variables can be converted to a new variable and another data type:<br>
+							</p>
+							<ul>
+								<li>
+									By the use of a JavaScript function (Explicit coercion)
+								</li>
+								<li>
+									Automatically by JavaScript itself (Implicit coercion)
+								</li>
+							</ul>
+						</div>
+						<div class="fragment">
+							<p>
 							There are only three types of conversion in JavaScript:
-						</p>
-						<ul>
-							<li  class="fragment">to string</li>
-							<li  class="fragment">to boolean</li>
-							<li  class="fragment">to number</li>
-						</ul>
-						<p class="fragment">
-							JavaScript variables can be converted to a new variable and another data type:<br>
-						</p>
-						<ul>
-							<li  class="fragment">
-								By the use of a JavaScript function (Explicit coercion)
-							</li>
-							<li  class="fragment">
-								Automatically by JavaScript itself (Implicit coercion)
-							</li>
-						</ul>
-					</span>
+							</p>
+							<ul>
+								<li>to string</li>
+								<li>to boolean</li>
+								<li>to number</li>
+							</ul>						
+						</div>
+				</span>
 				</section>
 				
 				<section>
@@ -101,10 +105,13 @@
 						<h4>toString()</h4>
 						<span style="text-align: left; font-size: 24px;">
 							<p>
-								The <b>toString()</b> method converts a number to a string. 
+								The <b>toString()</b> method returns a string representing the object. 
 							</p>
 							<p style="text-decoration: underline;">
-								Syntax: number.toString(radix)
+								Syntax: obj.toString()
+							</p>
+							<p style="text-decoration: underline;">
+								Syntax for  Numbers and BigInts: obj.toString(radix)
 							</p>
 							<div style="font-size: 18px;">
 								<em>radix:</em>	optional. Which base to use for representing a numeric value. Must be an integer between 2 and 36.<br>
@@ -321,7 +328,7 @@
 						<h4>Boolean ()</h4>
 						<span style="text-align: left; font-size: 24px;">
 							<p>
-								<b>Boolean ()</b> function returns the boolean value of variable. 
+								The <b>Boolean ()</b> function returns the boolean value of variable. 
 								It can also be used to find boolean result of a condition, expression etc.
 							</p>
 							<p style="text-decoration: underline;">
@@ -424,7 +431,7 @@
 					</section>
 					<section>
 						<p>
-							There are three different ways to convert into a number:
+							There are four different ways to convert into a number:
 						</p>
 						<div>
 							<ul>
@@ -439,20 +446,22 @@
 						<h4>parseInt ()</h4>
 						<span style="text-align: left; font-size: 24px;">
 							<p>
-								The <b>parseInt ()</b>  function parses a string and returns an integer. 
-								The radix parameter is used to specify which numeral system to be used.<br>
-								If the radix parameter is omitted, JavaScript assumes the following:
-								<ul>
-									<li>If the string begins with "0x", the radix is 16 (hexadecimal)</li>
-									<li>If the string begins with "0", the radix is 8 (octal). This feature is deprecated</li>
-									<li>If the string begins with any other value, the radix is 10 (decimal)</li>
-								</ul>
+								The <b>parseInt ()</b>  function parses a string and returns an integer.
 							</p>
 							<p style="text-decoration: underline;">
 								Syntax: parseInt(string, radix)
 							</p>
 							<div style="font-size: 18px;">
-								<em>Note:</em>If the first character cannot be converted to a number, NaN is returned.<br>
+								<p>
+									The radix parameter is used to specify which numeral system to be used.<br>
+									If the radix parameter is omitted, JavaScript assumes the following:
+									<ul>
+										<li>If the string begins with "0x", the radix is 16 (hexadecimal)</li>
+										<li>If the string begins with "0", the radix is 8 (octal). This feature is deprecated</li>
+										<li>If the string begins with any other value, the radix is 10 (decimal)</li>
+									</ul>
+								</p>
+								<em>Note:</em> If the first character cannot be converted to a number, NaN is returned.<br>
 							</div>
 							<p>
 								Code examples:
@@ -476,8 +485,8 @@
 						<h4>parseFloat ()</h4>
 						<span style="text-align: left; font-size: 24px;">
 							<p>
-								The <b>parseFloat ()</b> function parses a string and returns a floating point number. 
-								This function determines if the first character in the specified string is a number. 
+								The <b>parseFloat ()</b> function parses a string and returns a floating point number. <br>
+								This function determines if the first character in the specified string is a number. <br>
 								If it is, it parses the string until it reaches the end of the number, and returns the number as a number, not as a string.
 							</p>
 							<p style="text-decoration: underline;">
@@ -1026,14 +1035,17 @@
 					<h4>
 						Conclusion	
 					</h4>
-					
+					<div style="font-size: 24px;">
+						It is very important to take into account different ways of conversion in particular situation. 
+						As research shows, performance may vary between three or four times in various ways of type conversion.
+					</div>
 				</section>
 				<section>
 					<h4>Resourses</h4>
 					<div style="font-size: 24px;">
 						<ul>
 							<li>
-								<a href="https://www.w3schools.com/js/default.asp target="_blank">
+								<a href="https://www.w3schools.com/js/default.asp" target="_blank">
 									JavaScript Tutorial
 								</a>
 							</li>
