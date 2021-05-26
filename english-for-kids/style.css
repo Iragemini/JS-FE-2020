@@ -317,7 +317,7 @@ nav {
   top: 0;
   left: 0;
   background:  #c6c6c6;
-  background-image: url('./assets/img/train_mode.png');
+  background-image: url('../assets/img/train_mode.png');
   background-size: cover;
   background-position: center;
   transform: scale(1.1);
@@ -326,7 +326,7 @@ nav {
 }
 .checkbox__switcher:checked[type="checkbox"]::before {
   left: 80px;
-  background-image: url('./assets/img/game_mode.png');
+  background-image: url('../assets/img/game_mode.png');
   background-size: cover;
   background-position: center;
 }
@@ -568,7 +568,7 @@ p {
   height: 60px !important;
   width: 60px !important;
   border-radius: 50% !important;
-  background-image: url(./assets/img/repeat.png);
+  background-image: url(../assets/img/repeat.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -578,7 +578,7 @@ p {
 .image-btn {
   width: 48px;
   height: 48px;
-  background-image: url("./assets/img/game_mode.png");
+  background-image: url("../assets/img/game_mode.png");
   background-repeat: no-repeat;
   background-size: contain;
   margin-right: 3.5rem;
@@ -696,7 +696,7 @@ img {
 .correct_answer {
   width: 5rem;
   height: 5rem;
-  background-image: url('./assets/img/true.png');
+  background-image: url('../assets/img/true.png');
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 1;
@@ -705,7 +705,7 @@ img {
 .wrong_answer {
   width: 5rem;
   height: 5rem;
-  background-image: url('./assets/img/true.png');
+  background-image: url('../assets/img/true.png');
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.3;
@@ -723,7 +723,7 @@ img {
   width: 40px;
   height: 40px;
   margin-right: 0.5rem;
-  background-image: url('./assets/img/stat.png');
+  background-image: url('../assets/img/stat.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -834,7 +834,7 @@ img {
   width: 40px;
   height: 30px;
   border-radius: 10px;
-  background-image: url('./assets/img/clear.png');
+  background-image: url('../assets/img/clear.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
